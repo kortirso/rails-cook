@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'catalog/index'
+
+  get 'catalog/category'
+
+  get 'catalog/kitchen'
+
+  get 'catalog/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +61,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: 'catalog#index', as: 'catalog'
 end
