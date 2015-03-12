@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
+  get 'contacts/index'
+
+  resources :contacts
+
+  resources :recipes
+
+  resources :countries
+
+  resources :categories
+
   get 'catalog/index'
+
+  get 'catalog/all'
 
   get 'catalog/category'
 

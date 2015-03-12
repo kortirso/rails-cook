@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><!-- Боковая навигация -->
+      <h2>Навигация по рецептам</h2>
+    </div>
+    <div class="col-md-9"><!-- Основное поле с рецептами -->
+      <h2><%= @h2 %></h2>
+      <% @recipes.each do |recipe| %>
+        <div class="recipe_block">
+          <div class="row">
+            <div class="col-md-3">
+              <%= image_tag("#{recipe.photo}", class: "img-responsive", alt: "#{recipe.name}") %>
+            </div>
+            <div class="col-md-9">
+              <h3><%= link_to recipe.name, '/catalog/show?id='+recipe.id.to_s %></h3>
+              <p><%= link_to recipe.category.name, '/catalog/category?id='+recipe.category_id.to_s %></p>
+              <p><%= link_to recipe.country.name, '/catalog/kitchen?id='+recipe.country_id.to_s %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p><%= recipe.caption %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

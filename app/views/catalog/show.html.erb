@@ -1,2 +1,27 @@
-<h1>Catalog#show</h1>
-<p>Find me in app/views/catalog/show.html.erb</p>
+<div class="container">
+<div class="row">
+  <div class="col-md-3"><!-- Боковая навигация -->
+    <h2>Навигация по рецептам</h2>
+  </div>
+  <div class="col-md-9"><!-- Определенный рецепт -->
+    <div class="recipe_block">
+      <h2><%= @recipe.name %></h2>
+      <div class="row">
+        <div class="col-md-3">
+          <%= image_tag("#{@recipe.photo}", class: "img-responsive", alt: "#{@recipe.name}") %>
+        </div>
+        <div class="col-md-9">
+          <p><%= @recipe.caption %></p>
+          <p><%= link_to @recipe.category.name, '/catalog/category?id='+@recipe.category_id.to_s %></p>
+          <p><%= link_to @recipe.country.name, '/catalog/kitchen?id='+@recipe.country_id.to_s %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Приготовление</h3>
+          <p><%= @recipe.text %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
