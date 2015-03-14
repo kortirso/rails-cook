@@ -18,19 +18,21 @@
       <a class="navbar-brand" href="/catalog/index"><%= image_tag("logo.png", class: "img-responsive", alt: "Логотип RoR") %></a>
     </div>
     <div class="navbar-collapse collapse">
-
       <ul class="nav navbar-nav">
         <li><%= link_to 'Каталог рецептов', '/catalog/all' %></li>
         <li><%= link_to 'Контакты', '/contacts' %></li>
-        <% if user_signed_in? %>
-          <li><span class="whiteOut">Signed in as <strong><em><%= getUserFromEmail(current_user.email) %></em></strong></span></li>
-          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small btn-danger' %></li>
-        <% else %>
-          <li><p><%= link_to "Sign up", "#sign_up", "data-toggle" => "modal", :id => "up", :class => 'btn btn-small btn-success' %></p></li>
-          <li><p><%= link_to "Login", "#login", "data-toggle" => "modal", :id => "log", :class => 'btn btn-small' %></p></li>
-        <% end %>
       </ul>
-
+    </div>
+    <div class="auth_box">
+      <% if user_signed_in? %>
+        <% name = current_user.email[/[^@]+/] %>
+        <% name.split(".").map {|n| n.capitalize }.join(" ") %>
+        <span>Вы вошли как - <strong><%= name %></strong></span>
+        <%= link_to "Выйти", destroy_user_session_path, :method => :delete, :class => 'btn btn-sm btn-danger' %>
+      <% else %>
+        <%= link_to "Регистрация", "#sign_up", "data-toggle" => "modal", :id => "up", :class => 'btn btn-sm btn-success' %>
+        <%= link_to "Вход", "#login", "data-toggle" => "modal", :id => "log", :class => 'btn btn-sm btn-success' %>
+      <% end %>
     </div>
   </nav>
   <%= yield %>
