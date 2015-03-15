@@ -4,15 +4,15 @@
       %h2 Навигация по рецептам
       %ul.categories
         Категории
-        = Category.all().each do |cat|
+        - Category.all.each do |cat|
           %li= link_to(cat.caption, '/catalog/category?id='+cat.id.to_s)
       %ul.categories
         Национальные блюда
-        = Country.all().each do |kitchen|
+        - Country.all.each do |kitchen|
           %li= link_to(kitchen.caption, '/catalog/kitchen?id='+kitchen.id.to_s)
     .col-md-9
       %h2= @h2
-      = @recipes.each do |recipe|
+      - @recipes.each do |recipe|
         .recipe_block
           .row
             .col-md-3
@@ -24,4 +24,3 @@
           .row
             .col-xs-12
               %p= recipe.caption
-      end
