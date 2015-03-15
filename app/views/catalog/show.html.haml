@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-3
+      %h2 Навигация по рецептам
+    .col-md-9
+      .recipe_block
+        %h2= @recipe.name
+        .row
+          .col-md-3
+            = image_tag @recipe.photo, class: "img-responsive", alt: @recipe.name
+          .col-md-9
+            %p= @recipe.caption
+            %p= link_to @recipe.category.name, '/catalog/category?id='+@recipe.category_id.to_s
+            %p= link_to @recipe.country.name, '/catalog/kitchen?id='+@recipe.country_id.to_s
+        .row
+          .col-xs-12
+            %h3 Приготовление
+            %p= @recipe.text

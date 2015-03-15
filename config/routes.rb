@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-
   devise_for :users
-  get 'contacts/index'
+  get 'contacts' => 'contacts#index', as: 'contacts'
   get 'welcome/index'
 
   resources :contacts

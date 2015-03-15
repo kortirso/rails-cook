@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-3
+      %h2 Навигация по рецептам
+      %ul.categories
+        Категории
+        = Category.all().each do |cat|
+          %li= link_to(cat.caption, '/catalog/category?id='+cat.id.to_s)
+      end
+      %ul.categories
+        Национальные блюда
+        = Country.all().each do |kitchen|
+          %li= link_to(kitchen.caption, '/catalog/kitchen?id='+kitchen.id.to_s)
+    .col-md-9
+      %h2= @h2
+      = @recipes.each do |recipe|
+        .recipe_block
+          .row
+            .col-md-3
+              = image_tag recipe.photo, class: "img-responsive", alt: recipe.name
+            .col-md-9
+              %h3= link_to recipe.name, '/catalog/show?id='+recipe.id.to_s
+              %p= link_to recipe.category.name, '/catalog/category?id='+recipe.category_id.to_s
+              %p= link_to recipe.country.name, '/catalog/kitchen?id='+recipe.country_id.to_s
+          .row
+            .col-xs-12
+              %p= recipe.caption
+      end

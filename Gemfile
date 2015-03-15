@@ -36,6 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'devise'
+gem 'haml'
 
 group :production do
   gem 'rails_12factor'
