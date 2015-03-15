@@ -6,7 +6,6 @@
         Категории
         = Category.all().each do |cat|
           %li= link_to(cat.caption, '/catalog/category?id='+cat.id.to_s)
-      end
       %ul.categories
         Национальные блюда
         = Country.all().each do |kitchen|
