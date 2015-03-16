@@ -8,16 +8,16 @@ class CatalogController < ApplicationController
   end
 
   def category # Выборка рецептов по категориям
-    @recipes = Recipe.where(category_id: params[:id])
-    @categories = Category.find(params[:id])
-    @h2 = "Рецепты: " + @categories.caption
+    category = Category.where(name: params[:name]).take
+    @recipes = Recipe.where(category_id: category)
+    @h2 = "Рецепты: " + category.caption
     render action: 'all'
   end
 
   def kitchen # Выборка рецептов по национальным кухням
-    @recipes = Recipe.where(country_id: params[:id])
-    @countries = Country.find(params[:id])
-    @h2 = "Рецепты: " + @countries.caption
+    country = Country.where(name: params[:name]).take
+    @recipes = Recipe.where(country_id: country)
+    @h2 = "Рецепты: " + country.caption
     render action: 'all'
   end
 

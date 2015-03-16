@@ -12,41 +12,45 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label 'Название рецепта' %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :short %><br>
-    <%= f.text_field :short %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
+    <%= f.label 'Категория' %><br>
     <%= f.number_field :category_id %>
   </div>
   <div class="field">
-    <%= f.label :country_id %><br>
+    <%= f.label 'Национальня кухня' %><br>
     <%= f.number_field :country_id %>
   </div>
   <div class="field">
-    <%= f.label :photo %><br>
-    <%= f.text_field :photo %>
+    <%= f.label 'Краткое описание' %><br>
+    <%= f.text_area :short %>
   </div>
   <div class="field">
-    <%= f.label :caption %><br>
+    <%= f.label 'Подробное описание' %><br>
     <%= f.text_area :caption %>
   </div>
   <div class="field">
-    <%= f.label :steps %><br>
+    <%= f.label 'Рецепт приготовления' %><br>
     <%= f.text_area :steps %>
   </div>
+  
+  <!--
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <% f.label :photo %><br>
+    <% f.text_field :photo %>
   </div>
   <div class="field">
-    <%= f.label :visible %><br>
-    <%= f.check_box :visible %>
+    <% f.label :user_id %><br>
+    <% f.number_field :user_id %>
   </div>
+  <div class="field">
+    <% f.label :visible %><br>
+    <% f.check_box :visible %>
+  </div>
+  -->
+  
   <div class="actions">
     <%= f.submit %>
   </div>

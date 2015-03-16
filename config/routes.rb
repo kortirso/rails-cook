@@ -16,9 +16,9 @@ Rails.application.routes.draw do
 
   get 'catalog/all'
 
-  get 'catalog/category'
+  get 'catalog/category/:name' => 'catalog#category'
 
-  get 'catalog/kitchen'
+  get 'catalog/kitchen/:name' => 'catalog#kitchen'
 
   get 'catalog/show'
 

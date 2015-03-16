@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_filter :set_accessible, except: [:new, :create]
 
   # GET /recipes
   # GET /recipes.json
@@ -69,6 +71,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :short, :category_id, :country_id, :photo, :caption, :steps, :user_id, :visible)
+      params.require(:recipe).permit(:name, :short, :category_id, :country_id, :photo, :caption, :steps, :user_id, :visible, :path_name)
     end
 end
