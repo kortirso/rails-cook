@@ -10,7 +10,7 @@
         Национальные блюда
         - Country.all.each do |kitchen|
           %li= link_to(kitchen.caption, '/catalog/kitchen/'+kitchen.name)
-    .col-md-9
+    .col-md-7
       %h2= @h2
       - @recipes.each do |recipe|
         .recipe_block
@@ -18,9 +18,16 @@
             .col-md-3
               = image_tag recipe.photo, class: "img-responsive", alt: recipe.name
             .col-md-9
-              %h3= link_to recipe.name, '/catalog/show?id='+recipe.id.to_s
-              %p= link_to recipe.category.name, '/catalog/category?id='+recipe.category_id.to_s
-              %p= link_to recipe.country.name, '/catalog/kitchen?id='+recipe.country_id.to_s
+              %h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
+              %p= link_to recipe.category.caption, '/catalog/category/'+recipe.category.name
+              %p= link_to recipe.country.caption, '/catalog/kitchen/'+recipe.country.name
           .row
             .col-xs-12
+              %h3 Краткое описание
               %p= recipe.caption
+    .col-md-2
+      %h2 Помощь в развитии
+      - if current_user
+        %p= link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
+      - else
+        %p= link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-default disabled"

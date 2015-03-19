@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'catalog/kitchen/:name' => 'catalog#kitchen'
 
-  get 'catalog/show'
+  get 'catalog/show/:path_name' => 'catalog#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

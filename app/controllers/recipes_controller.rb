@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.html { redirect_to '/catalog/all', notice: 'Ваш рецепт появится в каталоге после модерации.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }
@@ -71,6 +71,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :short, :category_id, :country_id, :photo, :caption, :steps, :user_id, :visible, :path_name)
+      params.require(:recipe).permit(:name, :category_id, :country_id, :photo, :caption, :steps, :user_id, :visible, :path_name)
     end
 end
