@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th>Название</th>
+      <th>Фото</th>
       <th>Название в URL</th>
       <th>Категория</th>
       <th>Нац. кухня</th>
-      <th>Путь к фото</th>
       <th>Описание</th>
       <th>Рецепт</th>
       <th>Пользователь</th>
@@ -22,10 +22,10 @@
     <% @recipes.each do |recipe| %>
       <tr>
         <td><%= recipe.name %></td>
+        <td><%= recipe.image.normal %></td>
         <td><%= recipe.path_name %></td>
         <td><%= recipe.category_id %></td>
         <td><%= recipe.country_id %></td>
-        <td><%= recipe.photo %></td>
         <td><%= recipe.caption %></td>
         <td><%= recipe.steps %></td>
         <td><%= recipe.user_id %></td>

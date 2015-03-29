@@ -19,7 +19,10 @@ body {
   color: #000;
 
   .container {
+    width: 95%;
     margin: 0 auto;
+    position: relative;
+    margin-left: 0;
   }
 
   .navbar {
@@ -27,6 +30,21 @@ body {
     margin: 0;
     width: 100%;
   }
+}
+
+.left-nav {
+  position: relative;
+  bottom: 0;
+  height: auto;
+  background: #5cb85c;
+}
+
+.add_recipe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background: #CCC;
 }
 
 .modal-open {
@@ -143,5 +161,13 @@ body {
     a:hover {
       background: none;
     }
+  }
+}
+
+.ings {
+  overflow: hidden;
+
+  input {
+    width: 100%;
   }
 }

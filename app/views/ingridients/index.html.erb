@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ingridients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Caption</th>
+      <th>Name path</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ingridients.each do |ingridient| %>
+      <tr>
+        <td><%= ingridient.caption %></td>
+        <td><%= ingridient.name_path %></td>
+        <td><%= ingridient.name %></td>
+        <td><%= link_to 'Show', ingridient %></td>
+        <td><%= link_to 'Edit', edit_ingridient_path(ingridient) %></td>
+        <td><%= link_to 'Destroy', ingridient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ingridient', new_ingridient_path %>

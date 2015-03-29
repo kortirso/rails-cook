@@ -17,6 +17,11 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    #@recipe.ingridblock = Ingridblock.create
+    #session[:ingridblock_id] = @recipe.ingridblock.id
+    3.times do
+      @recipe.line_ingrids.build
+    end
   end
 
   # GET /recipes/1/edit
@@ -30,6 +35,14 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        #@recipe.ingridblock = Ingridblock.where(id: session[:ingridblock_id]).take
+        #@recipe.ingridblock.recipe_id = @recipe.id
+        #@recipe.ingridblock.save
+        @recipe.line_ingrids.each do |z|
+          z.recipe_id = @recipe.id
+          #z.ingridblock_id = @recipe.ingridblock.id
+          z.save
+        end
         format.html { redirect_to '/catalog/all', notice: 'Ваш рецепт появится в каталоге после модерации.' }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -71,6 +84,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :category_id, :country_id, :photo, :caption, :steps, :user_id, :visible, :path_name)
+      params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :steps, :user_id, :visible, :path_name, :image, line_ingrids_attributes: [:ingridient_id, :id])
     end
 end

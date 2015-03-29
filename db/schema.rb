@@ -54,10 +54,8 @@ ActiveRecord::Schema.define(version: 20150316110050) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
-    t.string   "short"
     t.integer  "category_id"
     t.integer  "country_id"
-    t.string   "photo"
     t.text     "caption"
     t.text     "steps"
     t.integer  "user_id"

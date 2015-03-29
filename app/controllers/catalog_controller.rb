@@ -3,7 +3,7 @@ class CatalogController < ApplicationController
   end
 
   def all # Отображение всех рецептов
-    @recipes = Recipe.all
+    @recipes = Recipe.where(visible: true)
     @h2 = "Все рецепты"
   end
 

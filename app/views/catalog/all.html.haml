@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-3
+    .col-md-2.left-nav
       %h2 Навигация по рецептам
       %ul.categories
         Категории
@@ -10,14 +10,14 @@
         Национальные блюда
         - Country.all.each do |kitchen|
           %li= link_to(kitchen.caption, '/catalog/kitchen/'+kitchen.name)
-    .col-md-7
+    .col-md-10
       %h2= @h2
       - @recipes.each do |recipe|
         .recipe_block
           .row
-            .col-md-3
-              = image_tag recipe.photo, class: "img-responsive", alt: recipe.name
-            .col-md-9
+            .col-md-4
+              = image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
+            .col-md-8
               %h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
               %p= link_to recipe.category.caption, '/catalog/category/'+recipe.category.name
               %p= link_to recipe.country.caption, '/catalog/kitchen/'+recipe.country.name
@@ -25,9 +25,8 @@
             .col-xs-12
               %h3 Краткое описание
               %p= recipe.caption
-    .col-md-2
-      %h2 Помощь в развитии
-      - if current_user
-        %p= link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
-      - else
-        %p= link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-default disabled"
+  .add_recipe
+    - if current_user
+      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
+    - else
+      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-default disabled"

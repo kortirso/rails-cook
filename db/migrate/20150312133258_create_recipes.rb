@@ -5,7 +5,6 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :short
       t.integer :category_id
       t.integer :country_id
-      t.string :photo
       t.text :caption
       t.text :steps
       t.integer :user_id

@@ -38,11 +38,8 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'haml'
 gem 'simple_form'
-
-group :production do
-  gem 'rails_12factor'
-  gem 'puma'
-end
+gem 'carrierwave'
+gem 'rmagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

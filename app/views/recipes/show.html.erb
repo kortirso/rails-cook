@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>Путь к фотографии</strong>
-  <%= @recipe.photo %>
+  <strong>Фотография</strong>
+  <%= image_tag @recipe.image.normal, class: "img-responsive", alt: "Фото рецепта" %>
 </p>
 
 <p>

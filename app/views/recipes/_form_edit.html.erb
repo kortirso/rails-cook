@@ -21,9 +21,11 @@
   <%= f.input :path_name, label: 'Название для URL' %>
   <%= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false %>
   <%= f.association :country, label: 'Национальня кухня', label_method: :caption, value_method: :id, include_blank: false %>
-  <%= f.input :photo, label: 'Имя файла с фотографией' %>
   <%= f.input :caption, label: 'Подробное описание' %>
+  <%= f.input :ingridients, label: 'Список ингридиентов' %>
   <%= f.input :steps, label: 'Рецепт приготовления' %>
+  <%= image_tag @recipe.image.normal %>
+  <%= f.file_field :image %>
   <%= f.input :user_id %>
   <%= f.input :visible, as: :boolean %>
 
