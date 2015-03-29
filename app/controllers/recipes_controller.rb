@@ -17,8 +17,6 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    #@recipe.ingridblock = Ingridblock.create
-    #session[:ingridblock_id] = @recipe.ingridblock.id
     3.times do
       @recipe.line_ingrids.build
     end
@@ -32,15 +30,10 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-
     respond_to do |format|
       if @recipe.save
-        #@recipe.ingridblock = Ingridblock.where(id: session[:ingridblock_id]).take
-        #@recipe.ingridblock.recipe_id = @recipe.id
-        #@recipe.ingridblock.save
         @recipe.line_ingrids.each do |z|
           z.recipe_id = @recipe.id
-          #z.ingridblock_id = @recipe.ingridblock.id
           z.save
         end
         format.html { redirect_to '/catalog/all', notice: 'Ваш рецепт появится в каталоге после модерации.' }

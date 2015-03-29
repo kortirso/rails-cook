@@ -1,7 +1,6 @@
 class Recipe < ActiveRecord::Base
 
   validates :name, :category_id, :country_id, :caption, :steps, presence: true
-  #serialize :ings, ActiveRecord::Coders::Hstore
 
   belongs_to :category
   belongs_to :country
