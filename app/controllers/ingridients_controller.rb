@@ -1,5 +1,7 @@
 class IngridientsController < ApplicationController
   before_action :set_ingridient, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_filter :set_accessible, except: [:new, :create]
 
   # GET /ingridients
   # GET /ingridients.json

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :measures
+
   resources :ingridients
 
   resources :line_ingrids
-
-  resources :ingridblocks
 
   devise_for :users
   get 'contacts' => 'contacts#index', as: 'contacts'

@@ -23,10 +23,10 @@
         .row
           .col-xs-12
             %h3 Ингридиенты
-        //    %p= @recipe.ingridients
-        //    %ul
-        //      - @recipe.ings.each do |x|
-        //        %li= "#{x['name']} - #{x['count']} #{x['measure']}"
+              %ul
+                - list = LineIngrid.where(recipe_id: @recipe_id)
+                - list.each do
+                  %li= Ingridient.where(id: list.ingridient_id)
         .row
           .col-xs-12
             %h3 Способ приготовления

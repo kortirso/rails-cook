@@ -1,7 +1,5 @@
 class Recipe < ActiveRecord::Base
-
   validates :name, :category_id, :country_id, :caption, :steps, presence: true
-
   belongs_to :category
   belongs_to :country
   belongs_to :user
@@ -11,7 +9,5 @@ class Recipe < ActiveRecord::Base
   has_many :line_ingrids
   accepts_nested_attributes_for :line_ingrids
   has_many :ingridients, through: :line_ingrids
-
   mount_uploader :image, ImageUploader
-
 end
