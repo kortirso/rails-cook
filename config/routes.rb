@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   resources :measures
-
   resources :ingridients
-
   resources :line_ingrids
 
   devise_for :users
@@ -11,21 +9,14 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :contacts
-
   resources :recipes
-
   resources :countries
-
   resources :categories
 
   get 'catalog/index'
-
   get 'catalog/all'
-
   get 'catalog/category/:name' => 'catalog#category'
-
   get 'catalog/kitchen/:name' => 'catalog#kitchen'
-
   get 'catalog/show/:path_name' => 'catalog#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

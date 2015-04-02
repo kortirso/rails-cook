@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic);
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 html {
   overflow-y: scroll;
 }
@@ -150,7 +156,7 @@ body {
 
   li {
     list-style: none;
-    line-height: 1.5em;
+    line-height: 0.5em;
     margin-top: 15px;
 
     a {

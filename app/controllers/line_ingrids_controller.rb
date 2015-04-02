@@ -69,6 +69,6 @@ class LineIngridsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_ingrid_params
-      params.require(:line_ingrid).permit(:ingridient_id, :recipe_id)
+      params.require(:line_ingrid).permit(:ingridient_id, :recipe_id, :ingridient_name)
     end
 end
