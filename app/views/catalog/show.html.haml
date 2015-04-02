@@ -20,15 +20,15 @@
             %p= @recipe.caption
             %p= link_to @recipe.category.caption, '/catalog/category/'+@recipe.category.name
             %p= link_to @recipe.country.caption, '/catalog/kitchen/'+@recipe.country.name
-            %p= "Время приготовления (минут) - #{@recipe.prepare}"
-            %p= "Количество порций - #{@recipe.portions}"
         .row
           .col-xs-12
-            %h3 Ингридиенты
+            %h3= "Ингридиенты (кол-во порций - #{@recipe.portions})"
             %ul
               - list = LineIngrid.where(recipe_id: @recipe.id)
               - list.each do |x|
                 %li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
+          .col-xs-12
+            %p= "Время приготовления (минут) - #{@recipe.prepare}"
           .col-xs-12
             %h3 Способ приготовления
             %p= @recipe.steps

@@ -1,0 +1,37 @@
+%p#notice= notice
+
+%h1 Список рецептов
+
+%table
+  %thead
+    %tr
+      %th Название
+      %th Фото
+      %th Название в URL
+      %th Категория
+      %th Нац. кухня
+      %th Описание
+      %th Рецепт
+      %th Пользователь
+      %th Проверено?
+      %th
+      %th
+      %th
+
+  %tbody
+    - @recipes.each do |recipe|
+      %tr
+        %td= recipe.name
+        %td= recipe.image.normal
+        %td= recipe.path_name
+        %td= recipe.category_id
+        %td= recipe.country_id
+        %td= recipe.caption
+        %td= recipe.steps
+        %td= recipe.user_id
+        %td= recipe.visible
+        %td= link_to 'Show', recipe
+        %td= link_to 'Edit', edit_recipe_path(recipe)
+        %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Recipe', new_recipe_path
