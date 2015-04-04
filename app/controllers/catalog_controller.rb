@@ -17,7 +17,7 @@ class CatalogController < ApplicationController
   def kitchen # Выборка рецептов по национальным кухням
     country = Country.where('name = ?', params[:name]).take
     @recipes = Recipe.where('country_id = ?', country)
-    @h2 = "Рецепты: " + country.caption
+    @h2 = "Рецепты: " + country.caption + " кухня"
     render action: 'all'
   end
 

@@ -13,3 +13,5 @@
 /tmp
 /test
 /public/uploads
+/config/secrets.yml
+/trash/*

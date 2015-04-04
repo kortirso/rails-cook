@@ -12,7 +12,7 @@ html {
   overflow-y: scroll;
 }
 
-html,body {
+html, body {
   margin: 0;
   padding: 0;
 }
@@ -36,13 +36,20 @@ body {
     margin: 0;
     width: 100%;
   }
+
+  .navbar-inverse .navbar-nav > li > a {
+    color: #FFF;
+  }
+
+  .navbar-inverse .navbar-nav > li:hover > a {
+    color: #5ab400;
+  }
 }
 
 .left-nav {
   position: relative;
   bottom: 0;
   height: auto;
-  background: #5cb85c;
 }
 
 .add_recipe {
@@ -73,40 +80,31 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  padding-left: 5%;
-  padding-top: 220px;
   width: 100%;
   height: 100%;
   color: #FFF;
   background: rgba(0,0,0,0.40);
 
   h1 {
-    margin-bottom: 20px;
+    position: relative;
+    top: 40%;
+    left: 5%;
     font-size: 50px;
     text-transform: uppercase;
-  }
 
-  p {
-    font-size: 30px;
-  }
-
-  @media (min-width: 970px) and (max-width: 1170px) {
-    padding-top: 180px;
-  }
-
-  @media (min-width: 750px) and (max-width: 970px) {
-    padding-top: 160px;
-  }
-
-  @media (max-width: 750px) {
-    padding-top: 160px;
-
-    h1 {
+    @media (min-width: 971px) and (max-width: 1170px) {
+      top: 40%;
       font-size: 40px;
     }
 
-    p {
-      font-size: 24px;
+    @media (min-width: 751px) and (max-width: 970px) {
+      top: 40%;
+      font-size: 40px;
+    }
+
+    @media (max-width: 750px) {
+      top: 40%;
+      font-size: 40px;
     }
   }
 }

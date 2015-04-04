@@ -5,11 +5,11 @@
       %ul.categories
         Категории
         - Category.all.each do |cat|
-          %li= link_to(cat.caption, '/catalog/category/'+cat.name)
+          %li= link_to cat.caption, '/catalog/category/'+cat.name
       %ul.categories
-        Национальные блюда
-        - Country.all.each do |kitchen|
-          %li= link_to(kitchen.caption, '/catalog/kitchen/'+kitchen.name)
+        Национальные кухни
+        - Country.order('caption').all.each do |kitchen|
+          %li= link_to kitchen.caption, '/catalog/kitchen/'+kitchen.name
     .col-md-10
       %h2= @recipe.name
       .recipe_block
