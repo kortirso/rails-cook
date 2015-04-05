@@ -24,4 +24,13 @@ $(function() {
     });
     $(newNestedForm).insertAfter(lastNestedForm);
   });
+
+  $('#comment_body').keyup(function() {
+    if($(this).val().length > 0) {
+      $('#add_comment').removeClass('disabled');
+    }
+    else {
+      $('#add_comment').addClass('disabled');
+    }
+  });
 });

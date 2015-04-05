@@ -20,7 +20,7 @@
             .col-md-8
               %h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
               %p= link_to recipe.category.caption, '/catalog/category/'+recipe.category.name
-              %p= link_to recipe.country.caption, '/catalog/kitchen/'+recipe.country.name
+              %p= link_to recipe.country.caption + " кухня", '/catalog/kitchen/'+recipe.country.name
               %p= "Время приготовления (минут) - #{recipe.prepare}"
               %p= "Количество порций - #{recipe.portions}"
           .row

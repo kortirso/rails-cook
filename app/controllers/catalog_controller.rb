@@ -23,5 +23,6 @@ class CatalogController < ApplicationController
 
   def show # Отображение определенного рецепта
     @recipe = Recipe.where('path_name = ?', params[:path_name]).take
+    @comment = Comment.new
   end
 end
