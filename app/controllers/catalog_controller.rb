@@ -1,4 +1,6 @@
 class CatalogController < ApplicationController
+  before_action :set_static, except: [:index]
+
   def index # Главная страница
   end
 
@@ -23,6 +25,14 @@ class CatalogController < ApplicationController
 
   def show # Отображение определенного рецепта
     @recipe = Recipe.where('path_name = ?', params[:path_name]).take
+    @list = LineIngrid.where(recipe_id: @recipe.id)
     @comment = Comment.new
   end
+
+  private
+
+    def set_static
+      @categories = Category.all
+      @countries = Country.order('caption').all
+    end
 end

@@ -25,10 +25,13 @@ body {
   color: #000;
 
   .container {
-    width: 95%;
+    width: 98%;
     margin: 0 auto;
     position: relative;
-    margin-left: 0;
+
+    &.country {
+      width: 70%;
+    }
   }
 
   .navbar {
@@ -44,6 +47,14 @@ body {
   .navbar-inverse .navbar-nav > li:hover > a {
     color: #5ab400;
   }
+
+  .panel-heading, .panel-body {
+    padding: 0 15px 10px;
+  }
+
+  .panel-body .container {
+    margin: 20px auto;
+  }
 }
 
 .left-nav {
@@ -55,7 +66,7 @@ body {
 .add_recipe {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 5px;
   background: #CCC;
 }
@@ -147,24 +158,30 @@ body {
   margin: 20px auto;
 }
 
-.categories {
-  padding-left: 10px;
-  margin: 30px auto;
-  font-size: 20px;
+.cat {
+  border-radius: 50%;
+  overflow: hidden;
 
-  li {
-    list-style: none;
-    line-height: 0.5em;
-    margin-top: 15px;
+  .up, .down {
+    width: 123px;
+    height: 123px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
 
-    a {
-      color: #28469b;
-      font-size: 18px;
-    }
+.cat .down {
+  display: none;
+  background: rgba(255,255,255,0.8);
+  position: absolute;
+  top: 0;
+  text-align: center;
+  border: 2px solid #000;
 
-    a:hover {
-      background: none;
-    }
+  a {
+    position: relative;
+    font-size: 24px;
+    top: 35%;
   }
 }
 

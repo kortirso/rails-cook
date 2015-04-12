@@ -1,16 +1,6 @@
 .container
   .row
-    .col-md-2.left-nav
-      %h2 Навигация по рецептам
-      %ul.categories
-        Категории
-        - Category.all.each do |cat|
-          %li= link_to cat.caption, '/catalog/category/'+cat.name
-      %ul.categories
-        Национальные кухни
-        - Country.order('caption').all.each do |kitchen|
-          %li= link_to kitchen.caption, '/catalog/kitchen/'+kitchen.name
-    .col-md-8.col-md-offset-1
+    .col-md-8.col-md-offset-2
       %h1 Новый рецепт
       = simple_form_for @recipe do |f|
         .col-xs-12

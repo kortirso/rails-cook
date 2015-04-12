@@ -1,15 +1,7 @@
+= render partial: "navs"
 .container
   .row
-    .col-md-2.left-nav
-      %h2 Навигация по рецептам
-      %ul.categories
-        Категории
-        - Category.all.each do |cat|
-          %li= link_to cat.caption, '/catalog/category/'+cat.name
-      %ul.categories
-        Национальные кухни
-        - Country.order('caption').all.each do |kitchen|
-          %li= link_to kitchen.caption, '/catalog/kitchen/'+kitchen.name
+    = render partial: "add_recipe"
     .col-md-10
       %h2= @recipe.name
       .recipe_block
@@ -24,8 +16,7 @@
           .col-xs-12
             %h3= "Ингридиенты (кол-во порций - #{@recipe.portions})"
             %ul
-              - list = LineIngrid.where(recipe_id: @recipe.id)
-              - list.each do |x|
+              - @list.each do |x|
                 %li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
           .col-xs-12
             %p= "Время приготовления (минут) - #{@recipe.prepare}"
@@ -47,8 +38,3 @@
                   = f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
         .row#comments
           = render partial: "comments"
-  .add_recipe
-    - if current_user
-      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
-    - else
-      = link_to 'Добавить рецепт', '', class: "btn btn-lg btn-default", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
