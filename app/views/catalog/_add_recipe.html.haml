@@ -1,0 +1,6 @@
+.col-md-2
+  .add_recipe
+    - if current_user
+      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
+    - else
+      = link_to 'Добавить рецепт', '', class: "btn btn-lg btn-default", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'} 

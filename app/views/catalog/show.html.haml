@@ -1,15 +1,7 @@
+= render partial: "navs"
 .container
   .row
-    .col-md-2.left-nav
-      %h2 Навигация по рецептам
-      %ul.categories
-        Категории
-        - Category.all.each do |cat|
-          %li= link_to(cat.caption, '/catalog/category/'+cat.name)
-      %ul.categories
-        Национальные блюда
-        - Country.all.each do |kitchen|
-          %li= link_to(kitchen.caption, '/catalog/kitchen/'+kitchen.name)
+    = render partial: "add_recipe"
     .col-md-10
       %h2= @recipe.name
       .recipe_block
@@ -19,21 +11,30 @@
           .col-md-8
             %p= @recipe.caption
             %p= link_to @recipe.category.caption, '/catalog/category/'+@recipe.category.name
-            %p= link_to @recipe.country.caption, '/catalog/kitchen/'+@recipe.country.name
+            %p= link_to @recipe.country.caption + " кухня", '/catalog/kitchen/'+@recipe.country.name
         .row
           .col-xs-12
             %h3= "Ингридиенты (кол-во порций - #{@recipe.portions})"
             %ul
-              - list = LineIngrid.where(recipe_id: @recipe.id)
-              - list.each do |x|
+              - @list.each do |x|
                 %li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
           .col-xs-12
             %p= "Время приготовления (минут) - #{@recipe.prepare}"
           .col-xs-12
             %h3 Способ приготовления
             %p= @recipe.steps
-  .add_recipe
-    - if current_user
-      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
-    - else
-      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-default disabled"
+      .comment_block
+        .row
+          .col-md-6.user_comment
+            = simple_form_for @comment, remote: true do |f|
+              - if current_user
+                = f.hidden_field :user_id, value: "#{current_user.id}"
+              = f.hidden_field :recipe_id, value: "#{@recipe.id}"
+              = f.input :body, label: 'Ваш комментарий'
+              .actions
+                - if current_user
+                  = f.button :submit, id: "add_comment", class: "btn btn-success disabled", value: 'Добавить комментарий'
+                - else
+                  = f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+        .row#comments
+          = render partial: "comments"

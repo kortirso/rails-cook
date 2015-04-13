@@ -7,7 +7,7 @@ class Recipe < ActiveRecord::Base
   has_many :carts, through: :positions
   has_many :comments
   has_many :line_ingrids
-  accepts_nested_attributes_for :line_ingrids
+  accepts_nested_attributes_for :line_ingrids, allow_destroy: true
   has_many :ingridients, through: :line_ingrids
   mount_uploader :image, ImageUploader
 end

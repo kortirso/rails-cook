@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :countries
   resources :categories
+  resources :comments
 
   get 'catalog/index'
   get 'catalog/all'

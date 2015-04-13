@@ -3,12 +3,6 @@
     .col-md-8.col-md-offset-2
       %h1 Новый рецепт
       = simple_form_for @recipe do |f|
-        - if @recipe.errors.any?
-          #error_explanation
-            %h2= pluralize(@recipe.errors.count, "error") + "prohibited this recipe from being saved:"
-            %ul
-              - @recipe.errors.full_messages.each do |message|
-                %li= message
         .col-xs-12
           = f.input :name, label: 'Название рецепта'
         .col-xs-12
@@ -21,11 +15,11 @@
               .col-xs-3
                 = y.association :measure, label: 'Мера', label_method: :name, value_method: :id
         .col-xs-12
-          %p= link_to 'Добавить игредиент', '', :class => 'duplicate_nested_form btn btn-success'
+          %p= link_to 'Добавить игредиент', '', :class => 'duplicate btn btn-success'
         .col-xs-6
           = f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
         .col-xs-6
-          = f.association :country, label: 'Национальня кухня', label_method: :caption, value_method: :id, include_blank: false
+          = f.association :country, collection: Country.order('caption').all, label: 'Национальня кухня', label_method: :caption, value_method: :id, include_blank: false
         .col-xs-6
           = f.input :prepare, label: 'Время приготовления', placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
         .col-xs-6

@@ -1,0 +1,22 @@
+.panel.panel-default
+  .panel-heading
+    %h2 Навигация по рецептам
+  .panel-body
+    .container
+      .row
+        .col-xs-1.cat
+          .up 
+            = link_to image_tag("clean-all.png", class: "img-responsive", alt: "Все рецепты"), catalog_path
+          .down
+            = link_to "Все", '/catalog/all'
+        - @categories.each do |cat|
+          .col-xs-1.cat
+            .up
+              = link_to image_tag("clean-"+cat.name+".png", class: "img-responsive", alt: cat.caption), '/catalog/category/'+cat.name
+            .down
+              = link_to cat.caption, '/catalog/category/'+cat.name
+    .container.country
+      .row
+        - @countries.each do |kitchen|
+          .col-xs-1
+            = link_to image_tag(kitchen.name+".jpg", class: "img-responsive", alt: "Категория"), '/catalog/kitchen/'+kitchen.name 
