@@ -39,4 +39,18 @@ $(function() {
   }).mouseleave(function() {
     $(this).find('.down').fadeOut(750);
   });
+
+  $('.down').each(function() {
+    var data = $('.up').first().width();
+    $(this).css('width', data);
+    $(this).css('height', data);
+  });
+
+  $(window).resize(function() {
+    $('.down').each(function() {
+      var data = $('.up').first().width();
+      $(this).css('width', data);
+      $(this).css('height', data);
+    });
+  });
 });
