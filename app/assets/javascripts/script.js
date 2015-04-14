@@ -55,12 +55,12 @@ $(function() {
   $('#recipe_navigator').click(function(e) {
     e.preventDefault();
     if($(this).find('span').hasClass('glyphicon-chevron-down')) {
-      $('.panel-body').slideDown(1000);
+      $('.panel-body').slideDown(500);
       $(this).find('span').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
       correction();
     }
     else {
-      $('.panel-body').slideUp(1000);
+      $('.panel-body').slideUp(500);
       $(this).find('span').addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-up');
     }
 
