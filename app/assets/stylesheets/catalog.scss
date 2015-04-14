@@ -42,6 +42,10 @@ body {
     }
   }
 
+  h2, h3 {
+    margin-top: 0;
+  }
+
   .navbar {
     padding: 10px 0 10px 10px;
     margin: 0;
@@ -63,6 +67,10 @@ body {
 
   .panel-heading h2 {
     margin: 0;
+  }
+
+  .panel-body {
+    display: none;
   }
 
   .panel-body .container {
@@ -113,21 +121,11 @@ body {
     position: relative;
     top: 40%;
     left: 5%;
+    width: 94%;
     font-size: 50px;
     text-transform: uppercase;
 
-    @media (min-width: 971px) and (max-width: 1170px) {
-      top: 40%;
-      font-size: 40px;
-    }
-
-    @media (min-width: 751px) and (max-width: 970px) {
-      top: 40%;
-      font-size: 40px;
-    }
-
-    @media (max-width: 750px) {
-      top: 40%;
+    @media (max-width: 1170px) {
       font-size: 40px;
     }
   }
@@ -164,7 +162,13 @@ body {
 }
 
 #recipe_navigator {
-  float: right;
+  float: left;
+  padding: 8px 12px 6px;
+  margin-right: 20px;
+}
+
+.head_h2 {
+  text-align: center;
 }
 
 .btn {

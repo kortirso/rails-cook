@@ -1,13 +1,14 @@
 .panel.panel-default
   .panel-heading
-    = link_to 'Свернуть', '', type: 'button', id: 'recipe_navigator', class: "btn btn-primary"
+    %button#recipe_navigator.btn.btn-primary{:type => "button"}
+      %span.glyphicon.glyphicon-chevron-down
     %h2 Навигация по рецептам
   .panel-body
     .container
       .row
         .col-xs-1.cat
           .up
-            = link_to image_tag("clean-all.png", class: "img-responsive", alt: "Все рецепты"), catalog_path
+            = link_to image_tag("clean-all.png", class: "img-responsive", alt: "Все рецепты"), '/catalog/all'
           .down
             = link_to "Все", '/catalog/all'
         - @categories.each do |cat|

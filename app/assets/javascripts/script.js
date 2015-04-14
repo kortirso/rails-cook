@@ -1,3 +1,11 @@
+function correction() {
+  $('.down').each(function() {
+    var data = $('.up').first().width();
+    $(this).css('width', data);
+    $(this).css('height', data);
+  });
+}
+
 $(function() {
   var nestedForm;
   nestedForm = $('.ingrid').last().clone();
@@ -40,29 +48,21 @@ $(function() {
     $(this).find('.down').fadeOut(750);
   });
 
-  $('.down').each(function() {
-    var data = $('.up').first().width();
-    $(this).css('width', data);
-    $(this).css('height', data);
-  });
-
   $(window).resize(function() {
-    $('.down').each(function() {
-      var data = $('.up').first().width();
-      $(this).css('width', data);
-      $(this).css('height', data);
-    });
+    correction();
   });
 
   $('#recipe_navigator').click(function(e) {
     e.preventDefault();
-    if($(this).text()=='Развернуть') {
+    if($(this).find('span').hasClass('glyphicon-chevron-down')) {
       $('.panel-body').slideDown(1000);
-      $(this).text('Свернуть');
+      $(this).find('span').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+      correction();
     }
     else {
       $('.panel-body').slideUp(1000);
-      $(this).text('Развернуть');
+      $(this).find('span').addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-up');
     }
+
   });
 });

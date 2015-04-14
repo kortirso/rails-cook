@@ -3,7 +3,7 @@
   .row
     = render partial: "add_recipe"
     .col-md-10
-      %h2= @h2
+      %h2.head_h2= @h2
       - @recipes.each do |recipe|
         .col-md-6.recipe_block
           .row
@@ -19,4 +19,3 @@
             .col-xs-12
               %h3 Краткое описание
               %p= recipe.caption
-  
