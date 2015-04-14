@@ -53,4 +53,16 @@ $(function() {
       $(this).css('height', data);
     });
   });
+
+  $('#recipe_navigator').click(function(e) {
+    e.preventDefault();
+    if($(this).text()=='Развернуть') {
+      $('.panel-body').slideDown(1000);
+      $(this).text('Свернуть');
+    }
+    else {
+      $('.panel-body').slideUp(1000);
+      $(this).text('Развернуть');
+    }
+  });
 });

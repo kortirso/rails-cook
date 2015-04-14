@@ -1,11 +1,12 @@
 .panel.panel-default
   .panel-heading
+    = link_to 'Свернуть', '', type: 'button', id: 'recipe_navigator', class: "btn btn-primary"
     %h2 Навигация по рецептам
   .panel-body
     .container
       .row
         .col-xs-1.cat
-          .up 
+          .up
             = link_to image_tag("clean-all.png", class: "img-responsive", alt: "Все рецепты"), catalog_path
           .down
             = link_to "Все", '/catalog/all'
@@ -19,4 +20,4 @@
       .row
         - @countries.each do |kitchen|
           .col-xs-1
-            = link_to image_tag(kitchen.name+".jpg", class: "img-responsive", alt: "Категория"), '/catalog/kitchen/'+kitchen.name 
+            = link_to image_tag(kitchen.name+".jpg", class: "img-responsive", alt: "Категория"), '/catalog/kitchen/'+kitchen.name

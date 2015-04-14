@@ -28,11 +28,4 @@ class CatalogController < ApplicationController
     @list = LineIngrid.where(recipe_id: @recipe.id)
     @comment = Comment.new
   end
-
-  private
-
-    def set_static
-      @categories = Category.all
-      @countries = Country.order('caption').all
-    end
 end

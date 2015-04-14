@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
         render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
       end
     end
+
+    def set_static
+      @categories = Category.all
+      @countries = Country.order('caption').all
+    end
 end
