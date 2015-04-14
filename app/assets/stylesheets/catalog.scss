@@ -31,11 +31,19 @@ body {
 
     &.country {
       width: 70%;
+
+      img {
+        border: 1px solid #AAA;
+      }
+
+      img:hover {
+        box-shadow: 0 0 10px #AAA;
+      }
     }
   }
 
   .navbar {
-    padding: 10px 0px 10px 10px;
+    padding: 10px 0 10px 10px;
     margin: 0;
     width: 100%;
   }
@@ -76,7 +84,7 @@ body {
 }
 
 .banner {
-  box-shadow: 0px 0px 20px #000000;
+  box-shadow: 0 0 20px #000000;
   position: relative;
   overflow: hidden;
 
@@ -163,8 +171,6 @@ body {
   overflow: hidden;
 
   .up, .down {
-    width: 123px;
-    height: 123px;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -172,11 +178,11 @@ body {
 
 .cat .down {
   display: none;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   position: absolute;
   top: 0;
   text-align: center;
-  border: 2px solid #000;
+  border: 2px solid #858585;
 
   a {
     position: relative;
