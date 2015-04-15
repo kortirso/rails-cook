@@ -63,6 +63,70 @@ $(function() {
       $('.panel-body').slideUp(500);
       $(this).find('span').addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-up');
     }
-
   });
+
+  $('#star_1').hover(
+    function() {
+      $('#star_1').attr("src", "/assets/star-fill.png");
+    },
+    function() {
+      $('#star_1').attr("src", "/assets/star-empty.png");
+    }
+  );
+
+  $('#star_2').hover(
+    function() {
+      $('#star_1').attr("src", "/assets/star-fill.png");
+      $('#star_2').attr("src", "/assets/star-fill.png");
+    },
+    function() {
+      $('#star_1').attr("src", "/assets/star-empty.png");
+      $('#star_2').attr("src", "/assets/star-empty.png");
+    }
+  );
+
+  $('#star_3').hover(
+    function() {
+      $('#star_1').attr("src", "/assets/star-fill.png");
+      $('#star_2').attr("src", "/assets/star-fill.png");
+      $('#star_3').attr("src", "/assets/star-fill.png");
+    },
+    function() {
+      $('#star_1').attr("src", "/assets/star-empty.png");
+      $('#star_2').attr("src", "/assets/star-empty.png");
+      $('#star_3').attr("src", "/assets/star-empty.png");
+    }
+  );
+
+  $('#star_4').hover(
+    function() {
+      $('#star_1').attr("src", "/assets/star-fill.png");
+      $('#star_2').attr("src", "/assets/star-fill.png");
+      $('#star_3').attr("src", "/assets/star-fill.png");
+      $('#star_4').attr("src", "/assets/star-fill.png");
+    },
+    function() {
+      $('#star_1').attr("src", "/assets/star-empty.png");
+      $('#star_2').attr("src", "/assets/star-empty.png");
+      $('#star_3').attr("src", "/assets/star-empty.png");
+      $('#star_4').attr("src", "/assets/star-empty.png");
+    }
+  );
+
+  $('#star_5').hover(
+    function() {
+      $('#star_1').attr("src", "/assets/star-fill.png");
+      $('#star_2').attr("src", "/assets/star-fill.png");
+      $('#star_3').attr("src", "/assets/star-fill.png");
+      $('#star_4').attr("src", "/assets/star-fill.png");
+      $('#star_5').attr("src", "/assets/star-fill.png");
+    },
+    function() {
+      $('#star_1').attr("src", "/assets/star-empty.png");
+      $('#star_2').attr("src", "/assets/star-empty.png");
+      $('#star_3').attr("src", "/assets/star-empty.png");
+      $('#star_4').attr("src", "/assets/star-empty.png");
+      $('#star_5').attr("src", "/assets/star-empty.png");
+    }
+  );
 });

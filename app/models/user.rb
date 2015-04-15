@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_one :cart
   has_many :comments
   has_many :recipes
+  has_many :grades
 end
