@@ -1,0 +1,8 @@
+- if @recipe.grades.size > 0
+	- sum = 0.0
+	- @recipe.grades.each do |y|
+		- sum = sum + y.mark.to_i
+	- count = sum / @recipe.grades.size
+	= "Оценка рецепта - #{count.round 2}"
+- else
+	= "Оценок нет"

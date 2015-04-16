@@ -1,9 +1,0 @@
-.col-md-6
-	- @rec.comments.order('id').all.each do |comment|
-		.row
-			.col-xs-12
-				- name = comment.user.email[/[^@]+/]
-				- name.split(".").map {|n| n.capitalize }.join(" ")
-				%p= "#{name} - создано #{time_ago_in_words(comment.created_at)} назад"
-			.col-xs-12
-				%p= comment.body

@@ -1,14 +1,10 @@
 class CommentsController < ApplicationController
-	def new
-		@comment = Comment.new
-	end
-
 	def create
   	@comment = Comment.new(comment_params)
 
   	respond_to do |format|
   		if @comment.save
-        @rec = @comment.recipe
+        @recipe = @comment.recipe
         format.html { render :comments }
         format.js
   			format.json { render :show, status: :created, location: @comment }
