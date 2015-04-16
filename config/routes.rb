@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'grades/show'
-
-  get 'grades/create'
-
   resources :measures
   resources :ingridients
   resources :line_ingrids
@@ -24,7 +20,7 @@ Rails.application.routes.draw do
   get 'catalog/kitchen/:name' => 'catalog#kitchen'
   get 'catalog/show/:path_name' => 'catalog#show'
 
-  get 'grade/:grade/user/:user_id/recipe/:recipe_id' => 'grades#create', as: 'grading'
+  get 'mark/:mark/user/:user_id/recipe/:recipe_id' => 'grades#create', as: 'grading'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

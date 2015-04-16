@@ -1,7 +1,7 @@
-= render partial: "navs"
+= render "navs"
 .container
   .row
-    = render partial: "add_recipe"
+    = render "add_recipe"
     .col-md-10
       %h2= @recipe.name
       .recipe_block
@@ -26,15 +26,18 @@
       .stars_block
         .row
           .col-xs-12
-            %p Средняя оценка рецепта - столько-то
             - if current_user
-              #Rate
-                Оцените рецепт
-                %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
-                %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
-                %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
-                %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
-                %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
+              - if @current_grade
+                %span Вы уже оценили рецепт
+              - else
+                %span#Rate
+                  Оцените рецепт
+                  %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
+                  %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
+                  %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
+                  %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
+                  %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
+            %p= render "grades/average"
       .comment_block
         .row
           .col-md-6.user_comment
@@ -48,5 +51,4 @@
                   = f.button :submit, id: "add_comment", class: "btn btn-success disabled", value: 'Добавить комментарий'
                 - else
                   = f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
-        .row#comments
-          = render partial: "comments"
+        .row#comments= render "comments"
