@@ -27,13 +27,14 @@
         .row
           .col-xs-12
             %p Средняя оценка рецепта - столько-то
-            #Rate
-              Оцените рецепт
-              %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
-              %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
-              %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
-              %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
-              %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
+            - if current_user
+              #Rate
+                Оцените рецепт
+                %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
+                %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
+                %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
+                %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
+                %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
       .comment_block
         .row
           .col-md-6.user_comment
