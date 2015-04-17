@@ -1,0 +1,7 @@
+- if notice
+	%p#notice= notice
+%h2 Продуктовая корзина
+%ul
+	- @cart.positions.each do |position|
+		%li= position.recipe.name + ", количество - " + position.quantity.to_s
+= button_to "Очистить корзину", @cart, method: :delete, data: { confirm: "Вы уверены?" }

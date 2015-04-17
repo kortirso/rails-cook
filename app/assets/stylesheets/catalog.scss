@@ -73,10 +73,6 @@ body {
     margin: 0;
   }
 
-  .panel-body {
-    display: none;
-  }
-
   .panel-body .container {
     margin: 20px auto 10px;
   }
@@ -221,4 +217,8 @@ body {
 
 #Rate p:last-child {
   margin-left: -4px;
+}
+
+#cart, #add_recipe {
+  width: 100%;
 }

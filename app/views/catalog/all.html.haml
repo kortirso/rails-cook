@@ -4,20 +4,30 @@
     = render "add_recipe"
     .col-md-10
       %h2.head_h2= @h2
+      - count = 0
       - @recipes.each do |recipe|
         - @recipe = recipe
         .col-md-6.recipe_block
           .row
-            .col-md-4
+            .col-sm-6
               = image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
-            .col-md-8
+            .col-sm-6
               %h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
-              %p= link_to recipe.category.caption, '/catalog/category/'+recipe.category.name
+              %p= link_to "Категория - " + recipe.category.caption, '/catalog/category/'+recipe.category.name
               %p= link_to recipe.country.caption + " кухня", '/catalog/kitchen/'+recipe.country.name
               %p= render "grades/average"
-              %p= "Время приготовления (минут) - #{recipe.prepare}"
+              %p= "Время приготовления - #{recipe.prepare} минут"
               %p= "Количество порций - #{recipe.portions}"
           .row
-            .col-xs-12
+            .col-sm-12
               %h4 Краткое описание
               %p= recipe.caption
+          .row
+            .col-xs-12
+              - if current_user
+                %p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
+              - else
+                %p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled"
+        - count = count + 1
+        - if (count % 2) == 0
+          .clearfix

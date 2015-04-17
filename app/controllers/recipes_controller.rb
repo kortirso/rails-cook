@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
           z.recipe_id = @recipe.id
           z.save
         end
-        format.html { redirect_to '/catalog/all', notice: 'Ваш рецепт появится в каталоге после модерации.' }
+        format.html { redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }

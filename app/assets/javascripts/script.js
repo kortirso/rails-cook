@@ -48,6 +48,8 @@ $(function() {
     $(this).find('.down').fadeOut(750);
   });
 
+  correction();
+
   $(window).resize(function() {
     correction();
   });

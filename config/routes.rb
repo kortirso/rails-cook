@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'positions/create' => 'positions#create', as: 'positions'
+
   resources :measures
   resources :ingridients
   resources :line_ingrids
@@ -14,8 +16,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :comments
 
+  get 'carts/:id' => 'carts#show', as: 'cart'
+  delete 'carts/:id' => 'carts#destroy'
+
   get 'catalog/index'
-  get 'catalog/all'
+  get 'catalog/all', as: 'catalog_all'
   get 'catalog/category/:name' => 'catalog#category'
   get 'catalog/kitchen/:name' => 'catalog#kitchen'
   get 'catalog/show/:path_name' => 'catalog#show'

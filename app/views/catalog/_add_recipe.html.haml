@@ -1,6 +1,11 @@
 .col-md-2
   .add_recipe
     - if current_user
-      = link_to 'Добавить рецепт', new_recipe_path, class: "btn btn-lg btn-success"
+      - if @cart.positions.size == 0
+        %p= link_to 'Продуктовая корзина', cart_path(session[:cart_id]), id: "cart", class: "btn btn-success"
+      - else
+        %p= link_to 'Продуктовая корзина (' + @cart.positions.size.to_s + ')', cart_path(session[:cart_id]), id: "cart", class: "btn btn-success"
+      %p= link_to 'Добавить рецепт', new_recipe_path, id: "add_recipe", class: "btn btn-warning"
     - else
-      = link_to 'Добавить рецепт', '', class: "btn btn-lg btn-default", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+      %p= link_to 'Продуктовая корзина', '', id: "cart", class: "btn btn-success disabled", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+      %p= link_to 'Добавить рецепт', '', class: "btn btn-default disabled", id: "add_recipe", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
