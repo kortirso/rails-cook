@@ -12,32 +12,31 @@
             %p= @recipe.caption
             %p= link_to @recipe.category.caption, '/catalog/category/'+@recipe.category.name
             %p= link_to @recipe.country.caption + " кухня", '/catalog/kitchen/'+@recipe.country.name
+            %p= "Время приготовления (минут) - #{@recipe.prepare}"
+            - if current_user
+              .stars_block
+                .row
+                  .col-xs-12
+                    - if @current_grade
+                      %span Вы уже оценили рецепт
+                    - else
+                      %span#Rate
+                        Оцените рецепт
+                        %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
+                        %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
+                        %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
+                        %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
+                        %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
+            %p= render "grades/average"
         .row
-          .col-xs-12
+          .col-xs-6
+            %h4 Способ приготовления
+            %p= @recipe.steps
+          .col-xs-6
             %h4= "Ингридиенты (кол-во порций - #{@recipe.portions})"
             %ul
               - @list.each do |x|
                 %li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
-          .col-xs-12
-            %p= "Время приготовления (минут) - #{@recipe.prepare}"
-          .col-xs-12
-            %h4 Способ приготовления
-            %p= @recipe.steps
-      .stars_block
-        .row
-          .col-xs-12
-            - if current_user
-              - if @current_grade
-                %span Вы уже оценили рецепт
-              - else
-                %span#Rate
-                  Оцените рецепт
-                  %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,current_user.id,@recipe.id), remote: true
-                  %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,current_user.id,@recipe.id), remote: true
-                  %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,current_user.id,@recipe.id), remote: true
-                  %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,current_user.id,@recipe.id), remote: true
-                  %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,current_user.id,@recipe.id), remote: true
-            %p= render "grades/average"
       .comment_block
         .row
           .col-md-6.user_comment

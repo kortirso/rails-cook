@@ -1,7 +1,14 @@
-- if notice
-	%p#notice= notice
-%h2 Продуктовая корзина
-%ul
-	- @cart.positions.each do |position|
-		%li= position.recipe.name + ", количество - " + position.quantity.to_s
-= button_to "Очистить корзину", @cart, method: :delete, data: { confirm: "Вы уверены?" }
+= render "catalog/navs"
+.container
+	.row
+		= render "catalog/add_recipe"
+		.col-md-10
+			%h2 Продуктовая корзина
+			%ul
+				- @cart.positions.each do |position|
+					%li= "#{position.recipe.name} (#{position.recipe.portions} порций), количество - #{position.quantity}"
+			- if @cart.positions.size == 0
+				%p На данный момент в продуктовой корзине нет рецептов
+			- else
+				%p= button_to "Расчет ингредиентов", '', class: "btn btn-success disabled"
+				%p= button_to "Очистить корзину", @cart, class: "btn btn-danger", method: :delete, data: { confirm: "Вы уверены?" }

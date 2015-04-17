@@ -3,6 +3,7 @@ class CartsController < ApplicationController
 	before_action :set_cart, only: [:show, :destroy]
 	after_action :set_cart, only: [:destroy]
 	before_action :set_carts, only: [:show]
+  before_action :set_static, only: [:show]
 	rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   def show
