@@ -1,4 +1,6 @@
 class CatalogController < ApplicationController
+  include CurrentCart
+  before_action :set_cart
   before_action :set_static, except: [:index]
 
   def index # Главная страница

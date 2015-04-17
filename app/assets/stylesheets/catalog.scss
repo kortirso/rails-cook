@@ -73,10 +73,6 @@ body {
     margin: 0;
   }
 
-  .panel-body {
-    display: none;
-  }
-
   .panel-body .container {
     margin: 20px auto 10px;
   }
@@ -212,13 +208,23 @@ body {
   margin: 30px 0;
 }
 
-#Rate p {
-  display: inline;
-  width: 30px;
-  height: 30px;
-  margin-left: -3px;
+.stars_block {
+  margin-bottom: 10px;
 }
 
-#Rate p:last-child {
-  margin-left: -4px;
+#Rate {
+  p {
+    display: inline;
+    width: 30px;
+    height: 30px;
+    margin-left: -3px;
+  }
+
+  p:last-child {
+    margin-left: -4px;
+  }
+}
+
+#cart, #add_recipe {
+  width: 100%;
 }
