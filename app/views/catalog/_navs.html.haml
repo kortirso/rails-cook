@@ -1,24 +1,24 @@
 .panel.panel-default
-  .panel-heading
-    %button#recipe_navigator.btn.btn-warning{type: "button"}
-      %span.glyphicon.glyphicon-chevron-up
-    %h2 Навигация по рецептам
-  .panel-body
-    .container
-      .row
-        .col-xs-3.col-sm-2.col-lg-1.cat
-          .up
-            = link_to image_tag("clean-all.png", class: "img-responsive", alt: "Все рецепты"), '/catalog/all'
-          .down
-            = link_to "Все", '/catalog/all'
-        - @categories.each do |cat|
-          .col-xs-3.col-sm-2.col-lg-1.cat
-            .up
-              = link_to image_tag("clean-"+cat.name+".png", class: "img-responsive", alt: cat.caption), '/catalog/category/'+cat.name
-            .down
-              = link_to cat.caption, '/catalog/category/'+cat.name
-    .container.country
-      .row
-        - @countries.each do |kitchen|
-          .col-xs-3.col-sm-2.col-lg-1
-            = link_to image_tag(kitchen.name+".jpg", class: "img-responsive", alt: "Категория"), '/catalog/kitchen/'+kitchen.name
+	.panel-heading
+		%button#recipe_navigator.btn.btn-warning{type: "button"}
+			%span.glyphicon.glyphicon-chevron-up
+		%h2 Категории рецептов
+	.panel-body
+		.container
+			.row
+				.col-xs-3.col-sm-2.col-lg-1.cat
+					.up
+						= image_tag "clean-all.png", class: "img-responsive", alt: "Все рецепты"
+					.down
+						= link_to "Все", catalog_all_path
+				- @categories.each do |cat|
+					.col-xs-3.col-sm-2.col-lg-1.cat
+						.up
+							= image_tag "clean-" + cat.name + ".png", class: "img-responsive", alt: cat.caption
+						.down
+							= link_to cat.caption, type_path(cat.name)
+		.container.country
+			.row
+				- @countries.each do |kitchen|
+					.col-xs-3.col-sm-2.col-lg-1
+						= link_to image_tag(kitchen.name + ".jpg", class: "img-responsive", alt: "Категория"), kitchen_path(kitchen.name)

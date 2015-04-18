@@ -1,48 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Название</strong>
-  <%= @recipe.name %>
+	<strong>Название</strong>
+	<%= @recipe.name %>
 </p>
 
 <p>
-  <strong>Название в URL</strong>
-  <%= @recipe.path_name %>
+	<strong>Название в URL</strong>
+	<%= @recipe.path_name %>
 </p>
 
 <p>
-  <strong>Категория</strong>
-  <%= @recipe.category_id %>
+	<strong>Категория</strong>
+	<%= @recipe.category_id %>
 </p>
 
 <p>
-  <strong>Национальная кухня</strong>
-  <%= @recipe.country_id %>
+	<strong>Национальная кухня</strong>
+	<%= @recipe.country_id %>
 </p>
 
 <p>
-  <strong>Фотография</strong>
-  <%= image_tag @recipe.image.normal, class: "img-responsive", alt: "Фото рецепта" %>
+	<strong>Фотография</strong>
+	<%= image_tag @recipe.image.normal, class: "img-responsive", alt: "Фото рецепта" %>
 </p>
 
 <p>
-  <strong>Описание</strong>
-  <%= @recipe.caption %>
+	<strong>Описание</strong>
+	<%= @recipe.caption %>
 </p>
 
 <p>
-  <strong>Рецепт</strong>
-  <%= @recipe.steps %>
+	<strong>Рецепт</strong>
+	<%= @recipe.steps %>
 </p>
 
 <p>
-  <strong>Пользователь</strong>
-  <%= @recipe.user_id %>
+	<strong>Пользователь</strong>
+	<%= @recipe.user_id %>
 </p>
 
 <p>
-  <strong>Проверено?</strong>
-  <%= @recipe.visible %>
+	<strong>Проверено?</strong>
+	<%= @recipe.visible %>
 </p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

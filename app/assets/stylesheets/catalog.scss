@@ -5,226 +5,230 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic);
 
 * {
-  font-family: 'Ubuntu', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 html {
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  padding-top: 70px;
-  position: relative;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #000;
+	padding-top: 70px;
+	position: relative;
+	font-size: 20px;
+	line-height: 1.5;
+	color: #000;
 
-  .container {
-    width: 98%;
-    margin: 0 auto;
-    position: relative;
+	.container {
+		width: 98%;
+		margin: 0 auto;
+		position: relative;
 
-    &.country {
-      width: 70%;
+		&.country {
+			width: 70%;
 
-      img {
-        border: 1px solid #AAA;
-      }
+			img {
+				border: 1px solid #AAA;
+			}
 
-      img:hover {
-        box-shadow: 0 0 10px #AAA;
-      }
-    }
-  }
+			img:hover {
+				box-shadow: 0 0 10px #AAA;
+			}
+		}
+	}
 
-  h2, h3 {
-    margin-top: 0;
-  }
+	h2, h3 {
+		margin-top: 0;
+	}
 
-  h4 {
-    font-weight: 600;
-  }
+	h4 {
+		font-weight: 600;
+	}
 
-  .navbar {
-    padding: 10px 0 10px 10px;
-    margin: 0;
-    width: 100%;
-  }
+	.navbar {
+		padding: 10px 0 10px 10px;
+		margin: 0;
+		width: 100%;
+	}
 
-  .navbar-inverse .navbar-nav > li > a {
-    color: #FFF;
-  }
+	.navbar-inverse .navbar-nav > li > a {
+		color: #FFF;
+	}
 
-  .navbar-inverse .navbar-nav > li:hover > a {
-    color: #5ab400;
-  }
+	.navbar-inverse .navbar-nav > li:hover > a {
+		color: #5ab400;
+	}
 
-  .panel-heading, .panel-body {
-    padding: 10px 15px;
-    position: relative;
-  }
+	.panel-heading, .panel-body {
+		padding: 10px 15px;
+		position: relative;
+	}
 
-  .panel-heading h2 {
-    margin: 0;
-  }
+	.panel-heading h2 {
+		margin: 0;
+	}
 
-  .panel-body .container {
-    margin: 20px auto 10px;
-  }
+	.panel-body .container {
+		margin: 20px auto 10px;
+	}
+
+	.help-block {
+		display: none;
+	}
 }
 
 .left-nav {
-  position: relative;
-  bottom: 0;
-  height: auto;
+	position: relative;
+	bottom: 0;
+	height: auto;
 }
 
 .modal-open {
-  padding-right: 0 !important;
+	padding-right: 0 !important;
 }
 
 .banner {
-  box-shadow: 0 0 20px #000;
-  position: relative;
-  overflow: hidden;
+	box-shadow: 0 0 20px #000;
+	position: relative;
+	overflow: hidden;
 
-  img {
-    position: relative;
-    min-width: 960px;
-    min-height: 500px;
-  }
+	img {
+		position: relative;
+		min-width: 960px;
+		min-height: 500px;
+	}
 }
 
 .intro-text {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: #FFF;
-  background: rgba(0,0,0,0.40);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	color: #FFF;
+	background: rgba(0,0,0,0.40);
 
-  h1 {
-    position: relative;
-    top: 40%;
-    left: 5%;
-    width: 94%;
-    font-size: 50px;
-    text-transform: uppercase;
+	h1 {
+		position: relative;
+		top: 40%;
+		left: 5%;
+		width: 94%;
+		font-size: 50px;
+		text-transform: uppercase;
 
-    @media (max-width: 1170px) {
-      font-size: 40px;
-    }
-  }
+		@media (max-width: 1170px) {
+			font-size: 40px;
+		}
+	}
 }
 
 .navbar {
-  .navbar-brand {
-    padding: 0;
-  }
+	.navbar-brand {
+		padding: 0;
+	}
 
-  .navbar-nav li {
-    width: 160px;
-    text-align: center;
-  }
+	.navbar-nav li {
+		width: 160px;
+		text-align: center;
+	}
 
-  .navbar-inverse .navbar-nav>li>a {
-    color: #CCC;
-  }
+	.navbar-inverse .navbar-nav>li>a {
+		color: #CCC;
+	}
 
-  .auth_box {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #FFF;
+	.auth_box {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		color: #FFF;
 
-    span {
-      margin-right: 20px;
-    }
+		span {
+			margin-right: 20px;
+		}
 
-    @media screen and (max-width: 750px) {
-      right: 70px;
-    }
-  }
+		@media screen and (max-width: 750px) {
+			right: 70px;
+		}
+	}
 }
 
 #recipe_navigator {
-  float: left;
-  padding: 8px 12px 6px;
-  margin-right: 20px;
+	float: left;
+	padding: 8px 12px 6px;
+	margin-right: 20px;
 }
 
 .head_h2 {
-  text-align: center;
+	text-align: center;
 }
 
 .btn {
-  color: #FFF;
+	color: #FFF;
 }
 
 .recipe_block {
-  margin: 20px auto;
+	margin: 20px auto;
 }
 
 .cat {
-  border-radius: 50%;
-  overflow: hidden;
+	border-radius: 50%;
+	overflow: hidden;
 
-  .up, .down {
-    border-radius: 50%;
-    overflow: hidden;
-  }
+	.up, .down {
+		border-radius: 50%;
+		overflow: hidden;
+	}
 }
 
 .cat .down {
-  display: none;
-  background: rgba(255,255,255,0.9);
-  position: absolute;
-  top: 0;
-  text-align: center;
-  border: 2px solid #858585;
+	display: none;
+	background: rgba(255,255,255,0.9);
+	position: absolute;
+	top: 0;
+	text-align: center;
+	border: 2px solid #858585;
 
-  a {
-    position: relative;
-    font-size: 24px;
-    top: 35%;
-  }
+	a {
+		position: relative;
+		font-size: 24px;
+		top: 35%;
+	}
 }
 
 .ings {
-  overflow: hidden;
+	overflow: hidden;
 
-  input {
-    width: 100%;
-  }
+	input {
+		width: 100%;
+	}
 }
 
 .user_comment {
-  margin: 30px 0;
+	margin: 30px 0;
 }
 
 .stars_block {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #Rate {
-  p {
-    display: inline;
-    width: 30px;
-    height: 30px;
-    margin-left: -3px;
-  }
+	p {
+		display: inline;
+		width: 30px;
+		height: 30px;
+		margin-left: -3px;
+	}
 
-  p:last-child {
-    margin-left: -4px;
-  }
+	p:last-child {
+		margin-left: -4px;
+	}
 }
 
 #cart, #add_recipe {
-  width: 100%;
+	width: 100%;
 }

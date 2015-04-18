@@ -21,11 +21,11 @@ Rails.application.routes.draw do
 
   get 'catalog/index'
   get 'catalog/all', as: 'catalog_all'
-  get 'catalog/category/:name' => 'catalog#category'
-  get 'catalog/kitchen/:name' => 'catalog#kitchen'
+  get 'catalog/category/:name' => 'catalog#category', as: 'type'
+  get 'catalog/kitchen/:name' => 'catalog#kitchen', as: 'kitchen'
   get 'catalog/show/:path_name' => 'catalog#show'
 
-  get 'mark/:mark/user/:user_id/recipe/:recipe_id' => 'grades#create', as: 'grading'
+  get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
