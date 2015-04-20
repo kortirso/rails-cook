@@ -28,8 +28,8 @@
 								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
 							- else
 								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
-				- count = count + 1
-				- if (count % 2) == 0
+				- count += 1
+				- if count.even?
 					.clearfix
 			- if count == 0
 				%p В этой категории нет рецептов
