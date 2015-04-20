@@ -6,7 +6,7 @@
 			%h2.head_h2= @h2
 			- count = 0
 			- @recipes.each do |recipe|
-				- @recipe = recipe
+				- @recipe = recipe # объект для вычисления средней оценки
 				.col-md-6.recipe_block
 					.row
 						.col-sm-6
@@ -27,7 +27,7 @@
 							- if current_user
 								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
 							- else
-								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled"
+								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
 				- count = count + 1
 				- if (count % 2) == 0
 					.clearfix

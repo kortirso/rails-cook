@@ -42,11 +42,14 @@ $(function() {
 		}
 	});
 
-	$('.cat').mouseenter(function() {
-		$(this).find('.down').fadeIn(500);
-	}).mouseleave(function() {
-		$(this).find('.down').fadeOut(500);
-	});
+	$('.cat').hover(
+		function() {
+			$(this).find('.down').fadeIn(500);
+		},
+		function() {
+			$(this).find('.down').fadeOut('fast');
+		}
+	);
 
 	correction();
 
