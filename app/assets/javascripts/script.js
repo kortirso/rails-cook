@@ -1,8 +1,7 @@
 function correction() {
-	$('.down').each(function() {
-		var data = $('.up').first().width();
-		$(this).css('width', data);
-		$(this).css('height', data);
+	var thing = $('.up').first().width();
+	$('.up').each(function() {
+		$(this).css('height', thing);
 	});
 }
 

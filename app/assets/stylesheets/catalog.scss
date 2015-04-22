@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=PT+Mono&subset=latin,cyrillic);
 
 * {
 	font-family: 'Ubuntu', sans-serif;
@@ -32,6 +33,10 @@ body {
 		&.country {
 			width: 70%;
 
+			.row div {
+				padding: 2px 5px;
+			}
+
 			img {
 				border: 1px solid #AAA;
 			}
@@ -54,6 +59,30 @@ body {
 		padding: 10px 0 10px 10px;
 		margin: 0;
 		width: 100%;
+
+		.navbar-brand {
+			padding: 0;
+		}
+
+		.navbar-nav li {
+			width: 160px;
+			text-align: center;
+		}
+
+		.auth_box {
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			color: #FFF;
+
+			span {
+				margin-right: 20px;
+			}
+
+			@media screen and (max-width: 750px) {
+				right: 70px;
+			}
+		}
 	}
 
 	.navbar-inverse .navbar-nav > li > a {
@@ -80,12 +109,6 @@ body {
 	.help-block {
 		display: none;
 	}
-}
-
-.left-nav {
-	position: relative;
-	bottom: 0;
-	height: auto;
 }
 
 .modal-open {
@@ -127,36 +150,6 @@ body {
 	}
 }
 
-.navbar {
-	.navbar-brand {
-		padding: 0;
-	}
-
-	.navbar-nav li {
-		width: 160px;
-		text-align: center;
-	}
-
-	.navbar-inverse .navbar-nav>li>a {
-		color: #CCC;
-	}
-
-	.auth_box {
-		position: absolute;
-		right: 20px;
-		top: 20px;
-		color: #FFF;
-
-		span {
-			margin-right: 20px;
-		}
-
-		@media screen and (max-width: 750px) {
-			right: 70px;
-		}
-	}
-}
-
 #recipe_navigator {
 	float: left;
 	padding: 8px 12px 6px;
@@ -173,31 +166,6 @@ body {
 
 .recipe_block {
 	margin: 20px auto;
-}
-
-.cat {
-	border-radius: 50%;
-	overflow: hidden;
-
-	.up, .down {
-		border-radius: 50%;
-		overflow: hidden;
-	}
-}
-
-.cat .down {
-	display: none;
-	background: rgba(255,255,255,0.9);
-	position: absolute;
-	top: 0;
-	text-align: center;
-	border: 2px solid #858585;
-
-	a {
-		position: relative;
-		font-size: 24px;
-		top: 35%;
-	}
 }
 
 .ings {
@@ -231,4 +199,142 @@ body {
 
 #cart, #add_recipe {
 	width: 100%;
+}
+
+.ch-grid {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.ch-grid .up {
+	padding: 0 2px;
+	margin: 2px 0;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.ch-grid:after, .ch-item:before {
+	content: '';
+	display: table;
+}
+
+.ch-grid:after {
+	clear: both;
+}
+
+.ch-grid li {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.ch-item {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	position: relative;
+	cursor: default;
+	box-shadow: inset 0 0 0 0 rgba(92,184,63,0.5), inset 0 0 0 10px rgba(220,220,220,0.7), 0 1px 2px rgba(0,0,0,0.1);
+	transition: all 0.4s ease-in-out;
+	background-size: 100% 100%;
+}
+
+.ch-img-1 {
+	background-image: image-url('clean-all.png');
+}
+
+.ch-img-2 {
+	background-image: image-url('clean-snacks.png');
+}
+
+.ch-img-3 {
+	background-image: image-url('clean-salads.png');
+}
+
+.ch-img-4 {
+	background-image: image-url('clean-soups.png');
+}
+
+.ch-img-5 {
+	background-image: image-url('clean-hots.png');
+}
+
+.ch-img-6 {
+	background-image: image-url('clean-porridges.png');
+}
+
+.ch-img-7 {
+	background-image: image-url('clean-desserts.png');
+}
+
+.ch-img-8 {
+	background-image: image-url('clean-pastries.png');
+}
+
+.ch-img-9 {
+	background-image: image-url('clean-sauces.png');
+}
+
+.ch-img-10 {
+	background-image: image-url('clean-drinks.png');
+}
+
+.ch-img-11 {
+	background-image: image-url('clean-dough.png');
+}
+
+.ch-img-12 {
+	background-image: image-url('clean-jam.png');
+}
+
+.ch-info {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+	opacity: 0;
+	transition: all 0.4s ease-in-out;
+	transform: scale(0);
+	backface-visibility: hidden;
+	display: table;
+
+	a {
+		position: relative;
+		display: table-cell;
+		vertical-align: middle;
+		font-family: 'PT Mono';
+		font-size: 18px;
+		font-weight: 600;
+		color: #FFF;
+
+		@media screen and (max-width: 768px) {
+			font-size: 14px;
+		}
+
+		@media (min-width: 990px) and (max-width: 1170px) {
+			font-size: 12px;
+		}
+
+		@media (min-width: 1171px) and (max-width: 1300px) {
+			font-size: 16px;
+		}
+	}
+
+	a:hover {
+		color: #FFF;
+	}
+}
+
+.ch-item:hover {
+	box-shadow: inset 0 0 0 110px rgba(92,184,63,0.6), inset 0 0 0 10px rgba(220,220,220,0.7), 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.ch-item:hover .ch-info {
+	opacity: 1;
+	transform: scale(1);
 }

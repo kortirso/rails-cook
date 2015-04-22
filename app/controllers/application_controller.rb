@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_static
-      @categories = Category.all
+      @categories = Category.order('id').all
       @countries = Country.order('caption').all
     end
 end
