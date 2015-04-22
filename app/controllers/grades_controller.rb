@@ -5,6 +5,7 @@ class GradesController < ApplicationController
 
 		respond_to do |format|
 			if @grade.save
+				@recipe = Recipe.where(id: @grade.recipe_id).take
 				format.html { render :grades }
 				format.js
 				format.json { render :show, status: :created, location: @grade }

@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic);
-@import url(http://fonts.googleapis.com/css?family=PT+Mono&subset=latin,cyrillic);
 
 * {
 	font-family: 'Ubuntu', sans-serif;
@@ -34,7 +33,7 @@ body {
 			width: 70%;
 
 			.row div {
-				padding: 2px 5px;
+				padding: 2px 10px;
 			}
 
 			img {
@@ -307,8 +306,7 @@ body {
 		position: relative;
 		display: table-cell;
 		vertical-align: middle;
-		font-family: 'PT Mono';
-		font-size: 18px;
+		font-size: 20px;
 		font-weight: 600;
 		color: #FFF;
 
