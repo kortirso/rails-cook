@@ -9,9 +9,9 @@
 				- @recipe = recipe # объект для вычисления средней оценки
 				.col-md-6.recipe_block
 					.row
-						.col-sm-6
+						.col-sm-6.col-md-5.col-lg-6
 							= image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
-						.col-sm-6
+						.col-sm-6.col-md-7.col-lg-6
 							%h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
 							%p= link_to "Категория - " + recipe.category.caption, type_path(recipe.category.name)
 							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name)

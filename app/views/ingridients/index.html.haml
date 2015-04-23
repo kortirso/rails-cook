@@ -1,0 +1,21 @@
+%h1 Listing Ingridients
+%table
+	%thead
+		%tr
+			%th Caption
+			%th Name path
+			%th Name
+			%th
+			%th
+			%th
+	%tbody
+		- @ingridients.each do |ingridient|
+			%tr
+				%td= ingridient.caption
+				%td= ingridient.name_path
+				%td= ingridient.name
+				%td= link_to 'Show', ingridient
+				%td= link_to 'Edit', edit_ingridient_path(ingridient)
+				%td= link_to 'Destroy', ingridient, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Ingridient', new_ingridient_path

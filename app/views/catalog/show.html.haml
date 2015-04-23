@@ -6,9 +6,9 @@
 			%h2= @recipe.name
 			.recipe_block
 				.row
-					.col-md-4
+					.col-sm-4
 						= image_tag @recipe.image.normal, class: "img-responsive", alt: @recipe.name
-					.col-md-8
+					.col-sm-8
 						%p= @recipe.caption
 						%p= link_to @recipe.category.caption, type_path(@recipe.category.name)
 						%p= link_to @recipe.country.caption + " кухня", kitchen_path(@recipe.country.name)
@@ -29,14 +29,14 @@
 						%p#mark= render "grades/average"
 						%p= "Время приготовления (минут) - #{@recipe.prepare}"
 				.row
-					.col-xs-6
-						%h4 Способ приготовления
-						%p= @recipe.steps
-					.col-xs-6
+					.col-sm-6.col-sm-push-6
 						%h4= "Ингридиенты (кол-во порций - #{@recipe.portions})"
 						%ul
 							- @list.each do |x|
 								%li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
+					.col-sm-6.col-sm-pull-6
+						%h4 Способ приготовления
+						%p= @recipe.steps
 			.comment_block
 				.row
 					.col-md-6.user_comment

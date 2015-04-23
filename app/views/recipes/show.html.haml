@@ -1,0 +1,29 @@
+%p
+	%strong Название
+	= @recipe.name
+%p
+	%strong Название в URL
+	= @recipe.path_name
+%p
+	%strong Категория
+	= @recipe.category_id
+%p
+	%strong Национальная кухня
+	= @recipe.country_id
+%p
+	%strong Фотография
+	= image_tag @recipe.image.normal, class: "img-responsive", alt: "Фото рецепта"
+%p
+	%strong Описание
+	= @recipe.caption
+%p
+	%strong Рецепт
+	= @recipe.steps
+%p
+	%strong Пользователь
+	= @recipe.user_id
+%p
+	%strong Проверено?
+	= @recipe.visible
+= link_to 'Edit', edit_recipe_path(@recipe)
+= link_to 'Back', recipes_path
