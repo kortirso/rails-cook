@@ -40,6 +40,7 @@ gem 'haml'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'kaminari'
 
 group :test do
 	gem 'rspec-rails'

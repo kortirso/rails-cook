@@ -7,20 +7,20 @@ class CatalogController < ApplicationController
 	end
 
 	def all # Отображение всех рецептов
-		@recipes = Recipe.where(visible: true)
+		@recipes = Recipe.where(visible: true).page(params[:page])
 		@h2 = "Все рецепты"
 	end
 
 	def category # Выборка рецептов по категориям
 		category = Category.where('name = ?', params[:name]).take
-		@recipes = Recipe.where('category_id = ?', category)
+		@recipes = Recipe.where('category_id = ?', category).page(params[:page])
 		@h2 = "Рецепты: " + category.caption
 		render action: 'all'
 	end
 
 	def kitchen # Выборка рецептов по национальным кухням
 		country = Country.where('name = ?', params[:name]).take
-		@recipes = Recipe.where('country_id = ?', country)
+		@recipes = Recipe.where('country_id = ?', country).page(params[:page])
 		@h2 = "Рецепты: " + country.caption + " кухня"
 		render action: 'all'
 	end
