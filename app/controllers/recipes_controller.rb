@@ -25,6 +25,9 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.new(recipe_params)
 		@recipe.user_id = current_user.id
 		@recipe.visible = false
+		@recipe.stars = 0
+		@recipe.marks = 0
+		@recipe.average = 0.0
 		respond_to do |format|
 			if @recipe.save
 				@recipe.line_ingrids.each do |z|
@@ -66,6 +69,6 @@ class RecipesController < ApplicationController
 		end
 
 		def recipe_params
-			params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :steps, :user_id, :visible, :path_name, :image, :prepare, :portions, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id])
+			params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :steps, :user_id, :visible, :path_name, :image, :prepare, :portions, :stars, :marks, :average, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id])
 		end
 end
