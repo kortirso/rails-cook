@@ -18,7 +18,7 @@ class Recipe < ActiveRecord::Base
 			if positions.empty?
 				return true
 			else
-				errors.add(:base, 'Существутют товарные позиции')
+				errors.add(:base, 'Существуют товарные позиции')
 				return false
 			end
 		end

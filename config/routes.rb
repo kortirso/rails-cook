@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+	get 'basket' => 'basket#show', as: 'basket'
+
 	post 'positions/create' => 'positions#create', as: 'positions'
 
 	resources :measures
