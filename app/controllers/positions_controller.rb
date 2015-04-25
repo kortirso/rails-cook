@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
 	include CurrentCart
-	before_action :set_cart, only: [:create]
+	before_action :set_cart
 
 	def create
 		recipe = Recipe.find(params[:recipe_id])
@@ -19,7 +19,6 @@ class PositionsController < ApplicationController
 	end
 
 	private
-
 		def position_params
 			params.require(:position).permit(:recipe_id, :quantity)
 		end

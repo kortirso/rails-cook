@@ -5,7 +5,6 @@ class Ingridient < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
 	private
-
 		def ensure_not_referenced_by_any_line_ingrid
 			if line_ingrids.empty?
 				return true
@@ -14,5 +13,4 @@ class Ingridient < ActiveRecord::Base
 				return false
 			end
 		end
-
 end

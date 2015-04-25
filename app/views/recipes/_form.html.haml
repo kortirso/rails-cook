@@ -9,13 +9,13 @@
 					= f.simple_fields_for :line_ingrids do |y|
 						.ingrid
 							.col-xs-5
-								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингридиент', label_method: :name, value_method: :id
+								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
 							.col-xs-3
 								= y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
 							.col-xs-3
 								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
 				.col-xs-12
-					%p= link_to 'Добавить игредиент', '', :class => 'duplicate btn btn-success'
+					%p= link_to 'Добавить ингредиент', '', :class => 'duplicate btn btn-success'
 				.col-xs-6
 					= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
 				.col-xs-6
