@@ -6,9 +6,9 @@
 			%h2= @recipe.name
 			.recipe_block
 				.row
-					.col-sm-4
+					.col-sm-6.col-lg-4
 						= image_tag @recipe.image.normal, class: "img-responsive", alt: @recipe.name
-					.col-sm-8
+					.col-sm-6
 						%p= @recipe.caption
 						%p= link_to @recipe.category.caption, type_path(@recipe.category.name)
 						%p= link_to @recipe.country.caption + " кухня", kitchen_path(@recipe.country.name)

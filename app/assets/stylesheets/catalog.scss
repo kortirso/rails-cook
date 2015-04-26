@@ -67,7 +67,8 @@ body {
 			padding: 0;
 
 			@media screen and (max-width: 768px) {
-				width: 220px;
+				width: 190px;
+				padding-top: 3px;
 			}
 		}
 
@@ -118,6 +119,10 @@ body {
 
 	.help-block {
 		display: none;
+	}
+
+	.img-responsive {
+		width: 100%;
 	}
 
 	@media (min-width: 996px) and (max-width: 1170px) {

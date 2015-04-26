@@ -10,9 +10,9 @@
 				- @recipe = recipe # объект для вычисления средней оценки
 				.col-md-6.recipe_block
 					.row
-						.col-sm-6.col-md-5.col-lg-6
+						.col-sm-6.col-lg-7.col-sm-offset-1.col-md-offset-0
 							= image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
-						.col-sm-6.col-md-7.col-lg-6
+						.col-sm-4.col-md-6.col-lg-5
 							%h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
 							%p= link_to "Категория - " + recipe.category.caption, type_path(recipe.category.name)
 							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name)
@@ -20,11 +20,11 @@
 							%p= "Время приготовления - #{recipe.prepare} минут"
 							%p= "Количество порций - #{recipe.portions}"
 					.row
-						.col-sm-12
+						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
 							%h4 Краткое описание
 							%p= recipe.caption
 					.row
-						.col-xs-12
+						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
 							- if current_user
 								%p= button_to "В продуктовую корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
 							- else
