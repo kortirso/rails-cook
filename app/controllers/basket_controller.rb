@@ -14,9 +14,16 @@ class BasketController < ApplicationController
 					line.measure.id -= 1
 				end
 				if current_ingridient
-					current_ingridient.quantity += line.quantity * count
+					current_ingridient.quantity += line.quantity.to_f * count
 				else
-					current_ingridient = @basket.products.build(ingridient_id: line.ingridient.id, measure_id: line.measure.id, quantity: line.quantity * count)
+					current_ingridient = @basket.products.build(ingridient_id: line.ingridient.id, measure_id: line.measure.id, quantity: line.quantity.to_f * count)
+				end
+			end
+			@basket.products.each do |x| # Если г и мл больше 1000, то сокращать запись
+				if (x.measure_id == 1 or x.measure_id == 3) and x.quantity >= 1000.0
+					x.measure_id += 1
+					x.quantity /= 1000.0
+					x.quantity.round 3
 				end
 			end
 		end

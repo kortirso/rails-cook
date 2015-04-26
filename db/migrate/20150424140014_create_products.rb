@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
 			t.integer :ingridient_id
 			t.integer :basket_id
 			t.integer :measure_id
-			t.integer :quantity
+			t.real :quantity
 			t.timestamps null: false
 		end
 	end
