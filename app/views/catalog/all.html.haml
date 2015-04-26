@@ -14,11 +14,14 @@
 							= image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
 						.col-sm-4.col-md-6.col-lg-5
 							%h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
+							- name = @recipe.user.email[/[^@]+/]
+							- name.split(".").map {|n| n.capitalize }.join(" ")
+							%p= "Автор рецепта - #{name}"
 							%p= link_to "Категория - " + recipe.category.caption, type_path(recipe.category.name)
 							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name)
 							%p= render "grades/average"
 							%p
-								= image_tag("clock.png", id: "clock", alt: "clock")
+								= image_tag("clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда")
 								= " #{recipe.prepare} минут"
 							%p= "Количество порций - #{recipe.portions}"
 					.row

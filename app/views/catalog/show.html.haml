@@ -10,6 +10,9 @@
 						= image_tag @recipe.image.normal, class: "img-responsive", alt: @recipe.name
 					.col-sm-6
 						%p= @recipe.caption
+						- name = @recipe.user.email[/[^@]+/]
+						- name.split(".").map {|n| n.capitalize }.join(" ")
+						%p= "Автор рецепта - #{name}"
 						%p= link_to @recipe.category.caption, type_path(@recipe.category.name)
 						%p= link_to @recipe.country.caption + " кухня", kitchen_path(@recipe.country.name)
 						- if current_user
@@ -28,7 +31,7 @@
 												%p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,@recipe.id), remote: true
 						%p#mark= render "grades/average"
 						%p
-							= image_tag("clock.png", id: "clock", alt: "clock")
+							= image_tag("clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда")
 							= " #{@recipe.prepare} минут"
 				.row
 					.col-sm-6.col-sm-push-6
