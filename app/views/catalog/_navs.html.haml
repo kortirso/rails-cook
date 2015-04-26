@@ -16,7 +16,7 @@
 					- @categories.each do |cat|
 						.col-xs-3.col-sm-2.col-md-1.up
 							%li
-								%div{:class => "ch-item ch-img-#{count}"}
+								%div{class: "ch-item ch-img-#{count}"}
 									.ch-info
 										= link_to cat.caption, type_path(cat.name)
 						- count += 1

@@ -2,6 +2,7 @@ class BasketController < ApplicationController
 	include CurrentCart
 	before_action :set_cart
 	before_action :set_static
+	before_filter :authenticate_user!
 
 	def show
 		@basket = Basket.new(user_id: current_user.id)
