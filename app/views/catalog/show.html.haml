@@ -27,7 +27,9 @@
 												%p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,@recipe.id), remote: true
 												%p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,@recipe.id), remote: true
 						%p#mark= render "grades/average"
-						%p= "Время приготовления (минут) - #{@recipe.prepare}"
+						%p
+							= image_tag("clock.png", id: "clock", alt: "clock")
+							= " #{@recipe.prepare} минут"
 				.row
 					.col-sm-6.col-sm-push-6
 						%h4= "Ингридиенты (кол-во порций - #{@recipe.portions})"
