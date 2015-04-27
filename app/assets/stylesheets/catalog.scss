@@ -362,3 +362,33 @@ body {
 #clock {
 	width: 30px;
 }
+
+#basket {
+	list-style: none;
+	margin: 20px 0 30px;
+
+	div {
+		padding: 0 5px;
+	}
+
+	#name, #quantity {
+		padding-top: 4px;
+	}
+
+	#quantity {
+		p {
+			text-align: right;
+		}
+	}
+
+	#plus, #minus {
+		float: right;
+	}
+
+	#minus input, #plus input {
+		width: 28px;
+		height: 28px;
+		padding: 0;
+		color: #000;
+	}
+}

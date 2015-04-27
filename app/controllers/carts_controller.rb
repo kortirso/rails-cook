@@ -2,7 +2,7 @@ class CartsController < ApplicationController
 	include CurrentCart
 	before_action :set_cart
 	before_action :set_carts, only: [:show]
-	before_action :set_static, only: [:show]
+	before_action :set_static
 	rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 	before_filter :authenticate_user!
 
@@ -24,6 +24,23 @@ class CartsController < ApplicationController
 			format.json { head :no_content }
 		end
 	end
+
+	def recipe_plus
+		@position = Position.where("id = ?", params[:position]).first
+		@position.update_attribute('quantity', @position.quantity + 1)
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def recipe_minus
+		@position = Position.where("id = ?", params[:position]).first
+		@position.update_attribute('quantity', @position.quantity - 1) if @position.quantity > 1
+		respond_to do |format|
+			format.js
+		end
+	end
+
 
 	private
 		def set_carts

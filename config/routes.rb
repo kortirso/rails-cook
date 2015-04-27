@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
 	get 'carts/:id' => 'carts#show', as: 'cart'
 	delete 'carts/:id' => 'carts#destroy'
+	post 'plus/:position' => 'carts#recipe_plus', as: 'plus'
+	post 'minus/:position' => 'carts#recipe_minus', as: 'minus'
 
 	get 'catalog/index'
 	get 'catalog/all', as: 'catalog_all'

@@ -3,10 +3,19 @@
 	.row
 		= render "catalog/add_recipe"
 		.col-md-10
-			%h2 Продуктовая корзина
-			%ul
+			%h2 Рецептурная корзина
+			%ul#basket
 				- @cart.positions.each do |position|
-					%li= "#{position.recipe.name} (#{position.recipe.portions} порций), количество - #{position.quantity}"
+					%li
+						.row
+							.col-xs-6.col-sm-3.col-lg-2#name
+								%p= "#{position.recipe.name} (#{position.recipe.portions} порций)"
+							.col-xs-1#quantity
+								%p= position.quantity
+							.col-xs-4.col-sm-2.col-lg-2
+								#plus= button_to "+", plus_path(position), class: "btn", remote: true
+								#minus= button_to "-", minus_path(position), class: "btn", remote: true
+						- "#{position.recipe.name} (#{position.recipe.portions} порций), количество - #{position.quantity}"
 			- if @cart.positions.size == 0
 				%p На данный момент в продуктовой корзине нет рецептов
 			- else

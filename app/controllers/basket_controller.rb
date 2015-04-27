@@ -21,9 +21,9 @@ class BasketController < ApplicationController
 				end
 			end
 			@basket.products.each do |x| # Если г и мл больше 1000, то сокращать запись
-				if (x.measure_id == 1 or x.measure_id == 3) and x.quantity >= 1000.0
+				if (x.measure_id == 1 or x.measure_id == 3) and x.quantity >= 1000
 					x.measure_id += 1
-					x.quantity /= 1000.0
+					x.quantity /= 1000
 					x.quantity.round 3
 				end
 			end
