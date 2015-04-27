@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316110050) do
+ActiveRecord::Schema.define(version: 20150424140408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "baskets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,16 +50,57 @@ ActiveRecord::Schema.define(version: 20150316110050) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "positions", force: :cascade do |t|
-    t.integer  "cart_id"
+  create_table "grades", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "recipe_id"
-    t.integer  "quantity"
+    t.integer  "mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "ingridients", force: :cascade do |t|
+    t.string   "caption"
+    t.string   "name_path"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "line_ingrids", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "recipe_id"
+    t.integer  "ingridient_id"
+    t.integer  "measure_id"
+    t.integer  "quantity"
+  end
+
+  create_table "measures", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "recipe_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "ingridient_id"
+    t.integer  "basket_id"
+    t.integer  "measure_id"
+    t.float  "quantity"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
+    t.string   "short"
     t.integer  "category_id"
     t.integer  "country_id"
     t.text     "caption"
@@ -63,6 +110,12 @@ ActiveRecord::Schema.define(version: 20150316110050) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "path_name"
+    t.string   "image"
+    t.integer  "prepare"
+    t.integer  "portions"
+    t.integer  "stars"
+    t.integer  "marks"
+    t.float    "average"
   end
 
   create_table "users", force: :cascade do |t|
