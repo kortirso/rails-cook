@@ -9,13 +9,13 @@ module CurrentCart
 				@cart = Cart.create(user_id: current_user.id)
 				session[:cart_id] = @cart.id
 
-				@old = Cart.where("user_id = ? and id != ?", current_user.id, @cart).first
-				if @old
-					Position.where("cart_id = ?", @old).each do |pos| # удаление всех связанных с предыдущей корзиной рецептов
+				old_cart = Cart.where(user_id: current_user.id).first
+				if old_cart
+					Position.where(cart_id: old_cart).each do |pos| # удаление всех связанных с предыдущей корзиной рецептов
 						pos.destroy
 					end
+					old_cart.destroy # удаление предыдущей версии корзины
 				end
-				@old.destroy # удаление предыдущей версии корзины
 			end
 		end
 end

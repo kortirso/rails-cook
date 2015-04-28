@@ -13,8 +13,8 @@
 							.col-xs-1#quantity
 								%p= position.quantity
 							.col-xs-4.col-sm-2.col-lg-2
-								#plus= button_to "+", plus_path(position), class: "btn", remote: true
 								#minus= button_to "-", minus_path(position), class: "btn", remote: true
+								#plus= button_to "+", plus_path(position), class: "btn", remote: true
 						- "#{position.recipe.name} (#{position.recipe.portions} порций), количество - #{position.quantity}"
 			- if @cart.positions.size == 0
 				%p На данный момент в продуктовой корзине нет рецептов

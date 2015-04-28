@@ -382,7 +382,7 @@ body {
 	}
 
 	#plus, #minus {
-		float: right;
+		float: left;
 	}
 
 	#minus input, #plus input {
@@ -391,4 +391,12 @@ body {
 		padding: 0;
 		color: #000;
 	}
+}
+
+#count {
+	float: right;
+}
+
+#measure_name {
+	float: left;
 }

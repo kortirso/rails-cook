@@ -3,6 +3,8 @@ class Ingridient < ActiveRecord::Base
 	has_many :recipes, through: :line_ingrids
 	before_destroy :ensure_not_referenced_by_any_line_ingrid
 	mount_uploader :image, ImageUploader
+	has_many :products
+	has_many :baskets, through: :products
 
 	private
 		def ensure_not_referenced_by_any_line_ingrid

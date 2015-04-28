@@ -42,6 +42,10 @@
 					.col-sm-6.col-sm-pull-6
 						%h4 Способ приготовления
 						%p= @recipe.steps
+				- if current_user
+					.row
+						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
+							%p= button_to "Добавить в корзину", positions_path(recipe_id: @recipe), class: "btn btn-success", remote: true
 			.comment_block
 				.row
 					.col-md-6.user_comment
