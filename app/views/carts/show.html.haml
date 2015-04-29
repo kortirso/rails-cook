@@ -10,14 +10,14 @@
 						.row
 							.col-xs-6.col-sm-3.col-lg-2#name
 								%p= "#{position.recipe.name} (#{position.recipe.portions} порций)"
-							.col-xs-1#quantity
+							.col-xs-1.quantity{id: "quantity-#{position.id}"}
 								%p= position.quantity
 							.col-xs-4.col-sm-2.col-lg-2
 								#minus= button_to "-", minus_path(position), class: "btn", remote: true
 								#plus= button_to "+", plus_path(position), class: "btn", remote: true
-						- "#{position.recipe.name} (#{position.recipe.portions} порций), количество - #{position.quantity}"
+						- "#{position.recipe.name} (порций - #{position.recipe.portions}), количество - #{position.quantity}"
 			- if @cart.positions.size == 0
-				%p На данный момент в продуктовой корзине нет рецептов
+				%p На данный момент в рецептурной корзине нет рецептов
 			- else
 				%p= link_to "Расчет ингредиентов", basket_path, class: "btn btn-success"
 				%p= button_to "Очистить корзину", @cart, class: "btn btn-danger", method: :delete, data: { confirm: "Вы уверены?" }

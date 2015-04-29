@@ -4,16 +4,22 @@
 		= render "add_recipe"
 		.col-md-10
 			%h2.head_h2= @h2
+			.paginator
+				= paginate @recipes, window: 3, outer_window: 1
 			- count = 0
-			= paginate @recipes
 			- @recipes.each do |recipe|
 				- @recipe = recipe # объект для вычисления средней оценки
 				.col-md-6.recipe_block
 					.row
-						.col-sm-6.col-lg-7.col-sm-offset-1.col-md-offset-0
-							= image_tag recipe.image.normal, class: "img-responsive", alt: recipe.name
-						.col-sm-4.col-md-6.col-lg-5
+						.col-xs-12
 							%h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
+						.col-sm-6.col-lg-7.col-sm-offset-1.col-md-offset-0
+							= image_tag recipe.image.normal, class: "img-responsive recipe_img", alt: recipe.name
+							- if current_user
+								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
+							- else
+								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
+						.col-sm-4.col-md-6.col-lg-5
 							- name = @recipe.user.email[/[^@]+/]
 							- name.split(".").map {|n| n.capitalize }.join(" ")
 							%p= "Автор рецепта - #{name}"
@@ -23,17 +29,6 @@
 							%p
 								= image_tag("clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда")
 								= " #{recipe.prepare} минут"
-							%p= "Количество порций - #{recipe.portions}"
-					.row
-						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
-							%h4 Краткое описание
-							%p= recipe.caption
-					.row
-						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
-							- if current_user
-								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
-							- else
-								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
 				- count += 1
 				- if count.even?
 					.clearfix

@@ -6,8 +6,8 @@
 			%h2= @recipe.name
 			.recipe_block
 				.row
-					.col-sm-6.col-lg-4
-						= image_tag @recipe.image.normal, class: "img-responsive", alt: @recipe.name
+					.col-sm-6.col-lg-5
+						= image_tag @recipe.image.normal, class: "img-responsive recipe_img", alt: @recipe.name
 					.col-sm-6
 						%p= @recipe.caption
 						- name = @recipe.user.email[/[^@]+/]
@@ -35,7 +35,7 @@
 							= " #{@recipe.prepare} минут"
 				.row
 					.col-sm-6.col-sm-push-6
-						%h4= "Ингридиенты (кол-во порций - #{@recipe.portions})"
+						%h4= "Ингредиенты (кол-во порций - #{@recipe.portions})"
 						%ul
 							- @list.each do |x|
 								%li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
