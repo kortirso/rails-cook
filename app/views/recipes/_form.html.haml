@@ -16,18 +16,18 @@
 								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
 				.col-xs-12
 					%p= link_to 'Добавить ингредиент', '', :class => 'duplicate btn btn-success'
-				.col-xs-6
+				.col-xs-3
 					= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
-				.col-xs-6
-					= f.association :country, collection: Country.order('caption').all, label: 'Национальня кухня', label_method: :caption, value_method: :id, include_blank: false
-				.col-xs-6
+				.col-xs-3
+					= f.association :country, collection: Country.order('caption').all, label: 'Национальня кухня', label_method: :caption, value_method: :id
+				.col-xs-3
 					= f.input :prepare, label: 'Время готовки', placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
-				.col-xs-6
+				.col-xs-3
 					= f.input :portions, label: 'Количество порций', input_html: { min: 1 }
 				.col-xs-12
 					= f.input :caption, label: 'Описание рецепта', placeholder: 'Кратко опишите блюдо, которое получится'
 				.col-xs-12
-					= f.input :steps, label: 'Рецепт приготовления', placeholder: 'Подробное пошаговое руководство по приготовлению блюда'
+					= f.input :steps, label: 'Рецепт приготовления', placeholder: 'Подробное пошаговое руководство по приготовлению блюда', rows: "10"
 				.col-xs-12
 					%p= f.file_field :image, label: 'Изображение'
 				.col-xs-12

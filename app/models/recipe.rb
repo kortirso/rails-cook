@@ -1,5 +1,5 @@
 class Recipe < ActiveRecord::Base
-	validates :name, :category_id, :country_id, :caption, :steps, :prepare, :portions, :image, presence: true
+	validates :name, :category_id, :caption, :steps, :prepare, :portions, :image, presence: true
 	belongs_to :category
 	belongs_to :country
 	belongs_to :user

@@ -131,7 +131,7 @@ body {
 
 			span {
 				background: #CCC;
-				padding: 6px 10px;
+				padding: 6px 10px 6px 12px;
 				margin: 0 1px;
 				border-radius: 3px;
 
@@ -139,11 +139,11 @@ body {
 					background: #f0ad4e;
 				}
 
-				&.first, &.last a {
+				&.first a, &.last a {
 					display: none;
 				}
 
-				&.last {
+				&.first, &.last {
 					background: transparent;
 					padding: 0 10px;
 					float: right;
@@ -442,4 +442,12 @@ body {
 
 #measure_name {
 	float: left;
+}
+
+#recipe_caption {
+	height: 100px;
+}
+
+#recipe_steps {
+	height: 250px;
 }

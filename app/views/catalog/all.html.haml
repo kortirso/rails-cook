@@ -12,9 +12,9 @@
 				.col-md-6.recipe_block
 					.row
 						.col-xs-12
-							%h3= link_to recipe.name, '/catalog/show/'+recipe.path_name
+							%h3= link_to recipe.name, show_path(recipe.path_name)
 						.col-sm-6.col-lg-7.col-sm-offset-1.col-md-offset-0
-							= image_tag recipe.image.normal, class: "img-responsive recipe_img", alt: recipe.name
+							= image_tag recipe.image, class: "img-responsive recipe_img", alt: recipe.name
 							- if current_user
 								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
 							- else
@@ -24,7 +24,7 @@
 							- name.split(".").map {|n| n.capitalize }.join(" ")
 							%p= "Автор рецепта - #{name}"
 							%p= link_to "Категория - " + recipe.category.caption, type_path(recipe.category.name)
-							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name)
+							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name) if recipe.country
 							%p= render "grades/average"
 							%p
 								= image_tag("clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда")

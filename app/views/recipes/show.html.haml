@@ -12,7 +12,7 @@
 	= @recipe.country_id
 %p
 	%strong Фотография
-	= image_tag @recipe.image.normal, class: "img-responsive", alt: "Фото рецепта"
+	= image_tag @recipe.image, class: "img-responsive", alt: "Фото рецепта"
 %p
 	%strong Описание
 	= @recipe.caption
