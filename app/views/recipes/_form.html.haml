@@ -8,7 +8,7 @@
 				.col-xs-12
 					= f.simple_fields_for :line_ingrids do |y|
 						.ingrid
-							.col-xs-5
+							.col-xs-6
 								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
 							.col-xs-3
 								= y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
@@ -21,7 +21,7 @@
 				.col-xs-6
 					= f.association :country, collection: Country.order('caption').all, label: 'Национальня кухня', label_method: :caption, value_method: :id, include_blank: false
 				.col-xs-6
-					= f.input :prepare, label: 'Время приготовления', placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
+					= f.input :prepare, label: 'Время готовки', placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
 				.col-xs-6
 					= f.input :portions, label: 'Количество порций', input_html: { min: 1 }
 				.col-xs-12
