@@ -15,7 +15,7 @@
 							.col-xs-3
 								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
 				.col-xs-12
-					%p= link_to 'Добавить ингредиент', '', :class => 'duplicate btn btn-success'
+					%p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
 				.col-xs-3
 					= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
 				.col-xs-3
@@ -27,7 +27,12 @@
 				.col-xs-12
 					= f.input :caption, label: 'Описание рецепта', placeholder: 'Кратко опишите блюдо, которое получится'
 				.col-xs-12
-					= f.input :steps, label: 'Рецепт приготовления', placeholder: 'Подробное пошаговое руководство по приготовлению блюда', rows: "10"
+					= f.simple_fields_for :steps do |x|
+						.steps
+							.col-xs-12
+								= x.input :text, label: 'Шаг 1'
+				.col-xs-12
+					%p= link_to 'Добавить шаг', '', class: 'duplicate_step btn btn-success'
 				.col-xs-12
 					%p= f.file_field :image, label: 'Изображение'
 				.col-xs-12

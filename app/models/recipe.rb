@@ -1,5 +1,5 @@
 class Recipe < ActiveRecord::Base
-	validates :name, :category_id, :caption, :steps, :prepare, :portions, :image, presence: true
+	validates :name, :category_id, :caption, :prepare, :portions, :image, presence: true
 	belongs_to :category
 	belongs_to :country
 	belongs_to :user
@@ -12,6 +12,8 @@ class Recipe < ActiveRecord::Base
 	has_many :ingridients, through: :line_ingrids
 	has_many :grades
 	mount_uploader :image, ImageUploader
+	has_many :steps
+	accepts_nested_attributes_for :steps, allow_destroy: true
 
 	private
 		def ensure_not_referenced_by_any_position

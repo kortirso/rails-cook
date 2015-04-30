@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
 		3.times do
 			@recipe.line_ingrids.build
 		end
+		@recipe.steps.build
 	end
 
 	def edit
@@ -33,6 +34,10 @@ class RecipesController < ApplicationController
 				@recipe.line_ingrids.each do |z|
 					z.recipe_id = @recipe.id
 					z.save
+				end
+				@recipe.steps.each do |x|
+					x.recipe_id = @recipe.id
+					x.save
 				end
 				format.html { redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.' }
 				format.json { render :show, status: :created, location: @recipe }
@@ -69,6 +74,6 @@ class RecipesController < ApplicationController
 		end
 
 		def recipe_params
-			params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :steps, :user_id, :visible, :path_name, :image, :prepare, :portions, :stars, :marks, :average, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id])
+			params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :user_id, :visible, :path_name, :image, :prepare, :portions, :stars, :marks, :average, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id], steps_attributes: [:text, :id])
 		end
 end

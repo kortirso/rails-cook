@@ -32,6 +32,33 @@ $(function() {
 		$(newNestedForm).insertAfter(lastNestedForm);
 	});
 
+	var nestedStep;
+	nestedStep = $('.steps').last().clone();
+	$('.duplicate_step').click(function(e) {
+		var formsOnPage, lastNestedForm, newNestedForm;
+		e.preventDefault();
+		lastNestedForm = $('.steps').last();
+		newNestedForm = $(nestedStep).clone();
+		formsOnPage = $('.steps').length;
+		$(newNestedForm).find('label').each(function() {
+			var newLabel, oldLabel;
+			oldLabel = $(this).attr('for');
+			newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_" + formsOnPage + "_");
+			$(this).attr('for', newLabel);
+			$(this).html('<abbr title="required">*</abbr> Шаг ' + (formsOnPage + 1))
+		});
+		$(newNestedForm).find('input').each(function() {
+			var newId, newName, oldId, oldName;
+			oldId = $(this).attr('id');
+			newId = oldId.replace(new RegExp(/_[0-9]+_/), "_" + formsOnPage + "_");
+			$(this).attr('id', newId);
+			oldName = $(this).attr('name');
+			newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[" + formsOnPage + "]");
+			$(this).attr('name', newName);
+		});
+		$(newNestedForm).insertAfter(lastNestedForm);
+	});
+
 	$('#comment_body').keyup(function() {
 		if($(this).val().length > 0) {
 			$('#add_comment').removeClass('disabled');

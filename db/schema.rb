@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424140408) do
+ActiveRecord::Schema.define(version: 20150430164507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
@@ -67,12 +68,12 @@ ActiveRecord::Schema.define(version: 20150424140408) do
   end
 
   create_table "line_ingrids", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "recipe_id"
     t.integer  "ingridient_id"
     t.integer  "measure_id"
-    t.integer  "quantity",      default: 1
+    t.integer  "quantity"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -104,7 +105,6 @@ ActiveRecord::Schema.define(version: 20150424140408) do
     t.integer  "category_id"
     t.integer  "country_id"
     t.text     "caption"
-    t.text     "steps"
     t.integer  "user_id"
     t.boolean  "visible"
     t.datetime "created_at",  null: false
@@ -116,6 +116,13 @@ ActiveRecord::Schema.define(version: 20150424140408) do
     t.integer  "stars"
     t.integer  "marks"
     t.float    "average"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

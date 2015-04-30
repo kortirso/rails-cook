@@ -41,7 +41,14 @@
 								%li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
 					.col-sm-6.col-sm-pull-6
 						%h4 Способ приготовления
-						%p= @recipe.steps
+						- count = 1
+						- @recipe.steps.each do |x|
+							.step
+								%p
+									%strong= "Шаг #{count}"
+								.col-xs-12
+									= x.text
+							- count += 1
 				- if current_user
 					.row
 						.col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
