@@ -27,8 +27,8 @@
 							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name) if recipe.country
 							%p= render "grades/average"
 							%p
-								= image_tag("clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда")
-								= " #{recipe.prepare} минут"
+								= image_tag "clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда"
+								= render "time"
 				- count += 1
 				- if count.even?
 					.clearfix

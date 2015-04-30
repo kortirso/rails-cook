@@ -1,0 +1,7 @@
+- if @recipe.prepare > 60
+	- if @recipe.prepare % 60 == 0
+		= " #{@recipe.prepare / 60} ч"
+	- else
+		= " #{@recipe.prepare / 60} ч #{@recipe.prepare % 60} минут"
+- else
+	= " #{@recipe.prepare} минут"
