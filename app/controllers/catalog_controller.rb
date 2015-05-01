@@ -27,8 +27,14 @@ class CatalogController < ApplicationController
 
 	def show # Отображение определенного рецепта
 		@recipe = Recipe.where('path_name = ?', params[:path_name]).take
-		@list = LineIngrid.where(recipe_id: @recipe.id)
-		@current_grade = Grade.where(recipe_id: @recipe.id, user_id: current_user.id).take if current_user
-		@comment = Comment.new
+		if @recipe
+			@recipe.update_attribute('views', @recipe.views + 1)
+			@list = LineIngrid.where(recipe_id: @recipe.id)
+			@current_grade = Grade.where(recipe_id: @recipe.id, user_id: current_user.id).take if current_user
+			@comment = Comment.new
+			render :show
+		else
+			render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+		end
 	end
 end

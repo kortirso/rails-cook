@@ -33,6 +33,9 @@
 						%p
 							= image_tag "clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда"
 							= render "time"
+						%p
+							= image_tag "eye.png", id: "eye", alt: "views", title: "Количество просмотров"
+							= @recipe.views
 				.row
 					.col-sm-6.col-sm-push-6
 						%h4= "Ингредиенты (кол-во порций - #{@recipe.portions})"

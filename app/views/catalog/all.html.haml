@@ -29,6 +29,9 @@
 							%p
 								= image_tag "clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда"
 								= render "time"
+							%p
+								= image_tag "eye.png", id: "eye", alt: "views", title: "Количество просмотров"
+								= @recipe.views
 				- count += 1
 				- if count.even?
 					.clearfix
