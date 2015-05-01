@@ -444,14 +444,14 @@ body {
 	float: left;
 }
 
-#recipe_caption {
+#recipe_caption, input[id^="recipe_steps_"] {
 	height: 100px;
-}
-
-#recipe_steps {
-	height: 250px;
 }
 
 .step .col-xs-12 {
 	margin-bottom: 20px;
+}
+
+.forms {
+	margin-bottom: 30px;
 }

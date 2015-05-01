@@ -1,35 +1,34 @@
 Rails.application.routes.draw do
 
-	get 'basket' => 'basket#show', as: 'basket'
-
-	post 'positions/create' => 'positions#create', as: 'positions'
-
 	resources :measures
 	resources :ingridients
-	resources :line_ingrids
 
 	devise_for :users
+	get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
 	get 'contacts' => 'contacts#index', as: 'contacts'
+	get 'basket' => 'basket#show', as: 'basket'
 	get 'welcome/index'
+	post 'positions/create' => 'positions#create', as: 'positions'
 
-	resources :contacts
 	resources :recipes
 	resources :countries
 	resources :categories
 	resources :comments
 
-	get 'carts/:id' => 'carts#show', as: 'cart'
-	delete 'carts/:id' => 'carts#destroy'
-	post 'plus/:position' => 'carts#recipe_plus', as: 'plus'
-	post 'minus/:position' => 'carts#recipe_minus', as: 'minus'
+	scope controller: :carts do
+		get 'carts/:id' => :show, as: 'cart'
+		delete 'carts/:id' => :destroy
+		post 'plus/:position' => :recipe_plus, as: 'plus'
+		post 'minus/:position' => :recipe_minus, as: 'minus'
+	end
 
-	get 'catalog/index'
-	get 'catalog/all', as: 'catalog_all'
-	get 'catalog/category/:name' => 'catalog#category', as: 'type'
-	get 'catalog/kitchen/:name' => 'catalog#kitchen', as: 'kitchen'
-	get 'catalog/:path_name' => 'catalog#show', as: 'show'
-
-	get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
+	scope path: '/catalog', controller: :catalog do
+		get 'index' => :index
+		get 'all' => :all, as: 'catalog_all'
+		get 'category/:name' => :category, as: 'type'
+		get 'kitchen/:name' => :kitchen, as: 'kitchen'
+		get ':path_name' => :show, as: 'show'
+	end
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".

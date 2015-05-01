@@ -1,21 +1,12 @@
 .container
 	.row
-		.col-md-8.col-md-offset-2
+		.col-md-8.col-md-offset-2.forms
 			%h1 Новый рецепт
 			= simple_form_for @recipe do |f|
 				.col-xs-12
 					= f.input :name, label: 'Название рецепта'
 				.col-xs-12
-					= f.simple_fields_for :line_ingrids do |y|
-						.ingrid
-							.col-xs-6
-								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
-							.col-xs-3
-								= y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
-							.col-xs-3
-								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
-				.col-xs-12
-					%p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
+					= f.input :caption, label: 'Описание рецепта', placeholder: 'Кратко опишите блюдо, которое получится'
 				.col-xs-3
 					= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
 				.col-xs-3
@@ -25,8 +16,19 @@
 				.col-xs-3
 					= f.input :portions, label: 'Количество порций', input_html: { min: 1 }
 				.col-xs-12
-					= f.input :caption, label: 'Описание рецепта', placeholder: 'Кратко опишите блюдо, которое получится'
+					%h4 Список ингредиентов
+					= f.simple_fields_for :line_ingrids do |y|
+						.ingrid
+							.col-xs-4
+								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
+							.col-xs-1
+								= y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
+							.col-xs-1
+								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
 				.col-xs-12
+					%p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
+				.col-xs-12
+					%h4 Пошаговое руководство по приготовлению
 					= f.simple_fields_for :steps do |x|
 						.steps
 							.col-xs-12
@@ -34,6 +36,7 @@
 				.col-xs-12
 					%p= link_to 'Добавить шаг', '', class: 'duplicate_step btn btn-success'
 				.col-xs-12
+					%h4 Изображение для рецепта
 					%p= f.file_field :image, label: 'Изображение'
 				.col-xs-12
 					.actions
