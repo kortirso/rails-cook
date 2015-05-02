@@ -422,15 +422,14 @@ body {
 }
 
 #basket {
-	list-style: none;
 	margin: 20px 0 30px;
 
 	div {
 		padding: 0 5px;
 	}
 
-	#name, .quantity {
-		padding-top: 4px;
+	p {
+		margin: 4px 0;
 	}
 
 	.quantity {
@@ -449,14 +448,18 @@ body {
 		padding: 0;
 		color: #000;
 	}
-}
 
-#count {
-	float: right;
-}
+	tbody tr:nth-child(even) {
+		background: #EEE;
+	}
 
-#measure_name {
-	float: left;
+	tbody tr td:nth-last-child(1) {
+		width: 110px;
+	}
+
+	#count, #measure_name {
+		text-align: center;
+	}
 }
 
 #recipe_caption, .forms textarea[id^="recipe_steps_"] {
