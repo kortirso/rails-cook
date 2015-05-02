@@ -15,9 +15,8 @@ class Notifier < ApplicationMailer
 	#
 	#   en.notifier.user_new.subject
 	#
-	def user_new
-		@greeting = "Hi"
-
-		mail to: "to@example.org"
+	def user_new(user)
+		@user = user
+		mail(to: "info@liptechsoft.ru", subject: "Добавлен новый пользователь")
 	end
 end
