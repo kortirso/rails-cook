@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
 					x.recipe_id = @recipe.id
 					x.save
 				end
+				Notifier.recipe_new(@recipe).deliver_now
 				format.html { redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.' }
 				format.json { render :show, status: :created, location: @recipe }
 			else
