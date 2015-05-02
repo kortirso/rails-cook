@@ -18,7 +18,7 @@ class CatalogController < ApplicationController
 			@h2 = "Рецепты: " + category.caption
 			render :all
 		else
-			render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+			rrender template: "layouts/403", status: 404
 		end
 	end
 
@@ -29,7 +29,7 @@ class CatalogController < ApplicationController
 			@h2 = "Рецепты: " + country.caption + " кухня"
 			render :all
 		else
-			render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+			render template: "layouts/403", status: 404
 		end
 	end
 
@@ -42,7 +42,7 @@ class CatalogController < ApplicationController
 			@comment = Comment.new
 			render :show
 		else
-			render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+			render template: "layouts/403", status: 404
 		end
 	end
 end

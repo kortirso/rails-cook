@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-	resources :measures
-	resources :ingridients
-
 	devise_for :users
 	get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
 	get 'contacts' => 'contacts#index', as: 'contacts'
@@ -10,10 +7,7 @@ Rails.application.routes.draw do
 	get 'welcome/index'
 	post 'positions/create' => 'positions#create', as: 'positions'
 
-	resources :recipes
-	resources :countries
-	resources :categories
-	resources :comments
+	resources :recipes, :countries, :categories, :comments, :measures, :ingridients
 
 	scope controller: :carts do
 		get 'carts/:id' => :show, as: 'cart'
@@ -86,4 +80,5 @@ Rails.application.routes.draw do
 	#   end
 
 	root to: 'catalog#index', as: 'catalog'
+	match "*path", to: "application#catch_404", via: :all
 end
