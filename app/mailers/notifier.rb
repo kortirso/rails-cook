@@ -7,8 +7,7 @@ class Notifier < ApplicationMailer
 	#
 	def recipe_new(recipe)
 		@recipe = recipe
-
-		mail to: "info@liptechsoft.ru", subject: "Добавлен новый рецепт - #{@recipe.name}"
+		mail(to: "info@liptechsoft.ru", subject: "Добавлен новый рецепт - #{@recipe.name}")
 	end
 
 	# Subject can be set in your I18n file at config/locales/en.yml

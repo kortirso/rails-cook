@@ -14,3 +14,4 @@
 /public/uploads
 /config/secrets.yml
 /trash/*
+/config/initializers/setup_mail.rb

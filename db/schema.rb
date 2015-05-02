@@ -13,134 +13,134 @@
 
 ActiveRecord::Schema.define(version: 20150501091301) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+	# These are extensions that must be enabled in order to support this database
+	enable_extension "plpgsql"
 
-  create_table "baskets", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "baskets", force: :cascade do |t|
+		t.integer  "user_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "carts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "carts", force: :cascade do |t|
+		t.integer  "user_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.string   "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "categories", force: :cascade do |t|
+		t.string   "name"
+		t.string   "caption"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "user_id"
-    t.integer  "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "comments", force: :cascade do |t|
+		t.text     "body"
+		t.integer  "user_id"
+		t.integer  "recipe_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.string   "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "countries", force: :cascade do |t|
+		t.string   "name"
+		t.string   "caption"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "grades", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "recipe_id"
-    t.integer  "mark"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "grades", force: :cascade do |t|
+		t.integer  "user_id"
+		t.integer  "recipe_id"
+		t.integer  "mark"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "ingridients", force: :cascade do |t|
-    t.string   "caption"
-    t.string   "name_path"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "ingridients", force: :cascade do |t|
+		t.string   "caption"
+		t.string   "name_path"
+		t.string   "name"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "line_ingrids", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "recipe_id"
-    t.integer  "ingridient_id"
-    t.integer  "measure_id"
-    t.integer  "quantity"
-  end
+	create_table "line_ingrids", force: :cascade do |t|
+		t.datetime "created_at",    null: false
+		t.datetime "updated_at",    null: false
+		t.integer  "recipe_id"
+		t.integer  "ingridient_id"
+		t.integer  "measure_id"
+		t.integer  "quantity"
+	end
 
-  create_table "measures", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "measures", force: :cascade do |t|
+		t.string   "name"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "positions", force: :cascade do |t|
-    t.integer  "cart_id"
-    t.integer  "recipe_id"
-    t.integer  "quantity",   default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+	create_table "positions", force: :cascade do |t|
+		t.integer  "cart_id"
+		t.integer  "recipe_id"
+		t.integer  "quantity",   default: 1
+		t.datetime "created_at",             null: false
+		t.datetime "updated_at",             null: false
+	end
 
-  create_table "products", force: :cascade do |t|
-    t.integer  "ingridient_id"
-    t.integer  "basket_id"
-    t.integer  "measure_id"
-    t.float    "quantity"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
+	create_table "products", force: :cascade do |t|
+		t.integer  "ingridient_id"
+		t.integer  "basket_id"
+		t.integer  "measure_id"
+		t.float    "quantity"
+		t.datetime "created_at",    null: false
+		t.datetime "updated_at",    null: false
+	end
 
-  create_table "recipes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "short"
-    t.integer  "category_id"
-    t.integer  "country_id"
-    t.text     "caption"
-    t.integer  "user_id"
-    t.boolean  "visible"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "path_name"
-    t.string   "image"
-    t.integer  "prepare"
-    t.integer  "portions"
-    t.integer  "stars", dafeult: 0
-    t.integer  "marks", default: 0
-    t.float    "average", default: 0.0
-    t.integer  "views", default: 0
-  end
+	create_table "recipes", force: :cascade do |t|
+		t.string   "name"
+		t.string   "short"
+		t.integer  "category_id"
+		t.integer  "country_id"
+		t.text     "caption"
+		t.integer  "user_id"
+		t.boolean  "visible"
+		t.datetime "created_at",  null: false
+		t.datetime "updated_at",  null: false
+		t.string   "path_name"
+		t.string   "image"
+		t.integer  "prepare"
+		t.integer  "portions"
+		t.integer  "stars", dafeult: 0
+		t.integer  "marks", default: 0
+		t.float    "average", default: 0.0
+		t.integer  "views", default: 0
+	end
 
-  create_table "steps", force: :cascade do |t|
-    t.string   "text"
-    t.integer  "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "steps", force: :cascade do |t|
+		t.string   "text"
+		t.integer  "recipe_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+	create_table "users", force: :cascade do |t|
+		t.string   "email",                  default: "", null: false
+		t.string   "encrypted_password",     default: "", null: false
+		t.string   "reset_password_token"
+		t.datetime "reset_password_sent_at"
+		t.datetime "remember_created_at"
+		t.integer  "sign_in_count",          default: 0,  null: false
+		t.datetime "current_sign_in_at"
+		t.datetime "last_sign_in_at"
+		t.inet     "current_sign_in_ip"
+		t.inet     "last_sign_in_ip"
+		t.datetime "created_at"
+		t.datetime "updated_at"
+	end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+	add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+	add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
