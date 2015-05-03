@@ -21,4 +21,8 @@
 					%div
 						= f.submit "Sign in", class: 'btn btn-small btn-success'
 				.modal-footer
+					%p= link_to "Sign in with Vkontakte", '/auth/vkontakte'
+					%p= link_to "Sign in with Facebook", '/auth/facebook'
+					%p= link_to "Sign in with Github", '/auth/github'
+					%p= link_to "Sign in with Twitter", '/auth/twitter'
 					= render "devise/shared/links"
