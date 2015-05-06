@@ -3,27 +3,25 @@
 		.modal-content
 			.modal-header
 				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-				%h3.modal-title Спасибо за вход на сайт
+				%h3.modal-title Авторизация на сайте
 			= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 				.modal-body
 					%div
-						= f.label :email
+						= f.label :email, value: 'Электронная почта'
 						%br
 						= f.email_field :email, autofocus: true
 					%div
-						= f.label :password
+						= f.label :password, value: 'Пароль'
 						%br
 						= f.password_field :password
 					- if devise_mapping.rememberable?
 						%div
 							= f.check_box :remember_me
 							= f.label :remember_me
+					%br
 					%div
-						= f.submit "Sign in", class: 'btn btn-small btn-success'
+						= f.submit "Вход", class: 'btn btn-small btn-success'
 				.modal-footer
-					%p= #link_to "Sign in with Vkontakte", '/auth/vkontakte'
-					%p= link_to "Facebook", user_omniauth_authorize_path(:facebook)
-					%p= #link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-					%p= #link_to "Sign in with Github", '/auth/github'
-					%p= #link_to "Sign in with Twitter", '/auth/twitter'
+					%p
+						= link_to image_tag('social-facebook.jpg', class: 'social', alt: 'Вход через Facebook'), user_omniauth_authorize_path(:facebook), title: 'Вход через Facebook'
 					= #render "devise/shared/links"

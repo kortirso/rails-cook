@@ -2,26 +2,23 @@
 	.modal-dialog
 		.modal-content
 			.modal-header
-				%button.close{"data-dismiss" => "modal"} x
-				%h2 Sign Up
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h3.modal-title Регистрация на сайте
 			= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
 				.modal-body
 					= devise_error_messages!
 					%div
-						= f.label :email
+						= f.label :email, value: 'Электронная почта'
 						%br
 						= f.email_field :email, autofocus: true
 					%div
-						= f.label :password
+						= f.label :password, value: 'Пароль'
 						%br
 						= f.password_field :password
 					%div
-						= f.label :password_confirmation
+						= f.label :password_confirmation, value: 'Подтверждение пароля'
 						%br
 						= f.password_field :password_confirmation
-				.modal-footer
-					%p
-						%div
-							= f.submit "Sign up", class: 'btn btn-small btn-success'
-					%p
-						= link_to "Close", '#', class: "btn btn-small", "data-dismiss" => "modal"
+					%br
+					%div
+						= f.submit "Зарегистрироваться", class: 'btn btn-small btn-success'
