@@ -6,9 +6,6 @@ module CurrentCart
 			@cart = Cart.find(session[:cart_id])
 		rescue ActiveRecord::RecordNotFound
 			if current_user
-				@cart = Cart.create(user_id: current_user.id)
-				session[:cart_id] = @cart.id
-
 				old_cart = Cart.where(user_id: current_user.id).first
 				if old_cart
 					Position.where(cart_id: old_cart).each do |pos| # удаление всех связанных с предыдущей корзиной рецептов
@@ -16,6 +13,9 @@ module CurrentCart
 					end
 					old_cart.destroy # удаление предыдущей версии корзины
 				end
+
+				@cart = Cart.create(user_id: current_user.id)
+				session[:cart_id] = @cart.id
 			end
 		end
 end

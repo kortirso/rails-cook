@@ -1,34 +1,42 @@
 class User < ActiveRecord::Base
+	TEMP_EMAIL_PREFIX = 'rails@cook'
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	after_create :send_email_admin
-	devise :database_authenticatable, :registerable,
-				 :recoverable, :rememberable, :trackable, :validatable
+	devise :registerable, :recoverable, :rememberable, :trackable,
+		:database_authenticatable, :omniauthable, :validatable, omniauth_providers: [:facebook]
 	has_one :cart
+	has_many :identities
 	has_many :comments
 	has_many :recipes
 	has_many :grades
-
-	validates_presence_of :uid, :provider
-	validates_uniqueness_of :uid, :scope => :provider
 
 	private
 		def send_email_admin
 			Notifier.user_new(self).deliver_now
 		end
 
-		def self.from_omniauth(auth)
-			where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-				user.email = auth.info.email
-				user.password = Devise.friendly_token[0,20]
-			end
-		end
-
-		def self.new_with_session(params, session)
-			super.tap do |user|
-				if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-					user.email = data["email"] if user.email.blank?
+		def self.find_for_oauth(auth, signed_in_resource)
+			identity = Identity.find_for_oauth(auth)
+			user = signed_in_resource ? signed_in_resource : identity.user
+			if user.nil?
+				email = auth.info.email
+				user = User.where(:email => email).first
+				if user.nil?
+					user = User.new(
+						#name: auth.extra.raw_info.name,
+						#username: auth.info.nickname || auth.uid,
+						email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+						password: Devise.friendly_token[0,20]
+					)
+					user.save!
 				end
 			end
+			if identity.user != user
+				identity.user = user
+				identity.save!
+			end
+			signed_in_resource = user
+			user
 		end
 end

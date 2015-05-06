@@ -42,11 +42,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
 
 group :test do
 	gem 'rspec-rails'

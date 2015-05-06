@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-	devise_for :users
-	get '/auth/:provider/callback' => 'autentications#create'
-	get '/signout' => 'autentications#destroy', as: :signout
+	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
 	get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
 	get 'contacts' => 'contacts#index', as: 'contacts'

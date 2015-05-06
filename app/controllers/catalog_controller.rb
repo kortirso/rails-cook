@@ -4,6 +4,7 @@ class CatalogController < ApplicationController
 	before_action :set_static, except: [:index]
 
 	def index # Главная страница
+		session[:user_id] = User.find(current_user.id).id if current_user
 	end
 
 	def all # Отображение всех рецептов
@@ -14,7 +15,7 @@ class CatalogController < ApplicationController
 	def category # Выборка рецептов по категориям
 		category = Category.where('name = ?', params[:name]).first
 		if category
-			@recipes = Recipe.where(category_id: category.id).order(created_at: :desc).page(params[:page]).per(10)
+			@recipes = Recipe.where(category_id: category.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
 			@h2 = "Рецепты: " + category.caption
 			render :all
 		else
@@ -25,7 +26,7 @@ class CatalogController < ApplicationController
 	def kitchen # Выборка рецептов по национальным кухням
 		country = Country.where('name = ?', params[:name]).first
 		if country
-			@recipes = Recipe.where(country_id: country.id).order(created_at: :desc).page(params[:page]).per(10)
+			@recipes = Recipe.where(country_id: country.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
 			@h2 = "Рецепты: " + country.caption + " кухня"
 			render :all
 		else
