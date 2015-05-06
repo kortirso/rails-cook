@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 			Notifier.user_new(self).deliver_now
 		end
 
-		def self.find_for_oauth(auth, signed_in_resource)
+		def self.find_for_oauth(auth, signed_in_resource = nil)
 			identity = Identity.find_for_oauth(auth)
 			user = signed_in_resource ? signed_in_resource : identity.user
 			if user.nil?
