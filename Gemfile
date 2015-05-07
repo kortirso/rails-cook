@@ -43,6 +43,7 @@ gem 'rmagick'
 gem 'kaminari'
 
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :test do
 	gem 'rspec-rails'
