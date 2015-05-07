@@ -44,6 +44,7 @@ gem 'kaminari'
 
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem 'omniauth-github'
 
 group :test do
 	gem 'rspec-rails'
