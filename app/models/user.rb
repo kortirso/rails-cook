@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-	TEMP_EMAIL_PREFIX = 'rails@cook'
+	TEMP_EMAIL_PREFIX = '@railscook'
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	after_create :send_email_admin
 	devise :registerable, :recoverable, :rememberable, :trackable,
-		:database_authenticatable, :omniauthable, :validatable, omniauth_providers: [:vkontakte, :facebook, :github]
+		:database_authenticatable, :omniauthable, :validatable, omniauth_providers: [:vkontakte, :facebook, :github, :twitter]
 	has_one :cart
 	has_many :identities
 	has_many :comments
@@ -23,10 +23,11 @@ class User < ActiveRecord::Base
 				email = auth.info.email
 				user = User.where(:email => email).first
 				if user.nil?
+					username = auth.info.nickname || auth.uid
 					user = User.new(
 						#name: auth.extra.raw_info.name,
 						#username: auth.info.nickname || auth.uid,
-						email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+						email: email ? email : "#{username}#{TEMP_EMAIL_PREFIX}-#{auth.provider}-#{auth.uid}.com",
 						password: Devise.friendly_token[0,20]
 					)
 					user.save!
