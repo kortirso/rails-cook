@@ -6,6 +6,11 @@ function correction() {
 }
 
 $(function() {
+	$('.carousel-inner .item').first().addClass('active');
+	$("#myCarousel").carousel({
+		interval: 6000
+	});
+
 	var nestedForm;
 	nestedForm = $('.ingrid').last().clone();
 	$('.duplicate').click(function(e) {

@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
 
 	def index # Главная страница
 		session[:user_id] = User.find(current_user.id).id if current_user
+		@recipes = Recipe.where(visible: true).order(created_at: :desc).limit(5)
 	end
 
 	def all # Отображение всех рецептов
