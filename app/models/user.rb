@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	after_create :send_email_admin
 	devise :registerable, :recoverable, :rememberable, :trackable,
-		:database_authenticatable, :omniauthable, :validatable, omniauth_providers: [:vkontakte, :facebook, :github, :twitter, :yandex, :google_oauth2]
+		:database_authenticatable, :omniauthable, :validatable,
+		omniauth_providers: [:vkontakte, :facebook, :github, :twitter, :yandex, :google_oauth2, :linkedin, :instagram, :odnoklassniki]
 	has_one :cart
 	has_many :identities
 	has_many :comments

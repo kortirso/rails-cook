@@ -47,7 +47,10 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'omniauth-yandex'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin'
+gem 'omniauth-instagram'
+gem 'omniauth-odnoklassniki'
 
 group :test do
 	gem 'rspec-rails'
