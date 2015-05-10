@@ -185,7 +185,7 @@ body {
 	padding-right: 0 !important;
 }
 
-/*.banner {
+.banner {
 	box-shadow: 0 0 20px #000;
 	position: relative;
 	overflow: hidden;
@@ -193,7 +193,7 @@ body {
 	img {
 		position: relative;
 		min-width: 960px;
-		min-height: 500px;
+		min-height: 300px;
 	}
 }
 
@@ -208,17 +208,37 @@ body {
 
 	h1 {
 		position: relative;
-		top: 40%;
+		top: 33%;
 		left: 5%;
 		width: 94%;
 		font-size: 50px;
 		text-transform: uppercase;
 
 		@media (max-width: 1170px) {
-			font-size: 40px;
+			font-size: 36px;
 		}
 	}
-}*/
+
+	p {
+		position: relative;
+		top: 38%;
+		left: 5%;
+		width: 94%;
+		font-size: 18px;
+
+		@media (min-width: 996px) and (max-width: 1300px) {
+			font-size: 14px;
+		}
+
+		@media (min-width: 768px) and (max-width: 995px) {
+			font-size: 12px;
+		}
+
+		@media (max-width: 767px) {
+			display: none;
+		}
+	}
+}
 
 #recipe_navigator {
 	float: left;
@@ -524,6 +544,10 @@ body {
 
 	.carousel-indicators {
 		bottom: 5px;
+
+		.active {
+			background-color: #fff;
+		}
 	}
 
 	.carousel-indicators li {
@@ -539,6 +563,12 @@ body {
 		list-style: none;
 		background: url('list.png') no-repeat;
 		margin-top: 15px;
-		padding: 0 40px 10px;
+		padding: 0 40px 15px;
+	}
+
+	&#plan {
+		li {
+			background: url('list-plan.png') no-repeat;
+		}
 	}
 }
