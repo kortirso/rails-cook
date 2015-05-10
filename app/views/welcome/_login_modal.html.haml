@@ -3,33 +3,20 @@
 		.modal-content
 			.modal-header
 				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-				%h3.modal-title Авторизация на сайте
-			= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+				%h2.modal-title Авторизация на сайте
+			= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 				.modal-body
+					.col-md-7
+						= f.input :email, required: true, autofocus: true, label: 'Электронная почта'
+					.col-md-7
+						= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: 'Пароль'
+					.clearfix
 					%div
-						= f.label :email, value: 'Электронная почта'
-						%br
-						= f.email_field :email, autofocus: true
-					%div
-						= f.label :password, value: 'Пароль'
-						%br
-						= f.password_field :password
-					- if devise_mapping.rememberable?
-						%div
-							= f.check_box :remember_me
-							= f.label :remember_me
+						= f.input :remember_me, as: :boolean, label: 'Запомнить' if devise_mapping.rememberable?
 					%br
 					%div
-						= f.submit "Вход", class: 'btn btn-small btn-success'
+						= f.button :submit, "Вход", class: 'btn btn-small btn-success'
 				.modal-footer
 					%p
 						Вход через социальные сети
-						= link_to image_tag('social-vkontakte.jpg', class: 'social', alt: 'Вход через ВКонтакте'), user_omniauth_authorize_path(:vkontakte), title: 'Вход через ВКонтакте'
-						= link_to image_tag('social-facebook.jpg', class: 'social', alt: 'Вход через Facebook'), user_omniauth_authorize_path(:facebook), title: 'Вход через Facebook'
-						= link_to image_tag('social-ok.jpg', class: 'social', alt: 'Вход через Одноклассники'), user_omniauth_authorize_path(:odnoklassniki), title: 'Вход через Одноклассники'
-						= link_to image_tag('social-twitter.jpg', class: 'social', alt: 'Вход через Twitter'), user_omniauth_authorize_path(:twitter), title: 'Вход через Twitter'
-						= link_to image_tag('social-instagram.jpg', class: 'social', alt: 'Вход через Instagram'), user_omniauth_authorize_path(:instagram), title: 'Вход через Instagram'
-						= link_to image_tag('social-github.jpg', class: 'social', alt: 'Вход через Github'), user_omniauth_authorize_path(:github), title: 'Вход через Github'
-						= link_to image_tag('social-yandex.jpg', class: 'social', alt: 'Вход через Яндекс'), user_omniauth_authorize_path(:yandex), title: 'Вход через Яндекс'
-						= link_to image_tag('social-google.jpg', class: 'social', alt: 'Вход через Google'), user_omniauth_authorize_path(:google_oauth2), title: 'Вход через Google'
-						= link_to image_tag('social-linkedin.jpg', class: 'social', alt: 'Вход через LinkedIn'), user_omniauth_authorize_path(:linkedin), title: 'Вход через LinkedIn'
+						= render partial: 'welcome/social'

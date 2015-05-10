@@ -1,0 +1,23 @@
+.container
+	.row
+		.col-md-8.col-md-offset-2
+			%br
+			%h2 Авторизация пользователя на сайте
+			= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+				.col-md-7
+					= f.input :email, required: true, autofocus: true, label: 'Электронная почта'
+				.col-md-7
+					= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: 'Пароль'
+				.clearfix
+				%div
+					= f.input :remember_me, as: :boolean, label: 'Запомнить' if devise_mapping.rememberable?
+				%br
+				%div
+					= f.button :submit, "Вход", class: 'btn btn-small btn-success'
+				%br
+				%div
+					= link_to "Забыли пароль?", new_password_path(resource_name) if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+				.modal-footer
+					%p
+						Вход через социальные сети
+						= render partial: 'welcome/social'
