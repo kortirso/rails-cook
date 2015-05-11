@@ -61,10 +61,11 @@
 					.col-md-6.user_comment
 						= simple_form_for @comment, remote: true do |f|
 							= f.hidden_field :recipe_id, value: "#{@recipe.id}"
-							= f.input :body, label: 'Ваш комментарий'
 							.actions
 								- if current_user
+									= f.input :body, label: 'Ваш комментарий'
 									= f.button :submit, id: "add_comment", class: "btn btn-success disabled", value: 'Добавить комментарий'
 								- else
-									= f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+									= f.input :body, label: 'Ваш комментарий', disabled: true, placeholder: 'Вы должны авторизоваться, чтобы оставлять комментарии'
+									= f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', 'disabled' => 'disabled'
 				.row#comments= render "comments"
