@@ -41,6 +41,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
+gem 'pg_search'
 
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'

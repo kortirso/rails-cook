@@ -14,6 +14,8 @@ class Recipe < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 	has_many :steps
 	accepts_nested_attributes_for :steps, allow_destroy: true
+	include PgSearch
+	pg_search_scope :search_everywhere, against: [:name]
 
 	private
 		def ensure_not_referenced_by_any_position

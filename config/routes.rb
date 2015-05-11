@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 		get 'all' => :all, as: 'catalog_all'
 		get 'category/:name' => :category, as: 'type'
 		get 'kitchen/:name' => :kitchen, as: 'kitchen'
+		get 'search' => :search, as: 'search'
 		get ':path_name' => :show, as: 'show'
 	end
 

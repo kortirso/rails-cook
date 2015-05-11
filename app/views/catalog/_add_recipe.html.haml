@@ -2,15 +2,17 @@
 	.row
 		.add_recipe
 			- if current_user
-				.col-xs-6.col-md-12
+				.col-xs-6.col-sm-4.col-md-12
 					- if @cart.positions.size == 0
 						%p= link_to 'Корзина', cart_path(session[:cart_id]), id: "cart", class: "btn btn-success"
 					- else
 						%p= link_to 'Корзина (' + @cart.positions.size.to_s + ')', cart_path(session[:cart_id]), id: "cart", class: "btn btn-success"
-				.col-xs-6.col-md-12
+				.col-xs-6.col-sm-4.col-md-12
 					%p= link_to 'Добавить рецепт', new_recipe_path, id: "add_recipe", class: "btn btn-warning"
 			- else
-				.col-xs-6.col-md-12
+				.col-xs-6.col-sm-4.col-md-12
 					%p= link_to 'Корзина', '#', id: "cart", class: "btn btn-default", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
-				.col-xs-6.col-md-12
+				.col-xs-6.col-sm-4.col-md-12
 					%p= link_to 'Добавить рецепт', '#', class: "btn btn-default", id: "add_recipe", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+			.col-xs-6.col-sm-4.col-md-12
+				%p= link_to 'Форма поиска', "#search", "data-toggle" => "modal", id: "search-btn", class: 'btn btn-success'

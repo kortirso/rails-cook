@@ -13,6 +13,14 @@ class CatalogController < ApplicationController
 		@h2 = "Все рецепты"
 	end
 
+	def search
+		@recipes = Recipe.where(visible: true).order(created_at: :desc)
+		@recipes = @recipes.search_everywhere(params[:search][:query]) if params[:search][:query] != ""
+		@recipes = @recipes.page(params[:page]).per(10)
+		@h2 = "Результаты поиска рецептов"
+		render :all
+	end
+
 	def category # Выборка рецептов по категориям
 		category = Category.where('name = ?', params[:name]).first
 		if category
@@ -20,7 +28,7 @@ class CatalogController < ApplicationController
 			@h2 = "Рецепты: " + category.caption
 			render :all
 		else
-			rrender template: "layouts/403", status: 404
+			render template: "layouts/403", status: 404
 		end
 	end
 

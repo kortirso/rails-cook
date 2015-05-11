@@ -1,0 +1,15 @@
+.modal.fade.in#search
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h2.modal-title Форма поиска рецептов
+			= simple_form_for :search, url: search_path, method: :get, role: 'search' do |f|
+				.modal-body
+					= f.input :query, label: 'Поиск в названии', required: false
+					%br
+					%div
+					= f.button :submit, "Поиск", class: 'btn btn-success'
+				.modal-footer
+					%p Ведется доработка формы, возможны ошибки
+				
