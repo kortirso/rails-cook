@@ -1,6 +1,6 @@
 describe BasketController do
 	describe "show action" do
-		it "redirect to sign_in when user not login" do
+		it "redirect to sign_in page when user not login" do
 			get :show
 			expect(response).to redirect_to('/users/sign_in')
 		end

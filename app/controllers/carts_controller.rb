@@ -10,6 +10,8 @@ class CartsController < ApplicationController
 		if @cart.id != session[:cart_id]
 			logger.error "Попытка доступа к чужой корзине  #{params[:id]} от пользователя #{current_user.id}"
 			redirect_to catalog_all_path, notice: "Плохо пытаться ломиться в чужую продуктовую корзину"
+		else
+			render :show
 		end
 	end
 
