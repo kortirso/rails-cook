@@ -40,5 +40,6 @@ class BasketController < ApplicationController
 		basket.ingridients.order('name').all.each do |name| # формирование массива продуктовых позиций с сортировкой по имени ингредиента
 			@array.push(basket.products.where(basket_id: basket, ingridient_id: name.id).take)
 		end
+		render :show
 	end
 end

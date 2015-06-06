@@ -55,7 +55,7 @@ gem 'omniauth-odnoklassniki'
 
 group :test do
 	gem 'rspec-rails'
-	gem 'factory_girl'
+	gem 'factory_girl_rails'
 end
 
 group :development, :test do

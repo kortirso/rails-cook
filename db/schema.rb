@@ -77,12 +77,12 @@ ActiveRecord::Schema.define(version: 20150506093750) do
   end
 
   create_table "line_ingrids", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "recipe_id"
     t.integer  "ingridient_id"
     t.integer  "measure_id"
-    t.integer  "quantity"
+    t.integer  "quantity",      default: 1
   end
 
   create_table "measures", force: :cascade do |t|
@@ -94,9 +94,9 @@ ActiveRecord::Schema.define(version: 20150506093750) do
   create_table "positions", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "recipe_id"
-    t.integer  "quantity",   default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
