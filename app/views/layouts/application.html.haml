@@ -18,8 +18,11 @@
 				= link_to image_tag("logo.png", class: "img-responsive", alt: "Логотип RoR"), catalog_path, class: 'navbar-brand'
 			.navbar-collapse.collapse
 				%ul.nav.navbar-nav
-					%li= link_to 'Каталог рецептов', catalog_all_path
-					%li= link_to 'Контакты', contacts_path
+					%li= link_to t('menu.catalog'), catalog_all_path
+					%li= link_to t('menu.contacts'), contacts_path
+				.locale_box
+					= link_to 'ENG', change_locale_path('en')
+					= link_to 'РУС', change_locale_path('ru')
 			.auth_box
 				- if user_signed_in?
 					- name = current_user.email[/[^@]+/]

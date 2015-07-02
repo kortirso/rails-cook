@@ -91,11 +91,16 @@ body {
 		}
 
 		.navbar-nav li {
-			text-align: center;
+			text-align: left;
 
 			@media screen and (max-width: 750px) {
 				width: 150px;
 			}
+		}
+
+		.locale_box {
+			position: relative;
+			padding: 15px 0;
 		}
 
 		.auth_box {

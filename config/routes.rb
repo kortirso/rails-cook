@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 		get ':path_name' => :show, as: 'show'
 	end
 
+	get 'locale/:name' => 'welcome#locale', as: 'change_locale'
+
 	root to: 'catalog#index', as: 'catalog'
 	match "*path", to: "application#catch_404", via: :all
 end

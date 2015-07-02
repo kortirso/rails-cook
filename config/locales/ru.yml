@@ -1,0 +1,17 @@
+ru:
+  menu:
+    catalog: 'Каталог рецептов'
+    contacts: 'Контакты'
+
+  activerecord:
+    models:
+      recipe: 'Рецепт'
+    attributes:
+      recipe:
+        name: 'Название рецепта'
+        caption: 'Описание рецепта'
+        category: 'Категория'
+        country: 'Национальня кухня'
+        prepare: 'Время готовки'
+        portions: 'Количество порций'
+        image: 'Изображение'
