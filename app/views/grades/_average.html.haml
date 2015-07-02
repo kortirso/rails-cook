@@ -1,5 +1,5 @@
-= image_tag("star.png", alt: "star", title: "Средняя оценка")
+= image_tag("star.png", alt: "star", title: t('recipes.average'))
 - if @recipe.average > 0
-	= " #{@recipe.average} (оценок - #{@recipe.marks})"
+	= " #{@recipe.average} (" + t('recipes.marks') + "  - #{@recipe.marks})"
 - else
-	= "Оценок нет"
+	= t('recipes.no_marks')

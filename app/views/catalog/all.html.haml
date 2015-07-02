@@ -17,21 +17,21 @@
 						.col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-0
 							= image_tag recipe.image, class: "img-responsive recipe_img", alt: recipe.name
 							- if current_user
-								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
+								%p= button_to t('recipes.add'), positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
 							- else
-								%p= button_to "Добавить в корзину", positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
+								%p= button_to t('recipes.add'), positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
 						.col-sm-4.col-md-5
 							- name = @recipe.user.email[/[^@]+/]
 							- name.split(".").map {|n| n.capitalize }.join(" ")
-							%p= "Автор - #{name}"
+							%p= t('recipes.author') + " - #{name}"
 							%p= link_to recipe.category.caption, type_path(recipe.category.name)
 							%p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name) if recipe.country
 							%p= render "grades/average"
 							%p
-								= image_tag "clock.png", id: "clock", alt: "clock", title: "Время приготовления блюда"
+								= image_tag "clock.png", id: "clock", alt: "clock", title: t('recipes.time')
 								= render "time"
 							%p
-								= image_tag "eye.png", id: "eye", alt: "views", title: "Количество просмотров"
+								= image_tag "eye.png", id: "eye", alt: "views", title: t('recipes.counts')
 								= @recipe.views
 				- count += 1
 				- if count.even?

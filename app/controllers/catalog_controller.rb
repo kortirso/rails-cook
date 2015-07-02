@@ -10,14 +10,14 @@ class CatalogController < ApplicationController
 
 	def all # Отображение всех рецептов
 		@recipes = Recipe.where(visible: true).order(created_at: :desc).page(params[:page]).per(10)
-		@h2 = "Все рецепты"
+		@h2 = t('controllers.all')
 	end
 
 	def search
 		@recipes = Recipe.where(visible: true).order(created_at: :desc)
 		@recipes = @recipes.search_everywhere(params[:search][:query]) if params[:search][:query] != ""
 		@recipes = @recipes.page(params[:page]).per(10)
-		@h2 = "Результаты поиска рецептов"
+		@h2 = t('controllers.search')
 		render :all
 	end
 
@@ -25,7 +25,7 @@ class CatalogController < ApplicationController
 		category = Category.where('name = ?', params[:name]).first
 		if category
 			@recipes = Recipe.where(category_id: category.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
-			@h2 = "Рецепты: " + category.caption
+			@h2 = t('controllers.recipes') + ": " + category.caption
 			render :all
 		else
 			render template: "layouts/403", status: 404
@@ -36,7 +36,7 @@ class CatalogController < ApplicationController
 		country = Country.where('name = ?', params[:name]).first
 		if country
 			@recipes = Recipe.where(country_id: country.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
-			@h2 = "Рецепты: " + country.caption + " кухня"
+			@h2 = t('controllers.recipes') + ": " + country.caption + " кухня"
 			render :all
 		else
 			render template: "layouts/403", status: 404

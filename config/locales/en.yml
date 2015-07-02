@@ -2,10 +2,58 @@ en:
   menu:
     catalog: 'Recipes catalog'
     contacts: 'Contacts'
+    registration: 'Signin'
+    login: 'Login'
+    exit: 'Signout'
+    name: 'Login as'
+    title: 'Culinary site "Parsley"'
+
+  index:
+    new_recipes: 'New recipe'
+
+  static:
+    categories: 'Recipe categories'
+    cart: 'Cart'
+    add: 'Add recipe'
+    look: 'Search form'
+
+  controllers:
+    all: 'All recipes'
+    search: 'Search results'
+    recipes: 'Recipes'
+
+  recipes:
+    author: 'Author'
+    marks: 'marks'
+    no_marks: 'No marks'
+    average: 'Average mark'
+    add: 'Add to cart'
+    time: 'Preparation time'
+    counts: 'Number of viewings'
+    already: 'You already estimated the recipe'
+    estimated: 'Estimated the recipe'
+    minutes: 'minutes'
+    hours: 'h'
+    step: 'Step'
+    method: 'Cooking method'
+    ingredients: 'Ingredients (number of portions'
+
+  cart:
+    h2: 'Cart of ingredients'
+    portions: 'portions'
+    empty: 'Cart does not have any recipes'
+    summ: 'Calculation of recipes'
+    destroy: 'Destroy cart'
+    confirm: 'Are you sure?'
+
+  basket:
+    h2: 'Shopping list'
+    text: 'The following ingredients are necessary for preparation of the dishes chosen by you:'
 
   activerecord:
     models:
       recipe: 'Receipt'
+      comment: 'Comment'
     attributes:
       recipe:
         name: 'Name'
@@ -15,3 +63,5 @@ en:
         prepare: 'Preparation time'
         portions: 'Portions'
         image: 'Image'
+      comment:
+        body: 'Your comment'
