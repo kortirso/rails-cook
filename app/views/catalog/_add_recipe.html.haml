@@ -11,8 +11,8 @@
 					%p= link_to t('static.add'), new_recipe_path, id: "add_recipe", class: "btn btn-warning"
 			- else
 				.col-xs-6.col-sm-4.col-md-12
-					%p= link_to t('static.cart'), '#', id: "cart", class: "btn btn-default", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+					%p= link_to t('static.cart'), '#', id: "cart", class: "btn btn-default", type: 'button', title: t('static.login'), data: {toggle: 'tooltip', placement: 'bottom'}
 				.col-xs-6.col-sm-4.col-md-12
-					%p= link_to t('static.add'), '#', class: "btn btn-default", id: "add_recipe", type: 'button', title: 'Необходимо войти под своим логином', data: {toggle: 'tooltip', placement: 'bottom'}
+					%p= link_to t('static.add'), '#', class: "btn btn-default", id: "add_recipe", type: 'button', title: t('static.login'), data: {toggle: 'tooltip', placement: 'bottom'}
 			.col-xs-6.col-sm-4.col-md-12
 				%p= link_to t('static.look'), "#search", "data-toggle" => "modal", id: "search-btn", class: 'btn btn-success'

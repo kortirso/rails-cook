@@ -2,9 +2,9 @@ en:
   menu:
     catalog: 'Recipes catalog'
     contacts: 'Contacts'
-    registration: 'Signin'
+    registration: 'Sign in'
     login: 'Login'
-    exit: 'Signout'
+    exit: 'Sign out'
     name: 'Login as'
     title: 'Culinary site "Parsley"'
 
@@ -16,6 +16,7 @@ en:
     cart: 'Cart'
     add: 'Add recipe'
     look: 'Search form'
+    login: 'You need login'
 
   controllers:
     all: 'All recipes'
@@ -65,3 +66,35 @@ en:
         image: 'Image'
       comment:
         body: 'Your comment'
+
+  views:
+    pagination:
+      next: 'Next'
+      previous: 'Back'
+
+  auth:
+    login: 'Login'
+    signup: 'Sign up'
+    sign-up: 'Sign up'
+    email: 'Email'
+    pass: 'Password'
+    remember: 'Remember'
+    in: 'Sign in'
+    socials: 'Sign in through socials'
+    reg_socials: 'Sign up through socials'
+    forget: 'Forgor the password?'
+    confirm: 'Password confirmation'
+    vk: 'Login through Vkontakte'
+    fb: 'Login through Facebook'
+    ok: 'Login through Odnoklassniki'
+    twitter: 'Login through Twitter'
+    inst: 'Login through Instagram'
+    github: 'Login through Github'
+    yandex: 'Login through Yandex'
+    li: 'Login through LinkedIn'
+
+  search:
+    form: 'Search form'
+    look: 'Search in names'
+    looking: 'Search'
+    errors: 'Develop mode, can be errors'
