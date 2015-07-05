@@ -38,3 +38,6 @@
 					.clearfix
 			- if count == 0
 				%p В этой категории нет рецептов
+			.paginator
+				= paginate @recipes, window: 3, outer_window: 1
+			%br

@@ -52,7 +52,7 @@ $(function() {
 			$(this).attr('for', newLabel);
 			$(this).html('<abbr title="required">*</abbr> Шаг ' + (formsOnPage + 1))
 		});
-		$(newNestedForm).find('input').each(function() {
+		$(newNestedForm).find('textarea').each(function() {
 			var newId, newName, oldId, oldName;
 			oldId = $(this).attr('id');
 			newId = oldId.replace(new RegExp(/_[0-9]+_/), "_" + formsOnPage + "_");

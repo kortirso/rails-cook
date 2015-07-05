@@ -48,6 +48,7 @@ class CatalogController < ApplicationController
 		if @recipe
 			@recipe.update_attribute('views', @recipe.views + 1)
 			@list = LineIngrid.where(recipe_id: @recipe.id)
+			@steps = Step.where(recipe_id: @recipe.id).order(id: :asc)
 			@current_grade = Grade.where(recipe_id: @recipe.id, user_id: current_user.id).first if current_user
 			@comment = Comment.new
 			render :show

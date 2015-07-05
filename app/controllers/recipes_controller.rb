@@ -29,6 +29,7 @@ class RecipesController < ApplicationController
 		@recipe.stars = 0
 		@recipe.marks = 0
 		@recipe.average = 0.0
+		@recipe.views = 0
 		respond_to do |format|
 			if @recipe.save
 				@recipe.line_ingrids.each do |z|

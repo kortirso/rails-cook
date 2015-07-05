@@ -46,7 +46,7 @@
 					.col-sm-6.col-sm-pull-6
 						%h4= t('recipes.method')
 						- count = 1
-						- @recipe.steps.each do |x|
+						- @steps.each do |x|
 							.step
 								%p
 									%strong= t('recipes.step') + " #{count}"
