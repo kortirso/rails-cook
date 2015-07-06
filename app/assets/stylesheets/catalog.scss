@@ -272,7 +272,12 @@ body {
 	h3 {
 		text-align: center;
 		font-size: 30px;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
+		min-height: 68px;
+
+		@media (max-width: 992px) {
+			min-height: 0;
+		}
 	}
 
 	.recipe_img {
