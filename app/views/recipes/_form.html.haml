@@ -1,43 +1,43 @@
 .container.forms
-	.row
-		.col-lg-12
-			%h1 Новый рецепт
-			= simple_form_for @recipe do |f|
-				.col-xs-12.col-lg-6
-					= f.input :name
-				.col-xs-12
-					= f.input :caption, placeholder: 'Кратко опишите блюдо, которое получится'
-				.col-xs-6.col-md-3
-					= f.association :category, label_method: :caption, value_method: :id, include_blank: false
-				.col-xs-6.col-md-3
-					= f.association :country, collection: Country.order('caption').all, label_method: :caption, value_method: :id
-				.col-xs-6.col-md-3
-					= f.input :prepare, placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
-				.col-xs-6.col-md-3
-					= f.input :portions, input_html: { min: 1 }
-				.col-xs-12
-					%h4 Список ингредиентов
-					= f.simple_fields_for :line_ingrids do |y|
-						.ingrid
-							.col-xs-5.col-md-2.col-lg-3
-								= y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
-							.col-xs-4.col-md-2.col-lg-2
-								= y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
-							.col-xs-3.col-md-2.col-lg-1
-								= y.association :measure, label: 'Мера', label_method: :name, value_method: :id
-				.col-xs-12
-					%p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
-				.col-xs-12
-					%h4 Пошаговое руководство по приготовлению
-					= f.simple_fields_for :steps do |x|
-						.steps
-							.col-xs-12
-								= x.input :text, label: 'Шаг 1'
-				.col-xs-12
-					%p= link_to 'Добавить шаг', '', class: 'duplicate_step btn btn-success'
-				.col-xs-12
-					%h4 Изображение для рецепта
-					%p= f.file_field :image
-				.col-xs-12
-					.actions
-						= f.button :submit, class: "btn btn-success", value: 'Создать рецепт'
+    .row
+        .col-lg-12
+            %h1 Новый рецепт
+            = simple_form_for @recipe do |f|
+                .col-xs-12.col-lg-6
+                    = f.input :name
+                .col-xs-12
+                    = f.input :caption, placeholder: 'Кратко опишите блюдо, которое получится'
+                .col-xs-6.col-md-3
+                    = f.association :category, label_method: :caption, value_method: :id, include_blank: false
+                .col-xs-6.col-md-3
+                    = f.association :country, collection: Country.order('caption').all, label_method: :caption, value_method: :id
+                .col-xs-6.col-md-3
+                    = f.input :prepare, placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
+                .col-xs-6.col-md-3
+                    = f.input :portions, input_html: { min: 1 }
+                .col-xs-12
+                    %h4 Список ингредиентов
+                    = f.simple_fields_for :line_ingrids do |y|
+                        .ingrid
+                            .col-xs-5.col-md-2.col-lg-3
+                                = y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
+                            .col-xs-4.col-md-2.col-lg-2
+                                = y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
+                            .col-xs-3.col-md-2.col-lg-1
+                                = y.association :measure, label: 'Мера', label_method: :name, value_method: :id
+                .col-xs-12
+                    %p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
+                .col-xs-12
+                    %h4 Пошаговое руководство по приготовлению
+                    = f.simple_fields_for :steps do |x|
+                        .steps
+                            .col-xs-12
+                                = x.input :text, label: 'Шаг 1'
+                .col-xs-12
+                    %p= link_to 'Добавить шаг', '', class: 'duplicate_step btn btn-success'
+                .col-xs-12
+                    %h4 Изображение для рецепта
+                    %p= f.file_field :image
+                .col-xs-12
+                    .actions
+                        = f.button :submit, class: "btn btn-success", value: 'Создать рецепт'
