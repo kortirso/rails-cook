@@ -5,6 +5,8 @@
             %h2= t('auth.login')
             = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 .col-md-7
+                    = f.input :username, required: true, autofocus: true, label: t('auth.username')
+                .col-md-7
                     = f.input :email, required: true, autofocus: true, label: t('auth.email')
                 .col-md-7
                     = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: t('auth.pass')
@@ -20,4 +22,4 @@
                 .modal-footer
                     %p
                         = t('auth.socials')
-                        = render partial: 'welcome/social'
+                        = #render partial: 'welcome/social'

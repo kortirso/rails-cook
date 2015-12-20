@@ -76,6 +76,7 @@ en:
     login: 'Login'
     signup: 'Sign up'
     sign-up: 'Sign up'
+    username: 'Username'
     email: 'Email'
     pass: 'Password'
     remember: 'Remember'

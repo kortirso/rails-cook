@@ -25,10 +25,8 @@
                     = link_to 'РУС', change_locale_path('ru')
             .auth_box
                 - if user_signed_in?
-                    - name = current_user.email[/[^@]+/]
-                    - name.split(".").map {|n| n.capitalize }.join(" ")
                     %span.hidden-xs
-                        %span= t('menu.name') + " - #{name}"
+                        %span= t('menu.name') + " - #{current_user.username}"
                     = link_to t('menu.exit'), destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-danger'
                 - else
                     = link_to t('menu.registration'), "#sign_up", "data-toggle" => "modal", id: "up", class: 'btn btn-sm btn-success'
