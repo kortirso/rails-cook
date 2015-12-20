@@ -21,9 +21,7 @@
                             - else
                                 %p= button_to t('recipes.add'), positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
                         .col-sm-4.col-md-5
-                            - name = @recipe.user.email[/[^@]+/]
-                            - name.split(".").map {|n| n.capitalize }.join(" ")
-                            %p= t('recipes.author') + " - #{name}"
+                            %p= t('recipes.author') + " - #{@recipe.user.username}"
                             %p= link_to recipe.category.caption, type_path(recipe.category.name)
                             %p= link_to recipe.country.caption + " кухня", kitchen_path(recipe.country.name) if recipe.country
                             %p= render "grades/average"

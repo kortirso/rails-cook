@@ -3,12 +3,16 @@ class User < ActiveRecord::Base
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     after_create :send_email_admin
+
     devise :registerable, :recoverable, :rememberable, :trackable, :database_authenticatable, :validatable, :omniauthable, omniauth_providers: [:vkontakte, :facebook, :github, :twitter, :yandex, :google_oauth2, :linkedin, :instagram, :odnoklassniki]
+
     has_one :cart
     has_many :identities
     has_many :comments
     has_many :recipes
     has_many :grades
+
+    validates :username, presence: true, uniqueness: true, length: { in: 1..20 }
 
     private
     def send_email_admin

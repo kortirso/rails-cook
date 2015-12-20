@@ -11,9 +11,7 @@
                         = image_tag @recipe.image, class: "img-responsive recipe_img", alt: @recipe.name
                     .col-sm-6
                         %p= @recipe.caption
-                        - name = @recipe.user.email[/[^@]+/]
-                        - name.split(".").map {|n| n.capitalize }.join(" ")
-                        %p= t('recipes.author') + " - #{name}"
+                        %p= t('recipes.author') + " - #{@recipe.user.username}"
                         %p= link_to @recipe.category.caption, type_path(@recipe.category.name)
                         %p= link_to @recipe.country.caption + " кухня", kitchen_path(@recipe.country.name) if @recipe.country
                         - if current_user
