@@ -10,6 +10,7 @@
                 .col-xs-6.col-sm-4.col-md-12
                     %p= link_to t('static.add'), new_recipe_path, id: "add_recipe", class: "btn btn-warning"
             - else
+                %p.center Необходимо авторизоваться
                 .col-xs-6.col-sm-4.col-md-12
                     %p= link_to t('static.cart'), '#', id: "cart", class: "btn btn-default", type: 'button', title: t('static.login'), data: {toggle: 'tooltip', placement: 'bottom'}
                 .col-xs-6.col-sm-4.col-md-12

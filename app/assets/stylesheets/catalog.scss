@@ -63,11 +63,14 @@ body {
         }
     }
 
+    .center {
+        text-align: center;
+    }
+
     h1, h2, h3 {
         margin-top: 0;
 
         &.center {
-            text-align: center;
             margin: 20px 0;
         }
     }
