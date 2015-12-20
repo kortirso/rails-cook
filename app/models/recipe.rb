@@ -17,15 +17,19 @@ class Recipe < ActiveRecord::Base
     pg_search_scope :search_everywhere, against: [:name]
 
     validates :name, :category_id, :user_id, :prepare, :portions, :image, presence: true
-    validates :prepare, :portions, numericality: true
+    validates :prepare, :portions, numericality: { greater_than: 0 }
+
+    def short_name
+        self.name.truncate(50)
+    end
 
     private
-        def ensure_not_referenced_by_any_position
-            if positions.empty?
-                return true
-            else
-                errors.add(:base, 'Существуют товарные позиции')
-                return false
-            end
+    def ensure_not_referenced_by_any_position
+        if positions.empty?
+            return true
+        else
+            errors.add(:base, 'Существуют товарные позиции')
+            return false
         end
+    end
 end

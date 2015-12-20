@@ -13,7 +13,7 @@
                 .col-md-6.recipe_block
                     .row
                         .col-xs-12
-                            %h3= link_to recipe.name, show_path(recipe.path_name)
+                            %h3= link_to recipe.short_name, show_path(recipe.path_name)
                         .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-0
                             = image_tag recipe.image, class: "img-responsive recipe_img", alt: recipe.name
                             - if current_user
