@@ -1,21 +1,21 @@
 .container
-	.row
-		.col-md-8.col-md-offset-2
-			%br
-			%h2= t('auth.signup')
-			= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-				.col-md-7
-					= f.input :email, required: true, autofocus: true, label: t('auth.email')
-				.col-md-7
-					= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: t('auth.pass')
-				.col-md-7
-					= f.input :password_confirmation, required: true, label: t('auth.confirm')
-				.clearfix
-				%br
-				%div
-					= f.button :submit, t('auth.sign-up'), class: 'btn btn-small btn-success'
-				%br
-				.modal-footer
-					%p
-						= t('auth.reg_socials')
-						= render partial: 'welcome/social'
+    .row
+        .col-md-8.col-md-offset-2
+            %br
+            %h2= t('auth.signup')
+            = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+                .col-md-7
+                    = f.input :email, required: true, autofocus: true, label: t('auth.email')
+                .col-md-7
+                    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: t('auth.pass')
+                .col-md-7
+                    = f.input :password_confirmation, required: true, label: t('auth.confirm')
+                .clearfix
+                %br
+                %div
+                    = f.button :submit, t('auth.sign-up'), class: 'btn btn-small btn-success'
+                %br
+                .modal-footer
+                    %p
+                        = t('auth.reg_socials')
+                        = render partial: 'welcome/social'

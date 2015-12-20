@@ -1,22 +1,22 @@
 = render 'welcome/search_modal'
 = render "catalog/navs"
 .container.catalog
-	.row
-		= render "catalog/add_recipe"
-		.col-sm-10.col-md-6.col-sm-offset-1
-			%h2= t('cart.h2')
-			%table.table#basket
-				- @cart.positions.each do |position|
-					%tr
-						%td#name
-							%p= "#{position.recipe.name} (" + t('cart.portions') + " - #{position.recipe.portions})"
-						%td.quantity{id: "quantity-#{position.id}"}
-							%p= position.quantity
-						%td
-							#minus= button_to "-", minus_path(position), class: "btn", remote: true
-							#plus= button_to "+", plus_path(position), class: "btn", remote: true
-			- if @cart.positions.size == 0
-				%p= t('cart.empty')
-			- else
-				%p= link_to t('cart.summ'), basket_path, class: "btn btn-success"
-				%p= button_to t('cart.destroy'), @cart, class: "btn btn-danger", method: :delete, data: { confirm: t('cart.confirm')}
+    .row
+        = render "catalog/add_recipe"
+        .col-sm-10.col-md-6.col-sm-offset-1
+            %h2= t('cart.h2')
+            %table.table#basket
+                - @cart.positions.each do |position|
+                    %tr
+                        %td#name
+                            %p= "#{position.recipe.name} (" + t('cart.portions') + " - #{position.recipe.portions})"
+                        %td.quantity{id: "quantity-#{position.id}"}
+                            %p= position.quantity
+                        %td
+                            #minus= button_to "-", minus_path(position), class: "btn", remote: true
+                            #plus= button_to "+", plus_path(position), class: "btn", remote: true
+            - if @cart.positions.size == 0
+                %p= t('cart.empty')
+            - else
+                %p= link_to t('cart.summ'), basket_path, class: "btn btn-success"
+                %p= button_to t('cart.destroy'), @cart, class: "btn btn-danger", method: :delete, data: { confirm: t('cart.confirm')}

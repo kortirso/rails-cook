@@ -1,15 +1,14 @@
 .modal.fade.in#search
-	.modal-dialog
-		.modal-content
-			.modal-header
-				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-				%h2.modal-title= t('search.form')
-			= simple_form_for :search, url: search_path, method: :get, role: 'search' do |f|
-				.modal-body
-					= f.input :query, label: t('search.look'), required: false
-					%br
-					%div
-					= f.button :submit, t('search.looking'), class: 'btn btn-success'
-				.modal-footer
-					%p= t('search.errors')
-				
+    .modal-dialog
+        .modal-content
+            .modal-header
+                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                %h2.modal-title= t('search.form')
+            = simple_form_for :search, url: search_path, method: :get, role: 'search' do |f|
+                .modal-body
+                    = f.input :query, label: t('search.look'), required: false
+                    %br
+                    %div
+                    = f.button :submit, t('search.looking'), class: 'btn btn-success'
+                .modal-footer
+                    %p= t('search.errors')

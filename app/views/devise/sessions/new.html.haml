@@ -1,23 +1,23 @@
 .container
-	.row
-		.col-md-8.col-md-offset-2
-			%br
-			%h2= t('auth.login')
-			= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-				.col-md-7
-					= f.input :email, required: true, autofocus: true, label: t('auth.email')
-				.col-md-7
-					= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: t('auth.pass')
-				.clearfix
-				%div
-					= f.input :remember_me, as: :boolean, label: t('auth.remember') if devise_mapping.rememberable?
-				%br
-				%div
-					= f.button :submit, t('auth.in'), class: 'btn btn-small btn-success'
-				%br
-				%div
-					= link_to t('auth.forget'), new_password_path(resource_name) if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-				.modal-footer
-					%p
-						= t('auth.socials')
-						= render partial: 'welcome/social'
+    .row
+        .col-md-8.col-md-offset-2
+            %br
+            %h2= t('auth.login')
+            = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                .col-md-7
+                    = f.input :email, required: true, autofocus: true, label: t('auth.email')
+                .col-md-7
+                    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: t('auth.pass')
+                .clearfix
+                %div
+                    = f.input :remember_me, as: :boolean, label: t('auth.remember') if devise_mapping.rememberable?
+                %br
+                %div
+                    = f.button :submit, t('auth.in'), class: 'btn btn-small btn-success'
+                %br
+                %div
+                    = link_to t('auth.forget'), new_password_path(resource_name) if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+                .modal-footer
+                    %p
+                        = t('auth.socials')
+                        = render partial: 'welcome/social'

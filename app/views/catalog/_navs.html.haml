@@ -1,27 +1,27 @@
 .panel.panel-default
-	.panel-heading
-		%button#recipe_navigator.btn.btn-warning{type: "button"}
-			%span.glyphicon.glyphicon-chevron-up
-		%h2= t('static.categories')
-	.panel-body
-		.container.cats
-			.row
-				%ul.ch-grid
-					.col-xs-3.col-sm-2.col-md-1.up
-						%li
-							.ch-item.ch-img-1
-								.ch-info
-									= link_to "Все", catalog_all_path
-					- count = 2
-					- @categories.each do |cat|
-						.col-xs-3.col-sm-2.col-md-1.up
-							%li
-								%div{class: "ch-item ch-img-#{count}"}
-									.ch-info
-										= link_to cat.caption, type_path(cat.name)
-						- count += 1
-		.container.country
-			.row
-				- @countries.each do |kitchen|
-					.col-xs-2.col-sm-1
-						= link_to image_tag(kitchen.name + ".jpg", class: "img-responsive", alt: "Категория"), kitchen_path(kitchen.name), title: "#{kitchen.caption} кухня"
+    .panel-heading
+        %button#recipe_navigator.btn.btn-warning{type: "button"}
+            %span.glyphicon.glyphicon-chevron-up
+        %h2= t('static.categories')
+    .panel-body
+        .container.cats
+            .row
+                %ul.ch-grid
+                    .col-xs-3.col-sm-2.col-md-1.up
+                        %li
+                            .ch-item.ch-img-1
+                                .ch-info
+                                    = link_to "Все", catalog_all_path
+                    - count = 2
+                    - @categories.each do |cat|
+                        .col-xs-3.col-sm-2.col-md-1.up
+                            %li
+                                %div{class: "ch-item ch-img-#{count}"}
+                                    .ch-info
+                                        = link_to cat.caption, type_path(cat.name)
+                        - count += 1
+        .container.country
+            .row
+                - @countries.each do |kitchen|
+                    .col-xs-2.col-sm-1
+                        = link_to image_tag(kitchen.name + ".jpg", class: "img-responsive", alt: "Категория"), kitchen_path(kitchen.name), title: "#{kitchen.caption} кухня"

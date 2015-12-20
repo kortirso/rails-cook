@@ -1,7 +1,7 @@
 - if @recipe.prepare > 60
-	- if @recipe.prepare % 60 == 0
-		= " #{@recipe.prepare / 60} "+ t('recipes.hours')
-	- else
-		= " #{@recipe.prepare / 60} " + t('recipes.hours') + " #{@recipe.prepare % 60} " + t('recipes.minutes')
+    - if @recipe.prepare % 60 == 0
+        = " #{@recipe.prepare / 60} "+ t('recipes.hours')
+    - else
+        = " #{@recipe.prepare / 60} " + t('recipes.hours') + " #{@recipe.prepare % 60} " + t('recipes.minutes')
 - else
-	= " #{@recipe.prepare} " + t('recipes.minutes')
+    = " #{@recipe.prepare} " + t('recipes.minutes')

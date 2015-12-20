@@ -1,16 +1,16 @@
 .container
-	.row
-		.col-xs-4
-			%h1 Редактирование рецепта
-			= simple_form_for @recipe do |f|
-				= f.input :name, label: 'Название рецепта'
-				= f.input :path_name, label: 'Название для URL'
-				= f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
-				= f.association :country, label: 'Национальня кухня', label_method: :caption, value_method: :id
-				= f.input :caption, label: 'Подробное описание'
-				= image_tag @recipe.image
-				= f.file_field :image
-				= f.input :user_id
-				= f.input :visible, as: :boolean
-				.actions
-					= f.button :submit, class: "btn btn-default"
+    .row
+        .col-xs-4
+            %h1 Редактирование рецепта
+            = simple_form_for @recipe do |f|
+                = f.input :name, label: 'Название рецепта'
+                = f.input :path_name, label: 'Название для URL'
+                = f.association :category, label: 'Категория', label_method: :caption, value_method: :id, include_blank: false
+                = f.association :country, label: 'Национальня кухня', label_method: :caption, value_method: :id
+                = f.input :caption, label: 'Подробное описание'
+                = image_tag @recipe.image
+                = f.file_field :image
+                = f.input :user_id
+                = f.input :visible, as: :boolean
+                .actions
+                    = f.button :submit, class: "btn btn-default"

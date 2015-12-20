@@ -1,52 +1,52 @@
 .banner
-	= image_tag("banner.jpg", class: "img-responsive", alt: "Баннер")
-	.intro-text
-		%h1 Кулинарный сайт "Петрушка" - проект на Ruby on Rails
-		%p Добро пожаловать на кулинарный сайт "Петрушка", разрабатываемый как проект для изучения веб-фреймворка Ruby on Rails и сопутствующих ему технологий, например, HAML, SCSS, Git, PostgreSQL. Основная задача этого веб-приложения - хранение кулинарных рецептов и доступ к ним с любого устройства. Сайт имеет адаптивный дизайн, поэтому Вы сможете просматривать рецепты даже со смартфона. С реализованным функционалов можно будет ознакомиться чуть ниже, а перейдя в "Каталог рецептов", можно будет увидеть все добавленные блюда и подробно ознакомиться с каждым.
+    = image_tag("banner.jpg", class: "img-responsive", alt: "Баннер")
+    .intro-text
+        %h1 Кулинарный сайт "Петрушка" - проект на Ruby on Rails
+        %p Добро пожаловать на кулинарный сайт "Петрушка", разрабатываемый как проект для изучения веб-фреймворка Ruby on Rails и сопутствующих ему технологий, например, HAML, SCSS, Git, PostgreSQL. Основная задача этого веб-приложения - хранение кулинарных рецептов и доступ к ним с любого устройства. Сайт имеет адаптивный дизайн, поэтому Вы сможете просматривать рецепты даже со смартфона. С реализованным функционалов можно будет ознакомиться чуть ниже, а перейдя в "Каталог рецептов", можно будет увидеть все добавленные блюда и подробно ознакомиться с каждым.
 .container
-	.row
-		.col-xs-12.col-md-10.col-md-offset-1
-			%h2.center= t('index.new_recipes')
-			#myCarousel.carousel.slide
-				%ol.carousel-indicators
-					%li.active{"data-target" => "#myCarousel", "data-slide-to" => "0"}
-					%li{"data-target" => "#myCarousel", "data-slide-to" => "1"}
-					%li{"data-target" => "#myCarousel", "data-slide-to" => "2"}
-					%li{"data-target" => "#myCarousel", "data-slide-to" => "3"}
-					%li{"data-target" => "#myCarousel", "data-slide-to" => "4"}
-				.carousel-inner
-					- @recipes.each do |recipe|
-						.item
-							= image_tag recipe.image, class: "img-responsive", alt: recipe.name
-							.container.active
-								.carousel-caption
-									%p= link_to recipe.name, show_path(recipe.path_name)
-				%a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"}
-					%span.glyphicon.glyphicon-chevron-left
-				%a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"}
-					%span.glyphicon.glyphicon-chevron-right
-	.row
-		.col-xs-12.col-sm-6.col-md-4
-			%h2.center Функции веб-приложения
-			%ul.pluses
-				%li Регистрация через логин/пароль или социальные сети,
-				%li Просмотр каталога рецептов (полного или с выборками по категориям), добавление новых рецептов,
-				%li Оценка и комментирование рецептов,
-				%li Составление продуктовой корзины из рецептов и расчет ингредиентов для их приготовления,
-				%li Ожидается добавление дополнительных функций.
-		.col-xs-12.col-sm-6.col-md-4
-			%h2.center Преимущества регистрации
-			%ul.pluses
-				%li Возможность добавления рецептов,
-				%li Функция расчета ингредиентов для набора блюд,
-				%li Выставление оценок рецептам,
-				%li Комментирование рецептов,
-				%li Ожидается добавление дополнительных функций.
-		.clearfix.visible-sm
-		.col-xs-12.col-md-4
-			%h2.center Планируемые улучшения
-			%ul.pluses#plan
-				%li Реализация личного кабинета (личная поваренная книга, список оцененных рецептов, ведение переписки между пользователями),
-				%li Форма поиска рецептов (по названию, по ингредиентам и т.п.),
-				%li Реализация сортировки рецептов в каталоге (по популярности, по оценкам, по повару и т.п.),
-				%li Преобразование списка ингредиентов в PDF-файл для удобной распечатки.
+    .row
+        .col-xs-12.col-md-10.col-md-offset-1
+            %h2.center= t('index.new_recipes')
+            #myCarousel.carousel.slide
+                %ol.carousel-indicators
+                    %li.active{"data-target" => "#myCarousel", "data-slide-to" => "0"}
+                    %li{"data-target" => "#myCarousel", "data-slide-to" => "1"}
+                    %li{"data-target" => "#myCarousel", "data-slide-to" => "2"}
+                    %li{"data-target" => "#myCarousel", "data-slide-to" => "3"}
+                    %li{"data-target" => "#myCarousel", "data-slide-to" => "4"}
+                .carousel-inner
+                    - @recipes.each do |recipe|
+                        .item
+                            = image_tag recipe.image, class: "img-responsive", alt: recipe.name
+                            .container.active
+                                .carousel-caption
+                                    %p= link_to recipe.name, show_path(recipe.path_name)
+                %a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"}
+                    %span.glyphicon.glyphicon-chevron-left
+                %a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"}
+                    %span.glyphicon.glyphicon-chevron-right
+    .row
+        .col-xs-12.col-sm-6.col-md-4
+            %h2.center Функции веб-приложения
+            %ul.pluses
+                %li Регистрация через логин/пароль или социальные сети,
+                %li Просмотр каталога рецептов (полного или с выборками по категориям), добавление новых рецептов,
+                %li Оценка и комментирование рецептов,
+                %li Составление продуктовой корзины из рецептов и расчет ингредиентов для их приготовления,
+                %li Ожидается добавление дополнительных функций.
+        .col-xs-12.col-sm-6.col-md-4
+            %h2.center Преимущества регистрации
+            %ul.pluses
+                %li Возможность добавления рецептов,
+                %li Функция расчета ингредиентов для набора блюд,
+                %li Выставление оценок рецептам,
+                %li Комментирование рецептов,
+                %li Ожидается добавление дополнительных функций.
+        .clearfix.visible-sm
+        .col-xs-12.col-md-4
+            %h2.center Планируемые улучшения
+            %ul.pluses#plan
+                %li Реализация личного кабинета (личная поваренная книга, список оцененных рецептов, ведение переписки между пользователями),
+                %li Форма поиска рецептов (по названию, по ингредиентам и т.п.),
+                %li Реализация сортировки рецептов в каталоге (по популярности, по оценкам, по повару и т.п.),
+                %li Преобразование списка ингредиентов в PDF-файл для удобной распечатки.

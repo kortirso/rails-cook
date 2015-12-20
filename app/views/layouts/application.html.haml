@@ -1,36 +1,36 @@
 !!! XHTML 5
 %html
-	%head
-		%title= t('menu.title')
-		= stylesheet_link_tag 'application', media: 'all'
-		= javascript_include_tag 'application'
-		= csrf_meta_tags
-	%body
-		= render 'welcome/login_modal'
-		= render 'welcome/sign_up_modal'
-		%nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
-			.navbar-header
-				%button.navbar-toggle{type: "button", data: {toggle: "collapse", target: ".navbar-collapse"}}
-					%span.sr-only Toggle navigation
-					%span.icon-bar
-					%span.icon-bar
-					%span.icon-bar
-				= link_to image_tag("logo.png", class: "img-responsive", alt: "Логотип RoR"), catalog_path, class: 'navbar-brand'
-			.navbar-collapse.collapse
-				%ul.nav.navbar-nav
-					%li= link_to t('menu.catalog'), catalog_all_path
-					%li= link_to t('menu.contacts'), contacts_path
-				.locale_box
-					= link_to 'ENG', change_locale_path('en')
-					= link_to 'РУС', change_locale_path('ru')
-			.auth_box
-				- if user_signed_in?
-					- name = current_user.email[/[^@]+/]
-					- name.split(".").map {|n| n.capitalize }.join(" ")
-					%span.hidden-xs
-						%span= t('menu.name') + " - #{name}"
-					= link_to t('menu.exit'), destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-danger'
-				- else
-					= link_to t('menu.registration'), "#sign_up", "data-toggle" => "modal", id: "up", class: 'btn btn-sm btn-success'
-					= link_to t('menu.login'), "#login", "data-toggle" => "modal", id: "log", class: 'btn btn-sm btn-success'
-		= yield
+    %head
+        %title= t('menu.title')
+        = stylesheet_link_tag 'application', media: 'all'
+        = javascript_include_tag 'application'
+        = csrf_meta_tags
+    %body
+        = render 'welcome/login_modal'
+        = render 'welcome/sign_up_modal'
+        %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+            .navbar-header
+                %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: ".navbar-collapse"}}
+                    %span.sr-only Toggle navigation
+                    %span.icon-bar
+                    %span.icon-bar
+                    %span.icon-bar
+                = link_to image_tag("logo.png", class: "img-responsive", alt: "Логотип RoR"), catalog_path, class: 'navbar-brand'
+            .navbar-collapse.collapse
+                %ul.nav.navbar-nav
+                    %li= link_to t('menu.catalog'), catalog_all_path
+                    %li= link_to t('menu.contacts'), contacts_path
+                .locale_box
+                    = link_to 'ENG', change_locale_path('en')
+                    = link_to 'РУС', change_locale_path('ru')
+            .auth_box
+                - if user_signed_in?
+                    - name = current_user.email[/[^@]+/]
+                    - name.split(".").map {|n| n.capitalize }.join(" ")
+                    %span.hidden-xs
+                        %span= t('menu.name') + " - #{name}"
+                    = link_to t('menu.exit'), destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-danger'
+                - else
+                    = link_to t('menu.registration'), "#sign_up", "data-toggle" => "modal", id: "up", class: 'btn btn-sm btn-success'
+                    = link_to t('menu.login'), "#login", "data-toggle" => "modal", id: "log", class: 'btn btn-sm btn-success'
+        = yield
