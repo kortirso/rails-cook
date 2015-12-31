@@ -13,9 +13,7 @@ class RecipesController < ApplicationController
 
     def new
         @recipe = Recipe.new
-        3.times do
-            @recipe.line_ingrids.build
-        end
+        3.times { @recipe.line_ingrids.build }
         @recipe.steps.build
     end
 
@@ -23,59 +21,42 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new(recipe_params)
-        @recipe.user_id = current_user.id
-        @recipe.visible = false
-        @recipe.stars = 0
-        @recipe.marks = 0
-        @recipe.average = 0.0
-        @recipe.views = 0
-        respond_to do |format|
-            if @recipe.save
-                @recipe.line_ingrids.each do |z|
-                    z.recipe_id = @recipe.id
-                    z.save
-                end
-                @recipe.steps.each do |x|
-                    x.recipe_id = @recipe.id
-                    x.save
-                end
-                Notifier.recipe_new(@recipe).deliver_now
-                format.html { redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.' }
-                format.json { render :show, status: :created, location: @recipe }
-            else
-                format.html { render :new }
-                format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        @recipe = Recipe.new(recipe_params.merge(user: current_user))
+        if @recipe.save
+            @recipe.line_ingrids.each do |z|
+                z.recipe_id = @recipe.id
+                z.save
             end
+            @recipe.steps.each do |x|
+                x.recipe_id = @recipe.id
+                x.save
+            end
+            Notifier.recipe_new(@recipe).deliver_now
+            redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.'
+        else
+            render :new
         end
     end
 
     def update
-        respond_to do |format|
-            if @recipe.update(recipe_params)
-                format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-                format.json { render :show, status: :ok, location: @recipe }
-            else
-                format.html { render :edit }
-                format.json { render json: @recipe.errors, status: :unprocessable_entity }
-            end
+        if @recipe.update(recipe_params)
+            redirect_to @recipe, notice: 'Recipe was successfully updated.'
+        else
+            render :edit
         end
     end
 
     def destroy
         @recipe.destroy
-        respond_to do |format|
-            format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-            format.json { head :no_content }
-        end
+        redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
     end
 
     private
-        def set_recipe
-            @recipe = Recipe.find(params[:id])
-        end
+    def set_recipe
+        @recipe = Recipe.find(params[:id])
+    end
 
-        def recipe_params
-            params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :user_id, :visible, :path_name, :image, :prepare, :portions, :stars, :marks, :average, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id], steps_attributes: [:text, :id])
-        end
+    def recipe_params
+        params.require(:recipe).permit(:name, :category_id, :country_id, :caption, :user_id, :visible, :path_name, :image, :prepare, :portions, :stars, :marks, :average, line_ingrids_attributes: [:ingridient_id, :measure_id, :quantity, :id], steps_attributes: [:text, :id])
+    end
 end

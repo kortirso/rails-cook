@@ -16,15 +16,8 @@ class CartsController < ApplicationController
     end
 
     def destroy
-        if @cart.id == session[:cart_id]
-            Position.where("cart_id = ?", @cart).each do |pos|
-                pos.destroy
-            end
-        end
-        respond_to do |format|
-            format.html { redirect_to @cart }
-            format.json { head :no_content }
-        end
+        Position.where("cart_id = ?", @cart).each { |pos| pos.destroy } if @cart.id == session[:cart_id]
+        redirect_to @cart
     end
 
     def recipe_plus
@@ -45,12 +38,12 @@ class CartsController < ApplicationController
 
 
     private
-        def set_carts
-            @cart = Cart.find(params[:id])
-        end
+    def set_carts
+        @cart = Cart.find(params[:id])
+    end
 
-        def invalid_cart
-            logger.error "Попытка доступа к несуществующей корзине #{params[:id]}"
-            redirect_to catalog_all_path, notice: "Несуществующая корзина"
-        end
+    def invalid_cart
+        logger.error "Попытка доступа к несуществующей корзине #{params[:id]}"
+        redirect_to catalog_all_path, notice: "Несуществующая корзина"
+    end
 end

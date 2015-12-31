@@ -19,44 +19,32 @@ class MeasuresController < ApplicationController
 
     def create
         @measure = Measure.new(measure_params)
-
-        respond_to do |format|
-            if @measure.save
-                format.html { redirect_to @measure, notice: 'Measure was successfully created.' }
-                format.json { render :show, status: :created, location: @measure }
-            else
-                format.html { render :new }
-                format.json { render json: @measure.errors, status: :unprocessable_entity }
-            end
+        if @measure.save
+            redirect_to @measure, notice: 'Measure was successfully created.'
+        else
+            render :new
         end
     end
 
     def update
-        respond_to do |format|
-            if @measure.update(measure_params)
-                format.html { redirect_to @measure, notice: 'Measure was successfully updated.' }
-                format.json { render :show, status: :ok, location: @measure }
-            else
-                format.html { render :edit }
-                format.json { render json: @measure.errors, status: :unprocessable_entity }
-            end
+        if @measure.update(measure_params)
+            redirect_to @measure, notice: 'Measure was successfully updated.'
+        else
+            render :edit
         end
     end
 
     def destroy
         @measure.destroy
-        respond_to do |format|
-            format.html { redirect_to measures_url, notice: 'Measure was successfully destroyed.' }
-            format.json { head :no_content }
-        end
+        redirect_to measures_url, notice: 'Measure was successfully destroyed.'
     end
 
     private
-        def set_measure
-            @measure = Measure.find(params[:id])
-        end
+    def set_measure
+        @measure = Measure.find(params[:id])
+    end
 
-        def measure_params
-            params.require(:measure).permit(:name)
-        end
+    def measure_params
+        params.require(:measure).permit(:name)
+    end
 end

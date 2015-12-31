@@ -11,15 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151220121715) do
+ActiveRecord::Schema.define(version: 20151231060603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -94,9 +100,9 @@ ActiveRecord::Schema.define(version: 20151220121715) do
   create_table "positions", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "recipe_id"
-    t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -115,17 +121,17 @@ ActiveRecord::Schema.define(version: 20151220121715) do
     t.integer  "country_id"
     t.text     "caption"
     t.integer  "user_id"
-    t.boolean  "visible"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "visible",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "path_name"
     t.string   "image"
     t.integer  "prepare"
     t.integer  "portions"
-    t.integer  "stars"
-    t.integer  "marks"
-    t.float    "average"
-    t.integer  "views"
+    t.integer  "stars",       default: 0
+    t.integer  "marks",       default: 0
+    t.float    "average",     default: 0.0
+    t.integer  "views",       default: 0
   end
 
   create_table "steps", force: :cascade do |t|
@@ -151,7 +157,6 @@ ActiveRecord::Schema.define(version: 20151220121715) do
     t.string   "username",               default: ""
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "identities", "users"
