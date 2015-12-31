@@ -43,6 +43,10 @@ group :development, :test do
     gem 'capybara-webkit'
 end
 
+group :development do
+    gem 'bullet'
+end
+
 group :test do
     gem 'shoulda-matchers'
 end
