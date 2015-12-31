@@ -33,4 +33,12 @@ class Recipe < ActiveRecord::Base
             return false
         end
     end
+
+    def refresh
+        self.stars += self.mark
+        self.marks += 1
+        count = self.stars.to_f / self.marks
+        self.average = count.round 2
+        self.save!
+    end
 end
