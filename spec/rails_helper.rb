@@ -1,7 +1,16 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require 'spec_helper'
 require 'rspec/rails'
+require 'cancan/matchers'
+require 'sidekiq/testing'
+
+Sidekiq::Testing.fake!
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/models/concerns/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -10,7 +19,14 @@ RSpec.configure do |config|
     config.use_transactional_fixtures = true
     config.include Devise::TestHelpers, type: :controller
     config.include FactoryGirl::Syntax::Methods
+    config.include Capybara::DSL
+    config.extend ControllerMacros, type: :controller
+    include Warden::Test::Helpers
+    Warden.test_mode!
     config.infer_spec_type_from_file_location!
+    config.after :each do
+        Warden.test_reset!
+    end
 end
 
 Shoulda::Matchers.configure do |config|

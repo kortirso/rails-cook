@@ -16,7 +16,7 @@ class Recipe < ActiveRecord::Base
     include PgSearch
     pg_search_scope :search_everywhere, against: [:name]
 
-    validates :name, :category_id, :user_id, :prepare, :portions, :image, presence: true
+    validates :name, :category_id, :user_id, :prepare, :portions, presence: true
     validates :prepare, :portions, numericality: { greater_than: 0 }
     validates :path_name, uniqueness: true
 

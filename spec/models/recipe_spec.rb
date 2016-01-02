@@ -8,6 +8,7 @@ RSpec.describe Recipe, type: :model do
     it { should validate_presence_of :image }
     it { should validate_presence_of :prepare }
     it { should validate_presence_of :portions }
+    #it { should validate_presence_of :image }
     it { should have_many :positions }
     it { should have_many(:carts).through(:positions) }
     it { should have_many :comments }
