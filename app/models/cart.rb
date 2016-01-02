@@ -5,13 +5,13 @@ class Cart < ActiveRecord::Base
 
     validates :user_id, presence: true
 
-    def add_recipe(recipe_id)
-        current_recipe = positions.find_by(recipe_id: recipe_id)
-        if current_recipe
-            current_recipe.quantity += 1
+    def add_recipe(recipe)
+        position = positions.find_by(recipe: recipe)
+        if position
+            position.update(quantity: position.quantity + 1)
         else
-            current_recipe = positions.build(recipe_id: recipe_id)
+            position = positions.create(recipe: recipe)
         end
-        current_recipe
+        position
     end
 end
