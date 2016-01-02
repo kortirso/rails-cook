@@ -9,7 +9,7 @@ class CatalogController < ApplicationController
     end
 
     def all # Отображение всех рецептов
-        @recipes = Recipe.where(visible: true).order(created_at: :desc).page(params[:page]).per(10)
+        @recipes = Recipe.where(visible: true).order(created_at: :desc).includes(:user, :category, :country).page(params[:page]).per(10)
         @h2 = t('controllers.all')
     end
 
