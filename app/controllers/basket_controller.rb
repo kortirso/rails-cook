@@ -15,7 +15,7 @@ class BasketController < ApplicationController
         basket = Basket.new(user_id: current_user.id)
         @cart.positions.each do |position|
             count = position.quantity
-            position.recipe.line_ingrids.each do |line|
+            position.recipe.line_ingrids.includes(:ingridient, :measure).each do |line|
                 current_ingridient = basket.products.find_by(ingridient_id: line.ingridient.id)
                 if line.measure.id == 2 or line.measure.id == 4 # перевод мер: кг => г и л => мл
                     line.quantity *= 1000
