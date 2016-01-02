@@ -47,9 +47,10 @@ class CatalogController < ApplicationController
         @recipe = Recipe.where('path_name = ?', params[:path_name]).first
         if @recipe
             @recipe.update_attribute('views', @recipe.views + 1)
-            @list = LineIngrid.where(recipe_id: @recipe.id)
+            @list = LineIngrid.where(recipe_id: @recipe.id).includes(:ingridient, :measure)
             @steps = Step.where(recipe_id: @recipe.id).order(id: :asc)
             @current_grade = Grade.where(recipe_id: @recipe.id, user_id: current_user.id).first if current_user
+            @comments = @recipe.comments.order('id').includes(:user)
             @comment = Comment.new
             render :show
         else

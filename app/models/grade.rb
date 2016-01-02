@@ -3,5 +3,4 @@ class Grade < ActiveRecord::Base
     belongs_to :user
 
     validates :recipe_id, :user_id, :mark, presence: true
-    validates :mark, numericality: true
 end

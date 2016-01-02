@@ -31,6 +31,10 @@
                             %p
                                 = image_tag "eye.png", id: "eye", alt: "views", title: t('recipes.counts')
                                 = @recipe.views
+                            - if @recipe.crockpot
+                                %p= "Рецепт для мультиварки"
+                            - if @recipe.healthfood
+                                %p= "Правильное питание"
                 - count += 1
                 - if count.even?
                     .clearfix

@@ -16,12 +16,20 @@ class Recipe < ActiveRecord::Base
     include PgSearch
     pg_search_scope :search_everywhere, against: [:name]
 
-    validates :name, :category_id, :user_id, :prepare, :portions, :image, :path_name, presence: true
+    validates :name, :category_id, :user_id, :prepare, :portions, presence: true
     validates :prepare, :portions, numericality: { greater_than: 0 }
     validates :path_name, uniqueness: true
 
     def short_name
         self.name.truncate(50)
+    end
+
+    def refresh(mark)
+        self.stars += mark
+        self.marks += 1
+        self.average = (self.stars.to_f / self.marks).round 2
+        self.save!
+        self
     end
 
     private
@@ -32,13 +40,5 @@ class Recipe < ActiveRecord::Base
             errors.add(:base, 'Существуют товарные позиции')
             return false
         end
-    end
-
-    def refresh
-        self.stars += self.mark
-        self.marks += 1
-        count = self.stars.to_f / self.marks
-        self.average = count.round 2
-        self.save!
     end
 end

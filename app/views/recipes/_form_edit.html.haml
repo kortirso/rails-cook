@@ -10,6 +10,8 @@
                 = f.input :caption, label: 'Подробное описание'
                 = f.input :prepare
                 = f.input :portions
+                = f.input :crockpot, label: 'Рецепт для мультиварки'
+                = f.input :healthfood, label: 'Правильное питание'
                 = image_tag @recipe.image
                 = f.file_field :image
                 = f.input :user_id

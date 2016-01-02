@@ -43,6 +43,7 @@ if Measure.count == 0
     Measure.create name: 'перо'
     Measure.create name: 'ветка'
     Measure.create name: 'черешок'
+    Measure.create name: 'щепотка'
 end
 
 Ingridient.all.destroy_all

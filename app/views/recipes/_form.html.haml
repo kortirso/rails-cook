@@ -15,6 +15,10 @@
                     = f.input :prepare, placeholder: 'Время приготовления в минутах', input_html: { min: 1 }
                 .col-xs-6.col-md-3
                     = f.input :portions, input_html: { min: 1 }
+                .col-xs-6.col-md-3
+                    = f.input :crockpot, label: 'Рецепт для мультиварки'
+                .col-xs-6.col-md-3
+                    = f.input :healthfood, label: 'Полезное питание'
                 .col-xs-12
                     %h4 Список ингредиентов
                     = f.simple_fields_for :line_ingrids do |y|

@@ -35,6 +35,10 @@
                         %p
                             = image_tag "eye.png", id: "eye", alt: "views", title: t('recipes.counts')
                             = @recipe.views
+                        - if @recipe.crockpot
+                            %p= "Рецепт для мультиварки"
+                        - if @recipe.healthfood
+                            %p= "Правильное питание"
                 .row
                     .col-sm-6.col-sm-push-6
                         %h4= t('recipes.ingredients') + " - #{@recipe.portions})"
