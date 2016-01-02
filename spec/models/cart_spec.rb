@@ -16,7 +16,7 @@ RSpec.describe Cart, type: :model do
             before { create :position, recipe: recipe, cart: cart }
 
             it 'doesnot create new position in the cart' do
-                expect { cart.add_recipe(recipe) }.to_not change(cart.positions, :count)
+                expect { cart.add_recipe(recipe) }.to_not change(Position, :count)
             end
 
             it 'and add +1 to quantity of exists position' do

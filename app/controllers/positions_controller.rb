@@ -4,7 +4,7 @@ class PositionsController < ApplicationController
 
     def create
         recipe = Recipe.find(params[:recipe_id])
-        @position = @cart.add_recipe(recipe.id)
+        @position = @cart.add_recipe(recipe)
         respond_to do |format|
             if @position.save
                 format.html { redirect_to @position.cart }

@@ -6,7 +6,7 @@
         .col-sm-10.col-md-6.col-sm-offset-1
             %h2= t('cart.h2')
             %table.table#basket
-                - @cart.positions.each do |position|
+                - @cart.positions.includes(:recipe).each do |position|
                     %tr
                         %td#name
                             %p= "#{position.recipe.name} (" + t('cart.portions') + " - #{position.recipe.portions})"

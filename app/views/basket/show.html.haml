@@ -7,7 +7,7 @@
             %h2= t('basket.h2')
             %p= t('basket.text')
             %table.table#basket
-                - @array.each do |product|
+                - @basket.each do |product|
                     %tr
                         - if product.quantity % 1 == 0
                             - quantity = product.quantity.to_i

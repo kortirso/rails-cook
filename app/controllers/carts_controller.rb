@@ -1,13 +1,13 @@
 class CartsController < ApplicationController
+    before_filter :authenticate_user!
     include CurrentCart
     before_action :set_cart
     before_action :set_carts, only: [:show]
     before_action :set_static
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-    before_filter :authenticate_user!
 
     def show
-        if @cart.id != session[:cart_id]
+        if @current_cart.id != session[:cart_id]
             logger.error "Попытка доступа к чужой корзине  #{params[:id]} от пользователя #{current_user.id}"
             redirect_to catalog_all_path, notice: "Плохо пытаться ломиться в чужую продуктовую корзину"
         else
@@ -39,7 +39,7 @@ class CartsController < ApplicationController
 
     private
     def set_carts
-        @cart = Cart.find(params[:id])
+        @current_cart = Cart.find(params[:id])
     end
 
     def invalid_cart
