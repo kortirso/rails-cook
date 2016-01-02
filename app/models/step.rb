@@ -1,4 +1,5 @@
 class Step < ActiveRecord::Base
-    validates :text, presence: true
     belongs_to :recipe
+
+    validates :text, :recipe_id, presence: true
 end

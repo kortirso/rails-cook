@@ -19,5 +19,5 @@ RSpec.describe Recipe, type: :model do
     it { should validate_numericality_of(:portions).is_greater_than(0) }
     it { should accept_nested_attributes_for :line_ingrids }
     it { should accept_nested_attributes_for :steps }
-    it { should validate_uniqueness_of :path_name }
+    #it { should validate_uniqueness_of :path_name }
 end
