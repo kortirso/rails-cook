@@ -165,4 +165,8 @@ $(function() {
             $('#star_5').attr("src", "/assets/star-empty.png");
         }
     );
+
+    if($('h2.head_h2').html() == 'Все рецепты' || $('h2.head_h2').html() == 'All recipes') {
+        $('#new_recipe').modal('show');
+    }
 });

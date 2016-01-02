@@ -16,9 +16,11 @@ class Recipe < ActiveRecord::Base
     include PgSearch
     pg_search_scope :search_everywhere, against: [:name]
 
-    validates :name, :category_id, :user_id, :prepare, :portions, presence: true
+    validates :name, :category_id, :user_id, :prepare, :portions, :image, presence: true
     validates :prepare, :portions, numericality: { greater_than: 0 }
     validates :path_name, uniqueness: true
+
+    after_create :set_path
 
     def short_name
         self.name.truncate(50)
@@ -40,5 +42,9 @@ class Recipe < ActiveRecord::Base
             errors.add(:base, 'Существуют товарные позиции')
             return false
         end
+    end
+
+    def set_path
+        self.update(path_name: "recipe_#{self.id}")
     end
 end

@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
                 x.save
             end
             Notifier.recipe_new(@recipe).deliver_now
-            redirect_to catalog_all_path, notice: 'Ваш рецепт появится в каталоге после модерации.'
+            redirect_to catalog_all_path, flash: { manifesto_modal: true }
         else
             render :new
         end

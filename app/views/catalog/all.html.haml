@@ -1,5 +1,7 @@
 = render 'welcome/search_modal'
-= render "navs"
+= render 'navs'
+- if flash[:manifesto_modal]
+    = render 'new_recipe'
 .container.catalog
     .row
         = render "add_recipe"
