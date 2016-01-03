@@ -39,13 +39,15 @@ $(function() {
     });
 
     var nestedStep;
-    nestedStep = $('.steps').last().clone();
+    nestedStep = $('.steps').last();
     $('.duplicate_step').click(function(e) {
         var formsOnPage, lastNestedForm, newNestedForm;
         e.preventDefault();
         lastNestedForm = $('.steps').last();
         newNestedForm = $(nestedStep).clone();
-        formsOnPage = $('.steps').length;
+        //formsOnPage = $('.steps').length;
+        formsOnPage = $(lastNestedForm).data("steps") + 1;
+        $(newNestedForm).attr("data-steps", formsOnPage);
         $(newNestedForm).find('label').each(function() {
             var newLabel, oldLabel;
             oldLabel = $(this).attr('for');
@@ -67,7 +69,16 @@ $(function() {
 
     $('#new_recipe_ingrids').on('click', '.remove_ing', function(e) {
         e.preventDefault();
-        $(this).parent('p').parent('.col-xs-1').parent('.ingrid').remove();
+        if($('.ingrid').length != 1) {
+            $(this).parent('p').parent('.col-xs-1').parent('.ingrid').remove();
+        }
+    });
+
+    $('#new_recipe_steps').on('click', '.remove_step', function(e) {
+        e.preventDefault();
+        if($('.steps').length != 1) {
+            $(this).parent('p').parent('.col-xs-1').parent('.steps').remove();
+        }
     });
 
     $('#comment_body').keyup(function() {

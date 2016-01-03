@@ -31,17 +31,22 @@
                             .col-xs-3.col-sm-3.col-md-2.col-lg-2
                                 = y.association :measure, label: 'Мера', label_method: :name, value_method: :id
                             .col-xs-1
-                                %p= link_to 'x', '#', class: 'remove_ing btn btn-warning'
+                                %p= link_to 'x', '#', class: 'remove_ing btn btn-sm btn-warning'
                             .clearfix
                             - index += 1
                 .col-xs-12
                     %p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
-                .col-xs-12
+                .col-xs-12#new_recipe_steps
                     %h4 Пошаговое руководство по приготовлению
+                    - index = 0
                     = f.simple_fields_for :steps do |x|
-                        .steps
-                            .col-xs-12
-                                = x.input :text, label: 'Шаг 1'
+                        .steps{data: {steps: "#{index}"} }
+                            .col-xs-11
+                                = x.input :text, label: false
+                            .col-xs-1
+                                %p= link_to 'x', '#', class: 'remove_step btn btn-sm btn-warning'
+                            .clearfix
+                            - index += 1
                 .col-xs-12
                     %p= link_to 'Добавить шаг', '', class: 'duplicate_step btn btn-success'
                 .col-xs-12
