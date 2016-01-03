@@ -22,6 +22,8 @@ class Recipe < ActiveRecord::Base
 
     after_create :set_path
 
+    scope :showed, -> { where visible: true }
+
     def short_name
         self.name.truncate(50)
     end
