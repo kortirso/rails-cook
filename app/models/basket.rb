@@ -24,7 +24,7 @@ class Basket < ActiveRecord::Base
             end
         end
         # Если г и мл больше 1000, то сокращать запись
-        #self.products.each { |x| x.reduce if (x.measure.name == 'гр' || x.measure.name == 'мл') && x.quantity >= 1000 }
+        self.products.each { |x| x.reduce if (x.measure.name == 'гр' || x.measure.name == 'мл') && x.quantity >= 1000 }
         array = []
         self.ingridients.order('name').each { |ingridient| array.push(self.products.where(ingridient: ingridient).take) }
         array

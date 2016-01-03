@@ -10,7 +10,6 @@ class Product < ActiveRecord::Base
             when 'гр' then m = Measure.find_by(name: 'кг')
             when 'мл' then m = Measure.find_by(name: 'л')
         end
-        q = self.quantity
-        self.update_attributes(quantity: q, measure: m)
+        self.update_attributes(quantity: self.quantity / 1000, measure: m)
     end
 end
