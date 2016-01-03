@@ -12,13 +12,14 @@ $(function() {
     });
 
     var nestedForm;
-    nestedForm = $('.ingrid').last().clone();
+    nestedForm = $('.ingrid').last();
     $('.duplicate').click(function(e) {
         var formsOnPage, lastNestedForm, newNestedForm;
         e.preventDefault();
         lastNestedForm = $('.ingrid').last();
         newNestedForm = $(nestedForm).clone();
-        formsOnPage = $('.ingrid').length;
+        formsOnPage = $(lastNestedForm).data("ingridient") + 1;
+        $(newNestedForm).attr("data-ingridient", formsOnPage);
         $(newNestedForm).find('label').each(function() {
             var newLabel, oldLabel;
             oldLabel = $(this).attr('for');
@@ -62,6 +63,11 @@ $(function() {
             $(this).attr('name', newName);
         });
         $(newNestedForm).insertAfter(lastNestedForm);
+    });
+
+    $('#new_recipe_ingrids').on('click', '.remove_ing', function(e) {
+        e.preventDefault();
+        $(this).parent('p').parent('.col-xs-1').parent('.ingrid').remove();
     });
 
     $('#comment_body').keyup(function() {

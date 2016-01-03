@@ -19,16 +19,21 @@
                     = f.input :crockpot, label: 'Рецепт для мультиварки'
                 .col-xs-6.col-md-3
                     = f.input :healthfood, label: 'Полезное питание'
-                .col-xs-12
+                .col-xs-12#new_recipe_ingrids
                     %h4 Список ингредиентов
+                    - index = 0
                     = f.simple_fields_for :line_ingrids do |y|
-                        .ingrid
-                            .col-xs-5.col-md-2.col-lg-3
+                        .ingrid{data: {ingridient: "#{index}"} }
+                            .col-xs-5.col-sm-4.col-md-3.col-lg-3
                                 = y.association :ingridient, collection: Ingridient.order('name').all, label: 'Ингредиент', label_method: :name, value_method: :id
-                            .col-xs-4.col-md-2.col-lg-2
+                            .col-xs-3.col-sm-3.col-md-2.col-lg-2
                                 = y.input :quantity, label: 'Кол-во', input_html: { min: 1 }
-                            .col-xs-3.col-md-2.col-lg-1
+                            .col-xs-3.col-sm-3.col-md-2.col-lg-2
                                 = y.association :measure, label: 'Мера', label_method: :name, value_method: :id
+                            .col-xs-1
+                                %p= link_to 'x', '#', class: 'remove_ing btn btn-warning'
+                            .clearfix
+                            - index += 1
                 .col-xs-12
                     %p= link_to 'Добавить ингредиент', '', class: 'duplicate btn btn-success'
                 .col-xs-12
