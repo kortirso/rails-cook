@@ -14,7 +14,7 @@ class CatalogController < ApplicationController
     end
 
     def search
-        @recipes = Recipe.where(visible: true).order(created_at: :desc)
+        @recipes = Recipe.where(visible: true).order(created_at: :desc).includes(:user, :category, :country)
         @recipes = @recipes.search_everywhere(params[:search][:query]) if params[:search][:query] != ""
         @recipes = @recipes.page(params[:page]).per(10)
         @h2 = t('controllers.search')
