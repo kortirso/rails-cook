@@ -1,5 +1,5 @@
 FactoryGirl.define do
     factory :ingridient do
-        name 'simple ingredient'
+        sequence(:name) { |i| "simple ingredient #{i}" }
     end
 end
