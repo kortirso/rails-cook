@@ -52,6 +52,9 @@ ru:
     text: 'Для приготовления выбранных Вами блюд необходимы следующие ингредиенты:'
 
   activerecord:
+    errors:
+      messages:
+        record_invalid: 'Ошибка валидации'
     models:
       recipe: 'Рецепт'
       comment: 'Комментарий'

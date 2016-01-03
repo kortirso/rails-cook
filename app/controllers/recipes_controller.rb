@@ -23,15 +23,6 @@ class RecipesController < ApplicationController
     def create
         @recipe = Recipe.new(recipe_params.merge(user: current_user))
         if @recipe.save
-            @recipe.line_ingrids.each do |z|
-                z.recipe_id = @recipe.id
-                z.save
-            end
-            @recipe.steps.each do |x|
-                x.recipe_id = @recipe.id
-                x.save
-            end
-            Notifier.recipe_new(@recipe).deliver_now
             redirect_to catalog_all_path, flash: { manifesto_modal: true }
         else
             render :new
@@ -39,16 +30,12 @@ class RecipesController < ApplicationController
     end
 
     def update
-        if @recipe.update(recipe_params)
-            redirect_to @recipe, notice: 'Recipe was successfully updated.'
-        else
-            render :edit
-        end
+        @recipe.update(recipe_params) ? redirect_to(@recipe) : render(:edit)
     end
 
     def destroy
         @recipe.destroy
-        redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
+        redirect_to recipes_url
     end
 
     private

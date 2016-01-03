@@ -4,15 +4,7 @@ class PositionsController < ApplicationController
 
     def create
         recipe = Recipe.find(params[:recipe_id])
-        @position = @cart.add_recipe(recipe)
-        respond_to do |format|
-            if @position.save
-                format.html { redirect_to @position.cart }
-                format.js
-            else
-                format.html { render action: 'new'}
-            end
-        end
+        @cart.add_recipe(recipe) if recipe
     end
 
     private

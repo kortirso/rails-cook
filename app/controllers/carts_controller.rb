@@ -9,7 +9,7 @@ class CartsController < ApplicationController
 
     def show
         if @current_cart.id == session[:cart_id]
-            @positions = @cart.positions.includes(:recipe)
+            @positions = @current_cart.positions.includes(:recipe)
             render :show
         else
             redirect_to catalog_all_path
@@ -18,8 +18,8 @@ class CartsController < ApplicationController
 
     def destroy
         if @current_cart.id == session[:cart_id]
-            Position.where("cart_id = ?", @cart).destroy_all
-            redirect_to @cart
+            @current_cart.positions.destroy_all
+            redirect_to @current_cart
         else
             redirect_to(catalog_all_path)
         end

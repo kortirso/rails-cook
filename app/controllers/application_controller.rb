@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     end
 
     def set_static
-        @categories = Category.order('id').all
-        @countries = Country.order('caption').all
+        @categories = Category.order('id')
+        @countries = Country.order('caption')
     end
 
     def render_not_found

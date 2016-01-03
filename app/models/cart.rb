@@ -7,11 +7,6 @@ class Cart < ActiveRecord::Base
 
     def add_recipe(recipe)
         position = positions.find_by(recipe: recipe)
-        if position
-            position.update(quantity: position.quantity + 1)
-        else
-            position = positions.create(recipe: recipe)
-        end
-        position
+        position ? position.update(quantity: position.quantity + 1) : positions.create(recipe: recipe)
     end
 end

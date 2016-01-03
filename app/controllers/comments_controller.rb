@@ -2,16 +2,8 @@ class CommentsController < ApplicationController
     before_filter :authenticate_user!
 
     def create
-        @comment = Comment.new(comment_params.merge(user_id: current_user.id))
-        respond_to do |format|
-            if @comment.save
-                @recipe = @comment.recipe
-                format.html { render :comments }
-                format.js
-            else
-                format.html { render :new }
-            end
-        end
+        @comment = Comment.create(comment_params.merge(user: current_user))
+        @recipe = @comment.recipe
     end
 
     private

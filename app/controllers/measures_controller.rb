@@ -20,7 +20,7 @@ class MeasuresController < ApplicationController
     def create
         @measure = Measure.new(measure_params)
         if @measure.save
-            redirect_to @measure, notice: 'Measure was successfully created.'
+            redirect_to @measure
         else
             render :new
         end
@@ -28,7 +28,7 @@ class MeasuresController < ApplicationController
 
     def update
         if @measure.update(measure_params)
-            redirect_to @measure, notice: 'Measure was successfully updated.'
+            redirect_to @measure
         else
             render :edit
         end
@@ -36,7 +36,7 @@ class MeasuresController < ApplicationController
 
     def destroy
         @measure.destroy
-        redirect_to measures_url, notice: 'Measure was successfully destroyed.'
+        redirect_to measures_url
     end
 
     private

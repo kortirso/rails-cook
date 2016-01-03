@@ -20,7 +20,7 @@ class IngridientsController < ApplicationController
     def create
         @ingridient = Ingridient.new(ingridient_params)
         if @ingridient.save
-            redirect_to @ingridient, notice: 'Ingridient was successfully created.'
+            redirect_to @ingridient
         else
             render :new
         end
@@ -28,7 +28,7 @@ class IngridientsController < ApplicationController
 
     def update
         if @ingridient.update(ingridient_params)
-            redirect_to @ingridient, notice: 'Ingridient was successfully updated.'
+            redirect_to @ingridient
         else
             render :edit
         end
@@ -36,7 +36,7 @@ class IngridientsController < ApplicationController
 
     def destroy
         @ingridient.destroy
-        redirect_to ingridients_url, notice: 'Ingridient was successfully destroyed.'
+        redirect_to ingridients_url
     end
 
     private
