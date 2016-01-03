@@ -22,7 +22,7 @@ class CatalogController < ApplicationController
     end
 
     def category # Выборка рецептов по категориям
-        category = Category.where('name = ?', params[:name]).first
+        category = Category.find_by('name = ?', params[:name])
         if category
             @recipes = Recipe.where(category_id: category.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
             @h2 = t('controllers.recipes') + ": " + category.caption
@@ -33,7 +33,7 @@ class CatalogController < ApplicationController
     end
 
     def kitchen # Выборка рецептов по национальным кухням
-        country = Country.where('name = ?', params[:name]).first
+        country = Country.find_by('name = ?', params[:name])
         if country
             @recipes = Recipe.where(country_id: country.id, visible: true).order(created_at: :desc).page(params[:page]).per(10)
             @h2 = t('controllers.recipes') + ": " + country.caption + " кухня"
@@ -44,12 +44,12 @@ class CatalogController < ApplicationController
     end
 
     def show # Отображение определенного рецепта
-        @recipe = Recipe.where('path_name = ?', params[:path_name]).first
+        @recipe = Recipe.find_by('path_name = ?', params[:path_name])
         if @recipe
-            @recipe.update_attribute('views', @recipe.views + 1)
-            @list = LineIngrid.where(recipe_id: @recipe.id).includes(:ingridient, :measure)
-            @steps = Step.where(recipe_id: @recipe.id).order(id: :asc)
-            @current_grade = Grade.where(recipe_id: @recipe.id, user_id: current_user.id).first if current_user
+            @recipe.update(views: @recipe.views + 1)
+            @list = @recipe.line_ingrids.includes(:ingridient, :measure)
+            @steps = @recipe.steps.order(id: :asc)
+            @current_grade = @recipe.grades.find_by(user: current_user) if current_user
             @comments = @recipe.comments.order('id').includes(:user)
             @comment = Comment.new
             render :show
