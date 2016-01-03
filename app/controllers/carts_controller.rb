@@ -8,7 +8,12 @@ class CartsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
     def show
-        @current_cart.id != session[:cart_id] ? redirect_to(catalog_all_path) : render(:show)
+        if @current_cart.id == session[:cart_id]
+            @positions = @cart.positions.includes(:recipe)
+            render :show
+        else
+            redirect_to catalog_all_path
+        end
     end
 
     def destroy

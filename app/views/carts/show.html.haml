@@ -6,7 +6,7 @@
         .col-sm-10.col-md-6.col-sm-offset-1
             %h2= t('cart.h2')
             %table.table#basket
-                - @cart.positions.includes(:recipe).each do |position|
+                - @positions.each do |position|
                     %tr{id: "position_#{position.id}"}
                         %td#name
                             %p= "#{position.recipe.name} (" + t('cart.portions') + " - #{position.recipe.portions})"
@@ -16,7 +16,7 @@
                             #minus= button_to "-", minus_path(position.id), class: "btn", remote: true
                             #plus= button_to "+", plus_path(position.id), class: "btn", remote: true
                             #destroy= button_to "x", destroy_path(position.id), class: "btn", remote: true
-            - if @cart.positions.size == 0
+            - if @positions.size == 0
                 %p= t('cart.empty')
             - else
                 #empty_cart

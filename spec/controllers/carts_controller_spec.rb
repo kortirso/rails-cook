@@ -13,6 +13,7 @@ RSpec.describe CartsController, type: :controller do
         context 'when user is login' do
             sign_in_user
             let(:cart) { create :cart, user: @current_user }
+            let(:positions) { create_list(:position, 2, cart: cart) }
             before { session[:cart_id] = cart.id }
 
             it 'redirect to catalog/all if its not his cart' do
@@ -27,6 +28,12 @@ RSpec.describe CartsController, type: :controller do
                 get :show, id: cart.id
 
                 expect(response).to render_template :show
+            end
+
+            it 'and collect an array of all positions' do
+                get :show, id: cart.id
+
+                expect(assigns(:positions)).to match_array(positions)
             end
         end
     end
@@ -103,16 +110,16 @@ RSpec.describe CartsController, type: :controller do
             sign_in_user
             let!(:cart) { create :cart, user: @current_user }
             let!(:position) { create :position, cart: cart, quantity: 2 }
-            before { session[:cart_id] = cart.id }
+            before do
+                session[:cart_id] = cart.id
+                post :recipe_minus, id: position.id, format: :js
+            end
 
             it 'should -1 to quantity in position' do
-                post :recipe_minus, id: position.id, format: :js
-
                 expect(cart.positions.first.quantity).to eq 1
             end
 
             it 'should be equal minimum 1 forever' do
-                post :recipe_minus, id: position.id, format: :js
                 post :recipe_minus, id: position.id, format: :js
 
                 expect(cart.positions.first.quantity).to eq 1
