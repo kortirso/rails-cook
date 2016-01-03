@@ -491,15 +491,21 @@ body {
         }
     }
 
-    #plus, #minus {
+    #plus, #minus, #destroy {
         float: left;
     }
 
-    #minus input, #plus input {
+    #minus input, #plus input, #destroy input {
         width: 28px;
         height: 28px;
         padding: 0;
         color: #000;
+    }
+
+    #destroy input {
+        background: #BD2C2C;
+        color: #FFF;
+        padding: 0 0 3px 3px;
     }
 
     tbody tr:nth-child(even) {
@@ -507,7 +513,7 @@ body {
     }
 
     tbody tr td:nth-last-child(1) {
-        width: 110px;
+        width: 135px;
     }
 
     #count, #measure_name {

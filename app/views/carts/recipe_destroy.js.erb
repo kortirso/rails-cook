@@ -1,0 +1,10 @@
+$("#position_<%= @position.id %>").remove();
+$("#basket tbody tr").css("background", "none");
+$("#basket tbody tr:nth-child(even)").css("background", "#EEE");
+<% if @cart.positions.size == 0 %>
+    $('#cart').text("Корзина");
+    $("#empty_cart").remove();
+    $("#basket").parent().append("<p>На данный момент в рецептурной корзине нет рецептов</p>");
+<% else %>
+    $('#cart').text("Корзина (<%= @cart.positions.size %>)");
+<% end %>

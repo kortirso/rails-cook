@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     scope controller: :carts do
         get 'carts/:id' => :show, as: 'cart'
         delete 'carts/:id' => :destroy
-        post 'plus/:position' => :recipe_plus, as: 'plus'
-        post 'minus/:position' => :recipe_minus, as: 'minus'
+        post 'plus/:id' => :recipe_plus, as: 'plus'
+        post 'minus/:id' => :recipe_minus, as: 'minus'
+        post 'destroy/:id' => :recipe_destroy, as: 'destroy'
     end
 
     scope path: '/catalog', controller: :catalog do

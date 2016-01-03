@@ -13,6 +13,8 @@ module CurrentCart
             end
             @cart = Cart.create(user: current_user)
             session[:cart_id] = @cart.id
+        else
+            session[:cart_id] = nil
         end
     end
 end

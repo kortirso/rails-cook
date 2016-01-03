@@ -2,48 +2,46 @@ class CartsController < ApplicationController
     before_filter :authenticate_user!
     include CurrentCart
     before_action :set_cart
-    before_action :set_carts, only: [:show]
+    before_action :set_carts, only: [:show, :destroy]
+    before_action :find_position, only: [:recipe_plus, :recipe_minus, :recipe_destroy]
     before_action :set_static
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
     def show
-        if @current_cart.id != session[:cart_id]
-            logger.error "Попытка доступа к чужой корзине  #{params[:id]} от пользователя #{current_user.id}"
-            redirect_to catalog_all_path, notice: "Плохо пытаться ломиться в чужую продуктовую корзину"
-        else
-            render :show
-        end
+        @current_cart.id != session[:cart_id] ? redirect_to(catalog_all_path) : render(:show)
     end
 
     def destroy
-        Position.where("cart_id = ?", @cart).each { |pos| pos.destroy } if @cart.id == session[:cart_id]
-        redirect_to @cart
+        if @current_cart.id == session[:cart_id]
+            Position.where("cart_id = ?", @cart).destroy_all
+            redirect_to @cart
+        else
+            redirect_to(catalog_all_path)
+        end
     end
 
     def recipe_plus
-        @position = Position.where("id = ?", params[:position]).first
-        @position.update_attribute('quantity', @position.quantity + 1)
-        respond_to do |format|
-            format.js
-        end
+        @position.update(quantity: @position.quantity + 1)
     end
 
     def recipe_minus
-        @position = Position.where("id = ?", params[:position]).first
-        @position.update_attribute('quantity', @position.quantity - 1) if @position.quantity > 1
-        respond_to do |format|
-            format.js
-        end
+        @position.update(quantity: @position.quantity - 1) if @position.quantity > 1
     end
 
+    def recipe_destroy
+        @position.destroy
+    end
 
     private
+    def find_position
+        @position = Position.find(params[:id])
+    end
+
     def set_carts
         @current_cart = Cart.find(params[:id])
     end
 
     def invalid_cart
-        logger.error "Попытка доступа к несуществующей корзине #{params[:id]}"
-        redirect_to catalog_all_path, notice: "Несуществующая корзина"
+        redirect_to catalog_all_path
     end
 end
