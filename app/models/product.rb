@@ -6,6 +6,11 @@ class Product < ActiveRecord::Base
     validates :basket_id, :ingridient_id, :quantity, :measure_id, presence: true
 
     def reduce
-        self.update(quantity: self.quantity / 1000.0, measure_id: self.measure_id + 1)
+        case self.measure.name
+            when 'гр' then m = Measure.find_by(name: 'кг')
+            when 'мл' then m = Measure.find_by(name: 'л')
+        end
+        q = self.quantity
+        self.update_attributes(quantity: q, measure: m)
     end
 end
