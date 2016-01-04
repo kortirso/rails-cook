@@ -28,7 +28,7 @@ class CountriesController < ApplicationController
 
     def update
         if @country.update(country_params)
-            fredirect_to @country
+            redirect_to @country
         else
             render :edit
         end
