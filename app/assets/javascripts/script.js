@@ -45,7 +45,6 @@ $(function() {
         e.preventDefault();
         lastNestedForm = $('.steps').last();
         newNestedForm = $(nestedStep).clone();
-        //formsOnPage = $('.steps').length;
         formsOnPage = $(lastNestedForm).data("steps") + 1;
         $(newNestedForm).attr("data-steps", formsOnPage);
         $(newNestedForm).find('label').each(function() {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102120736) do
+ActiveRecord::Schema.define(version: 20160104042429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,15 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "baskets", ["user_id"], name: "index_baskets_on_user_id", using: :btree
+
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +47,9 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "countries", force: :cascade do |t|
     t.string   "name"
     t.string   "caption"
@@ -57,6 +64,9 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "grades", ["recipe_id"], name: "index_grades_on_recipe_id", using: :btree
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -85,6 +95,10 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.integer  "quantity"
   end
 
+  add_index "line_ingrids", ["ingridient_id"], name: "index_line_ingrids_on_ingridient_id", using: :btree
+  add_index "line_ingrids", ["measure_id"], name: "index_line_ingrids_on_measure_id", using: :btree
+  add_index "line_ingrids", ["recipe_id"], name: "index_line_ingrids_on_recipe_id", using: :btree
+
   create_table "measures", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -99,6 +113,9 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "positions", ["cart_id"], name: "index_positions_on_cart_id", using: :btree
+  add_index "positions", ["recipe_id"], name: "index_positions_on_recipe_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.integer  "ingridient_id"
     t.integer  "basket_id"
@@ -107,6 +124,10 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "products", ["basket_id"], name: "index_products_on_basket_id", using: :btree
+  add_index "products", ["ingridient_id"], name: "index_products_on_ingridient_id", using: :btree
+  add_index "products", ["measure_id"], name: "index_products_on_measure_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
@@ -130,12 +151,18 @@ ActiveRecord::Schema.define(version: 20160102120736) do
     t.boolean  "healthfood",  default: false
   end
 
+  add_index "recipes", ["category_id"], name: "index_recipes_on_category_id", using: :btree
+  add_index "recipes", ["country_id"], name: "index_recipes_on_country_id", using: :btree
+  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
+
   create_table "steps", force: :cascade do |t|
     t.text     "text"
     t.integer  "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "steps", ["recipe_id"], name: "index_steps_on_recipe_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
