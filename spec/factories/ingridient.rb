@@ -1,8 +1,9 @@
 FactoryGirl.define do
     factory :ingridient do
         sequence(:name) { |i| "simple ingredient #{i}" }
-    end
-    factory :invalid_ingridient, class: Ingridient do
-        name nil
+
+        trait :invalid do
+            name nil
+        end
     end
 end

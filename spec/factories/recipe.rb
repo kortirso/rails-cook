@@ -11,12 +11,17 @@ FactoryGirl.define do
         marks 0
         average 0
         views 0
+        crockpot false
+        healthfood false
         association :category
-        association :country
         association :user
 
         trait :visible do
             visible true
+        end
+
+        trait :invalid do
+            name nil
         end
     end
 end

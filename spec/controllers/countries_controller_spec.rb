@@ -109,11 +109,11 @@ RSpec.describe CountriesController, type: :controller do
 
             context 'with invalid attributes' do
                 it 'does not save the new question in the DB' do
-                    expect { post :create, country: attributes_for(:invalid_country) }.to_not change(Country, :count)
+                    expect { post :create, country: attributes_for(:country, :invalid) }.to_not change(Country, :count)
                 end
 
                 it 're-render new view' do
-                    post :create, country: attributes_for(:invalid_country)
+                    post :create, country: attributes_for(:country, :invalid)
 
                     expect(response).to render_template :new
                 end
@@ -198,7 +198,7 @@ RSpec.describe CountriesController, type: :controller do
                 end
 
                 it 'and re-render edit view' do
-                    patch :update, id: country, country: attributes_for(:invalid_country)
+                    patch :update, id: country, country: attributes_for(:country, :invalid)
 
                     expect(response).to render_template :edit
                 end

@@ -109,11 +109,11 @@ RSpec.describe CategoriesController, type: :controller do
 
             context 'with invalid attributes' do
                 it 'does not save the new question in the DB' do
-                    expect { post :create, category: attributes_for(:invalid_category) }.to_not change(Category, :count)
+                    expect { post :create, category: attributes_for(:category, :invalid) }.to_not change(Category, :count)
                 end
 
                 it 're-render new view' do
-                    post :create, category: attributes_for(:invalid_category)
+                    post :create, category: attributes_for(:category, :invalid)
 
                     expect(response).to render_template :new
                 end
@@ -198,7 +198,7 @@ RSpec.describe CategoriesController, type: :controller do
                 end
 
                 it 'and re-render edit view' do
-                    patch :update, id: category, category: attributes_for(:invalid_category)
+                    patch :update, id: category, category: attributes_for(:category, :invalid)
 
                     expect(response).to render_template :edit
                 end

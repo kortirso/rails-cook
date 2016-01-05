@@ -109,11 +109,11 @@ RSpec.describe IngridientsController, type: :controller do
 
             context 'with invalid attributes' do
                 it 'does not save the new question in the DB' do
-                    expect { post :create, ingridient: attributes_for(:invalid_ingridient) }.to_not change(Ingridient, :count)
+                    expect { post :create, ingridient: attributes_for(:ingridient, :invalid) }.to_not change(Ingridient, :count)
                 end
 
                 it 're-render new view' do
-                    post :create, ingridient: attributes_for(:invalid_ingridient)
+                    post :create, ingridient: attributes_for(:ingridient, :invalid)
 
                     expect(response).to render_template :new
                 end
@@ -192,11 +192,11 @@ RSpec.describe IngridientsController, type: :controller do
 
             context 'with invalid data' do
                 it 'doesnt change ingridient' do
-                    expect { patch :update, id: ingridient, ingridient: attributes_for(:invalid_ingridient) }.to_not change(ingridient, :name)
+                    expect { patch :update, id: ingridient, ingridient: attributes_for(:ingridient, :invalid) }.to_not change(ingridient, :name)
                 end
 
                 it 'and re-render edit view' do
-                    patch :update, id: ingridient, ingridient: attributes_for(:invalid_ingridient)
+                    patch :update, id: ingridient, ingridient: attributes_for(:ingridient, :invalid)
 
                     expect(response).to render_template :edit
                 end

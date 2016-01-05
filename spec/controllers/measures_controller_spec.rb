@@ -109,11 +109,11 @@ RSpec.describe MeasuresController, type: :controller do
 
             context 'with invalid attributes' do
                 it 'does not save the new question in the DB' do
-                    expect { post :create, measure: attributes_for(:invalid_measure) }.to_not change(Measure, :count)
+                    expect { post :create, measure: attributes_for(:measure, :invalid) }.to_not change(Measure, :count)
                 end
 
                 it 're-render new view' do
-                    post :create, measure: attributes_for(:invalid_measure)
+                    post :create, measure: attributes_for(:measure, :invalid)
 
                     expect(response).to render_template :new
                 end
@@ -192,11 +192,11 @@ RSpec.describe MeasuresController, type: :controller do
 
             context 'with invalid data' do
                 it 'doesnt change measure' do
-                    expect { patch :update, id: measure, measure: attributes_for(:invalid_measure) }.to_not change(measure, :name)
+                    expect { patch :update, id: measure, measure: attributes_for(:measure, :invalid) }.to_not change(measure, :name)
                 end
 
                 it 'and re-render edit view' do
-                    patch :update, id: measure, measure: attributes_for(:invalid_measure)
+                    patch :update, id: measure, measure: attributes_for(:measure, :invalid)
 
                     expect(response).to render_template :edit
                 end
