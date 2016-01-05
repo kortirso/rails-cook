@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_accessible
-        render template: "layouts/403", status: 403 unless User.admin?(current_user.id)
+        render template: 'shared/403', status: 403 unless User.admin?(current_user.id)
     end
 
     def set_static
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     end
 
     def render_not_found
-        render template: "layouts/403", status: 404
+        render template: 'shared/403', status: 404
     end
 
     def set_locale

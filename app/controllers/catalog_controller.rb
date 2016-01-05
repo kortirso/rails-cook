@@ -28,7 +28,7 @@ class CatalogController < ApplicationController
             @h2 = "#{t('controllers.recipes')}: #{category.caption}"
             render :all
         else
-            render template: "layouts/403", status: 404
+            render template: 'shared/403', status: 404
         end
     end
 
@@ -39,7 +39,7 @@ class CatalogController < ApplicationController
             @h2 = "#{t('controllers.recipes')}: #{country.caption} кухня"
             render :all
         else
-            render template: "layouts/403", status: 404
+            render template: 'shared/403', status: 404
         end
     end
 
@@ -54,7 +54,7 @@ class CatalogController < ApplicationController
             @comment = Comment.new
             render :show
         else
-            render template: "layouts/403", status: 404
+            render template: 'shared/403', status: 404
         end
     end
 end
