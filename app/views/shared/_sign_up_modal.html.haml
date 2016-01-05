@@ -2,7 +2,7 @@
     .modal-dialog
         .modal-content
             .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
                 %h2.modal-title= t('auth.signup')
             = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 .modal-body
@@ -21,4 +21,4 @@
                 .modal-footer
                     %p
                         = t('auth.reg_socials')
-                        = #render partial: 'welcome/social'
+                        = #render partial: 'shared/social'

@@ -1,5 +1,5 @@
 .banner
-    = image_tag("banner.jpg", class: "img-responsive", alt: "Баннер")
+    = image_tag('banner.jpg', class: 'img-responsive', alt: 'Баннер')
     .intro-text
         %h1 Кулинарный сайт "Петрушка"
         %p Добро пожаловать на кулинарный сайт "Петрушка", основное назначение которого - хранение кулинарных рецептов и доступ к ним с любого устройства. Сайт имеет адаптивный дизайн, поэтому Вы сможете просматривать рецепты даже со смартфона. С реализованным функционалом можно будет ознакомиться чуть ниже, а перейдя в "Каталог рецептов", можно будет увидеть все добавленные блюда и подробно ознакомиться с каждым.
@@ -9,21 +9,21 @@
             %h2.center= t('index.new_recipes')
             #myCarousel.carousel.slide
                 %ol.carousel-indicators
-                    %li.active{"data-target" => "#myCarousel", "data-slide-to" => "0"}
-                    %li{"data-target" => "#myCarousel", "data-slide-to" => "1"}
-                    %li{"data-target" => "#myCarousel", "data-slide-to" => "2"}
-                    %li{"data-target" => "#myCarousel", "data-slide-to" => "3"}
-                    %li{"data-target" => "#myCarousel", "data-slide-to" => "4"}
+                    %li.active{'data-target' => '#myCarousel', 'data-slide-to' => '0'}
+                    %li{'data-target' => '#myCarousel', 'data-slide-to' => '1'}
+                    %li{'data-target' => '#myCarousel', 'data-slide-to' => '2'}
+                    %li{'data-target' => '#myCarousel', 'data-slide-to' => '3'}
+                    %li{'data-target' => '#myCarousel', 'data-slide-to' => '4'}
                 .carousel-inner
                     - @recipes.each do |recipe|
                         .item
-                            = image_tag recipe.image, class: "img-responsive", alt: recipe.name
+                            = image_tag recipe.image, class: 'img-responsive', alt: recipe.name
                             .container.active
                                 .carousel-caption
                                     %p= link_to recipe.name, show_path(recipe.path_name)
-                %a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"}
+                %a.left.carousel-control{'data-slide' => 'prev', href: '#myCarousel'}
                     %span.glyphicon.glyphicon-chevron-left
-                %a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"}
+                %a.right.carousel-control{'data-slide' => 'next', href: '#myCarousel'}
                     %span.glyphicon.glyphicon-chevron-right
     .row
         .col-xs-12.col-sm-6.col-md-4

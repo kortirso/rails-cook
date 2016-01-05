@@ -1,0 +1,16 @@
+.col-md-2
+    .row
+        .add_recipe
+            - if current_user
+                .col-xs-6.col-sm-4.col-md-12
+                    - str = @cart.positions.size == 0 ? '' : " (#{@cart.positions.size.to_s})"
+                    %p= link_to "#{t('static.cart') + str}", cart_path(session[:cart_id]), id: 'cart', class: 'btn btn-success'
+                .col-xs-6.col-sm-4.col-md-12
+                    %p= link_to t('static.add'), new_recipe_path, id: 'add_recipe', class: 'btn btn-warning'
+            - else
+                .col-xs-6.col-sm-4.col-md-12
+                    %p= link_to t('static.cart'), '#warning_modal', 'data-toggle' => 'modal', id: 'cart', class: 'btn btn-default'
+                .col-xs-6.col-sm-4.col-md-12
+                    %p= link_to t('static.add'), '#warning_modal', 'data-toggle' => 'modal', id: 'add_recipe', class: 'btn btn-default'
+            .col-xs-6.col-sm-4.col-md-12
+                %p= link_to t('static.look'), '#search', 'data-toggle' => 'modal', id: 'search-btn', class: 'btn btn-success'

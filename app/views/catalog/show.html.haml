@@ -1,19 +1,20 @@
-= render 'welcome/search_modal'
-= render "navs"
+= render 'shared/search_modal'
+= render 'shared/warning_modal'
+= render 'shared/navs'
 .container.catalog
     .row
-        = render "add_recipe"
+        = render 'shared/add_recipe'
         .col-md-10
             %h2= @recipe.name
             .recipe_block
                 .row
                     .col-sm-6.col-lg-5
-                        = image_tag @recipe.image, class: "img-responsive recipe_img", alt: @recipe.name
+                        = image_tag @recipe.image, class: 'img-responsive recipe_img', alt: @recipe.name
                     .col-sm-6
                         %p= @recipe.caption
-                        %p= t('recipes.author') + " - #{@recipe.user.username}"
+                        %p= "#{t('recipes.author')} - #{@recipe.user.username}"
                         %p= link_to @recipe.category.caption, type_path(@recipe.category.name)
-                        %p= link_to @recipe.country.caption + " кухня", kitchen_path(@recipe.country.name) if @recipe.country
+                        %p= link_to "#{@recipe.country.caption} кухня", kitchen_path(@recipe.country.name) if @recipe.country
                         - if current_user
                             .stars_block
                                 .row
@@ -23,42 +24,37 @@
                                         - else
                                             %span#Rate
                                                 %span= t('recipes.estimated')
-                                                %p= link_to image_tag("star-empty.png", id: "star_1", alt: "1"), grading_path(1,@recipe.id), remote: true
-                                                %p= link_to image_tag("star-empty.png", id: "star_2", alt: "2"), grading_path(2,@recipe.id), remote: true
-                                                %p= link_to image_tag("star-empty.png", id: "star_3", alt: "3"), grading_path(3,@recipe.id), remote: true
-                                                %p= link_to image_tag("star-empty.png", id: "star_4", alt: "4"), grading_path(4,@recipe.id), remote: true
-                                                %p= link_to image_tag("star-empty.png", id: "star_5", alt: "5"), grading_path(5,@recipe.id), remote: true
-                        %p#mark= render "grades/average"
+                                                - (1..5).each do |x|
+                                                    %p= link_to image_tag('star-empty.png', id: "star_#{x}", alt: "#{x} star"), grading_path(x,@recipe.id), remote: true
+                        %p#mark= render 'shared/average'
                         %p
-                            = image_tag "clock.png", id: "clock", alt: "clock", title: t('recipes.time')
-                            = render "time"
+                            = image_tag 'clock.png', id: 'clock', alt: 'clock', title: t('recipes.time')
+                            = render 'shared/time'
                         %p
-                            = image_tag "eye.png", id: "eye", alt: "views", title: t('recipes.counts')
+                            = image_tag 'eye.png', id: 'eye', alt: 'views', title: t('recipes.counts')
                             = @recipe.views
                         - if @recipe.crockpot
-                            %p= "Рецепт для мультиварки"
+                            %p= t('recipes.crockpot')
                         - if @recipe.healthfood
-                            %p= "Правильное питание"
+                            %p= t('recipes.healthfood')
                 .row
                     .col-sm-6.col-sm-push-6
-                        %h4= t('recipes.ingredients') + " - #{@recipe.portions})"
+                        %h4= "#{t('recipes.ingredients')} - #{@recipe.portions})"
                         %ul
                             - @list.each do |x|
                                 %li= "#{x.ingridient.name} - #{x.quantity} #{x.measure.name}"
                     .col-sm-6.col-sm-pull-6
                         %h4= t('recipes.method')
-                        - count = 1
-                        - @steps.each do |x|
+                        - @steps.each_with_index do |val, index|
                             .step
                                 %p
-                                    %strong= t('recipes.step') + " #{count}"
+                                    %strong= "#{t('recipes.step')} #{index + 1}"
                                 .col-xs-12
-                                    = x.text
-                            - count += 1
+                                    = val.text
                 - if current_user
                     .row
                         .col-sm-10.col-md-12.col-sm-offset-1.col-md-offset-0
-                            %p= button_to t('recipes.add'), positions_path(recipe_id: @recipe), class: "btn btn-success", remote: true
+                            %p= button_to t('recipes.add'), positions_path(recipe_id: @recipe), class: 'btn btn-success', remote: true
             .comment_block
                 .row
                     .col-md-6.user_comment
@@ -67,8 +63,8 @@
                             .actions
                                 - if current_user
                                     = f.input :body
-                                    = f.button :submit, id: "add_comment", class: "btn btn-success disabled", value: 'Добавить комментарий'
+                                    = f.button :submit, id: 'add_comment', class: 'btn btn-success disabled', value: 'Добавить комментарий'
                                 - else
                                     = f.input :body, disabled: true, placeholder: 'Вы должны авторизоваться, чтобы оставлять комментарии'
-                                    = f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', 'disabled' => 'disabled'
-                .row#comments= render partial: 'comments', locals: { comments: @comments }
+                                    = f.button :submit, class: 'btn btn-default', value: 'Добавить комментарий', type: 'button', 'disabled' => 'disabled'
+                .row#comments= render partial: 'shared/comments', locals: { comments: @comments }

@@ -16,7 +16,6 @@ en:
     cart: 'Cart'
     add: 'Add recipe'
     look: 'Search form'
-    login: 'You need login'
 
   controllers:
     all: 'All recipes'
@@ -38,6 +37,8 @@ en:
     step: 'Step'
     method: 'Cooking method'
     ingredients: 'Ingredients (number of portions'
+    crockpot: 'Recipe for crockpot'
+    healthfood: 'Healthfood'
 
   cart:
     h2: 'Cart of ingredients'

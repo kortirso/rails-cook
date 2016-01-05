@@ -1,6 +1,6 @@
 .panel.panel-default
     .panel-heading
-        %button#recipe_navigator.btn.btn-warning{type: "button"}
+        %button#recipe_navigator.btn.btn-warning{type: 'button'}
             %span.glyphicon.glyphicon-chevron-up
         %h2= t('static.categories')
     .panel-body
@@ -24,4 +24,4 @@
             .row
                 - @countries.each do |kitchen|
                     .col-xs-2.col-sm-1
-                        = link_to image_tag(kitchen.name + ".jpg", class: "img-responsive", alt: "Категория"), kitchen_path(kitchen.name), title: "#{kitchen.caption} кухня"
+                        = link_to image_tag("#{kitchen.name}.jpg", class: 'img-responsive', alt: 'Категория'), kitchen_path(kitchen.name), title: "#{kitchen.caption} кухня"

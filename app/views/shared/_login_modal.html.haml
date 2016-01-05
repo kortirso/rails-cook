@@ -2,7 +2,7 @@
     .modal-dialog
         .modal-content
             .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
                 %h2.modal-title= t('auth.login')
             = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 .modal-body

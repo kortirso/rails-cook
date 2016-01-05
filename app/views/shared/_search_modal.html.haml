@@ -2,7 +2,7 @@
     .modal-dialog
         .modal-content
             .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
                 %h2.modal-title= t('search.form')
             = simple_form_for :search, url: search_path, method: :get, role: 'search' do |f|
                 .modal-body
