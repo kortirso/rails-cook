@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
         raise ActionController::RoutingError.new(params[:path])
     end
 
+    def locale
+        params[:name] == 'ru' ? session[:locale] = 'ru' : session[:locale] = 'en'
+        redirect_to catalog_all_path
+    end
+
     private
     def configure_permitted_parameters
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }

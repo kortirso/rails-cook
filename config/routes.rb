@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get 'mark/:mark/recipe/:recipe_id' => 'grades#create', as: 'grading'
     get 'contacts' => 'contacts#index', as: 'contacts'
     get 'basket' => 'basket#show', as: 'basket'
-    get 'welcome/index'
     post 'positions/create' => 'positions#create', as: 'positions'
 
     resources :recipes, :countries, :categories, :comments, :measures, :ingridients
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
         get ':path_name' => :show, as: 'show'
     end
 
-    get 'locale/:name' => 'welcome#locale', as: 'change_locale'
+    get 'locale/:name' => 'application#locale', as: 'change_locale'
 
     root to: 'catalog#index', as: 'catalog'
     match "*path", to: "application#catch_404", via: :all
