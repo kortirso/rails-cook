@@ -1,10 +1,10 @@
 class PositionsController < ApplicationController
+    before_filter :authenticate_user!
     include CurrentCart
     before_action :set_cart
 
     def create
-        recipe = Recipe.find(params[:recipe_id])
-        @cart.add_recipe(recipe) if recipe
+        @cart.add_recipe(params[:recipe_id])
     end
 
     private
