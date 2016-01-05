@@ -1,2 +1,2 @@
-$('#comments').html("<%= j render(partial: 'catalog/comments', object: @recipe) %>");
+$('#comments').html("<%= j render(partial: 'catalog/comments', locals: { comments: @comments } ) %>");
 $('#comment_body').val("");

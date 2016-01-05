@@ -19,9 +19,9 @@
                         .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-0
                             = image_tag recipe.image, class: "img-responsive recipe_img", alt: recipe.name
                             - if current_user
-                                %p= button_to t('recipes.add'), positions_path(recipe_id: recipe.id), class: "btn btn-success", remote: true
+                                %p= button_to t('recipes.add'), positions_path(recipe_id: recipe), class: "btn btn-success", remote: true
                             - else
-                                %p= button_to t('recipes.add'), positions_path(recipe_id: recipe.id), class: "btn btn-success disabled", remote: true
+                                %p= button_to t('recipes.add'), positions_path(recipe_id: recipe), class: "btn btn-success disabled", remote: true
                         .col-sm-4.col-md-5
                             %p= t('recipes.author') + " - #{@recipe.user.username}"
                             %p= link_to recipe.category.caption, type_path(recipe.category.name)

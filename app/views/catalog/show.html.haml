@@ -71,4 +71,4 @@
                                 - else
                                     = f.input :body, disabled: true, placeholder: 'Вы должны авторизоваться, чтобы оставлять комментарии'
                                     = f.button :submit, class: "btn btn-default", value: 'Добавить комментарий', type: 'button', 'disabled' => 'disabled'
-                .row#comments= render "comments"
+                .row#comments= render partial: 'comments', locals: { comments: @comments }

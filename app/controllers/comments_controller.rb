@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
     def create
         @comment = Comment.create(comment_params.merge(user: current_user))
-        @recipe = @comment.recipe
+        @comments = @comment.recipe.comments.order('id desc').includes(:user)
     end
 
     private

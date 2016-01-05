@@ -50,7 +50,7 @@ class CatalogController < ApplicationController
             @list = @recipe.line_ingrids.includes(:ingridient, :measure)
             @steps = @recipe.steps.order(id: :asc)
             @current_grade = @recipe.grades.find_by(user: current_user) if current_user
-            @comments = @recipe.comments.order('id').includes(:user)
+            @comments = @recipe.comments.order('id desc').includes(:user)
             @comment = Comment.new
             render :show
         else

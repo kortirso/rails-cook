@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     get 'basket' => 'basket#show', as: 'basket'
     post 'positions/create' => 'positions#create', as: 'positions'
 
-    resources :recipes, :countries, :categories, :comments, :measures, :ingridients
+    resources :recipes, :countries, :categories, :measures, :ingridients
+    resources :comments, only: :create
 
     scope controller: :carts do
         get 'carts/:id' => :show, as: 'cart'
