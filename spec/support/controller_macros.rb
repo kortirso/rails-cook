@@ -5,4 +5,11 @@ module ControllerMacros
             sign_in @current_user
         end
     end
+
+    def sign_in_admin
+        before do
+            @current_user = create :user, :admin
+            sign_in @current_user
+        end
+    end
 end

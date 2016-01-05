@@ -1,7 +1,7 @@
 class IngridientsController < ApplicationController
     before_filter :authenticate_user!
     before_action :set_ingridient, only: [:show, :edit, :update, :destroy]
-    before_filter :set_accessible, except: [:new, :create]
+    before_filter :set_accessible
 
     def index
         @ingridients = Ingridient.all

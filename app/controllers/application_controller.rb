@@ -18,9 +18,8 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     end
 
-    # Доступ к редактированию структуры сайта имеет только пользователь с id == 1
     def set_accessible
-        render template: "layouts/403", status: 403 if current_user.id != 1
+        render template: "layouts/403", status: 403 unless User.admin?(current_user.id)
     end
 
     def set_static

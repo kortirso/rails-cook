@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
     validates :username, presence: true, uniqueness: true, length: { in: 1..20 }
 
+    def self.admin?(id)
+        find(id).admin
+    end
+
     private
     def send_email_admin
         Notifier.user_new(self).deliver_now
