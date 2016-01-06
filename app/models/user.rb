@@ -17,28 +17,37 @@ class User < ActiveRecord::Base
 
     private
     def self.find_for_oauth(auth)
+        logger.debug "auth - #{auth}"
+        logger.debug "auth.info - #{auth.info}"
+        logger.debug "auth.provider - #{auth.provider}"
+        logger.debug "auth.extra - #{auth.extra}"
+        logger.debug "auth.extra[:raw_info] - #{auth.extra[:raw_info]}"
+
         identity = Identity.find_for_oauth(auth)
         return identity.user if identity # если существует авторизация, то возвращает пользователя
         email = auth.info[:email]
         case auth.provider
-            when 'facebook' then username = auth[:extra][:raw_info][:username]
-            when 'vkontakte' then username = auth[:extra][:raw_info][:nickname]
-            when 'github' then username = auth[:extra][:raw_info][:login]
-            when 'instagram' then username = auth[:extra][:raw_info][:username]
+            when 'facebook' then username = auth.info[:name]
+            when 'vkontakte' then username = auth.extra[:raw_info][:screen_name]
+            when 'github' then username = auth.extra[:raw_info][:login]
+            when 'instagram'
+                username = auth.extra[:raw_info][:username]
+                email = auth.extra[:raw_info][:email]
         end
         user = User.find_by(email: email)
         if user
             if user.username == username
-                user.identities.create(provider: auth.provider, uid: auth.uid)
+                user.identities.create!(provider: auth.provider, uid: auth.uid)
             else
                 return false
             end
         else
-            if User.find_by(username: username)
+            user = User.find_by(username: username)
+            if user
                 return false
             else
-                user = User.create(username: username, email: email, password: Devise.friendly_token[0,20])
-                user.identities.create(provider: auth.provider, uid: auth.uid)
+                user = User.create!(username: username, email: email, password: Devise.friendly_token[0,20])
+                user.identities.create!(provider: auth.provider, uid: auth.uid)
             end
         end
         user

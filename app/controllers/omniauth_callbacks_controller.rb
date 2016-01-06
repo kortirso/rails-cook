@@ -8,7 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def vkontakte
     end
 
-    def twitter
+    def instagram
     end
 
     def github
@@ -21,7 +21,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             sign_in_and_redirect @user, event: :authentication
             set_flash_message(:notice, :success, kind: "#{action_name}".capitalize) if is_navigational_format?
         else
-            render 'shared/failed_username'
+            render partial: 'shared/failed_username'
         end
     end
 end
