@@ -237,7 +237,6 @@ Devise.setup do |config|
   config.omniauth :facebook, Rails.application.secrets.facebook_app_id, Rails.application.secrets.facebook_app_secret, info_fields: 'id, email'
   config.omniauth :vkontakte, Rails.application.secrets.vkontakte_app_id, Rails.application.secrets.vkontakte_app_secret, scope: 'friends,audio,photos,email', display: 'popup', lang: 'en', image_size: 'original'
   config.omniauth :github, Rails.application.secrets.github_app_id, Rails.application.secrets.github_app_secret, scope: 'user:email'
-  config.omniauth :instagram, Rails.application.secrets.instagram_app_id, Rails.application.secrets.instagram_app_secret
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :registerable, :recoverable, :rememberable, :trackable, :database_authenticatable, :validatable, :omniauthable, omniauth_providers: [:vkontakte, :facebook, :github, :instagram]
+    devise :registerable, :recoverable, :rememberable, :trackable, :database_authenticatable, :validatable, :omniauthable, omniauth_providers: [:vkontakte, :facebook, :github]
 
     has_one :cart
     has_many :identities
@@ -17,12 +17,6 @@ class User < ActiveRecord::Base
 
     private
     def self.find_for_oauth(auth)
-        logger.debug "auth - #{auth}"
-        logger.debug "auth.info - #{auth.info}"
-        logger.debug "auth.provider - #{auth.provider}"
-        logger.debug "auth.extra - #{auth.extra}"
-        logger.debug "auth.extra[:raw_info] - #{auth.extra[:raw_info]}"
-
         identity = Identity.find_for_oauth(auth)
         return identity.user if identity # если существует авторизация, то возвращает пользователя
         email = auth.info[:email]
@@ -30,9 +24,6 @@ class User < ActiveRecord::Base
             when 'facebook' then username = auth.info[:name]
             when 'vkontakte' then username = auth.extra[:raw_info][:screen_name]
             when 'github' then username = auth.extra[:raw_info][:login]
-            when 'instagram'
-                username = auth.extra[:raw_info][:username]
-                email = auth.extra[:raw_info][:email]
         end
         user = User.find_by(email: email)
         if user

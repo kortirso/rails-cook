@@ -29,7 +29,6 @@ gem 'whenever'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-github'
-gem 'omniauth-instagram'
 
 group :development, :test do
     gem 'byebug'
