@@ -1,10 +1,7 @@
 class User < ActiveRecord::Base
-    TEMP_EMAIL_PREFIX = '@railscook'
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
-    after_create :send_email_admin
-
-    devise :registerable, :recoverable, :rememberable, :trackable, :database_authenticatable, :validatable, :omniauthable, omniauth_providers: [:vkontakte, :facebook, :github, :twitter, :yandex, :google_oauth2, :linkedin, :instagram, :odnoklassniki]
+    devise :registerable, :recoverable, :rememberable, :trackable, :database_authenticatable, :validatable, :omniauthable, omniauth_providers: [:vkontakte, :facebook, :github, :instagram]
 
     has_one :cart
     has_many :identities
@@ -19,32 +16,31 @@ class User < ActiveRecord::Base
     end
 
     private
-    def send_email_admin
-        Notifier.user_new(self).deliver_now
-    end
-
-    def self.find_for_oauth(auth, signed_in_resource = nil)
+    def self.find_for_oauth(auth)
         identity = Identity.find_for_oauth(auth)
-        user = signed_in_resource ? signed_in_resource : identity.user
-        if user.nil?
-            email = auth.info.email
-            user = User.where(:email => email).first
-            if user.nil?
-                username = auth.info.nickname || auth.uid
-                user = User.new(
-                    #name: auth.extra.raw_info.name,
-                    #username: auth.info.nickname || auth.uid,
-                    email: email ? email : "#{username}#{TEMP_EMAIL_PREFIX}-#{auth.provider}-#{auth.uid}.com",
-                    password: Devise.friendly_token[0,20]
-                )
-                user.save!
+        return identity.user if identity # если существует авторизация, то возвращает пользователя
+        email = auth.info[:email]
+        case auth.provider
+            when 'facebook' then username = auth[:extra][:raw_info][:username]
+            when 'vkontakte' then username = auth[:extra][:raw_info][:nickname]
+            when 'github' then username = auth[:extra][:raw_info][:login]
+            when 'instagram' then username = auth[:extra][:raw_info][:username]
+        end
+        user = User.find_by(email: email)
+        if user
+            if user.username == username
+                user.identities.create(provider: auth.provider, uid: auth.uid)
+            else
+                return false
+            end
+        else
+            if User.find_by(username: username)
+                return false
+            else
+                user = User.create(username: username, email: email, password: Devise.friendly_token[0,20])
+                user.identities.create(provider: auth.provider, uid: auth.uid)
             end
         end
-        if identity.user != user
-            identity.user = user
-            identity.save!
-        end
-        signed_in_resource = user
         user
     end
 end

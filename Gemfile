@@ -29,12 +29,7 @@ gem 'whenever'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'omniauth-github'
-gem 'omniauth-twitter'
-gem 'omniauth-yandex'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-linkedin'
 gem 'omniauth-instagram'
-gem 'omniauth-odnoklassniki'
 
 group :development, :test do
     gem 'byebug'
