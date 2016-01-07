@@ -1,11 +1,13 @@
-%p
-    %strong Caption:
-    = @ingridient.caption
-%p
-    %strong Name path:
-    = @ingridient.name_path
-%p
-    %strong Name:
-    = @ingridient.name
-= link_to 'Edit', edit_ingridient_path(@ingridient)
-= link_to 'Back', ingridients_path
+.container
+    %h1 Просмотр ингредиента
+    %p
+        %strong Caption:
+        = @ingridient.caption
+    %p
+        %strong Name path:
+        = @ingridient.name_path
+    %p
+        %strong Name:
+        = @ingridient.name
+    = link_to 'Edit', edit_ingridient_path(@ingridient)
+    = link_to 'Back', ingridients_path

@@ -1,8 +1,10 @@
-%p
-    %strong Name:
-    = @country.name
-%p
-    %strong Caption:
-    = @country.caption
-= link_to 'Edit', edit_country_path(@country)
-= link_to 'Back', countries_path
+.container
+    %h1 Просмотр страны
+    %p
+        %strong Name:
+        = @country.name
+    %p
+        %strong Caption:
+        = @country.caption
+    = link_to 'Edit', edit_country_path(@country)
+    = link_to 'Back', countries_path

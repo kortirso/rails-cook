@@ -1,26 +1,46 @@
-%p
-    %strong Название
-    = @recipe.name
-%p
-    %strong Название в URL
-    = @recipe.path_name
-%p
-    %strong Категория
-    = @recipe.category_id
-%p
-    %strong Национальная кухня
-    = @recipe.country_id
-%p
-    %strong Фотография
-    = image_tag @recipe.image, class: 'img-responsive', alt: 'Фото рецепта'
-%p
-    %strong Описание
-    = @recipe.caption
-%p
-    %strong Пользователь
-    = @recipe.user_id
-%p
-    %strong Проверено?
-    = @recipe.visible
-= link_to 'Edit', edit_recipe_path(@recipe)
-= link_to 'Back', recipes_path
+.container
+    %h1 Просмотр рецепта
+    %p
+        %strong Название
+        = @recipe.name
+    %p
+        %strong Название в URL
+        = @recipe.path_name
+    %p
+        %strong Категория
+        = @recipe.category.caption
+    %p
+        %strong Национальная кухня
+        - if @recipe.country
+            = @recipe.country.caption
+    %p
+        %strong Фотография
+        %p= image_tag @recipe.image, alt: 'Фото рецепта'
+    %p
+        %strong Описание
+        %p= @recipe.caption
+    %p
+        %strong Кол-во порций
+        = @recipe.portions
+    %p
+        %strong Ингредиенты
+        %table
+        - @recipe.line_ingrids.each do |line|
+            %tr
+                %td= line.ingridient.name
+                %td= line.quantity
+                %td= line.measure.name
+    %p
+        %p
+            %strong Шаги приготовления
+        - @recipe.steps.each_with_index do |step, index|
+            %strong= "Шаг #{index + 1}"
+            %p= step.text
+    %p
+        %strong Пользователь
+        = @recipe.user_id
+    %p
+        %strong Проверено?
+        = @recipe.visible
+    = link_to 'Edit', edit_recipe_path(@recipe)
+    = link_to 'Back', recipes_path

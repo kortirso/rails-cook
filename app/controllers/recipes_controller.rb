@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     before_filter :set_accessible, except: [:new, :create]
 
     def index
-        @recipes = Recipe.all
+        @recipes = Recipe.includes(:category, :country).order('id desc')
     end
 
     def show

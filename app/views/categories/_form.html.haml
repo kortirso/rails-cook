@@ -1,11 +1,4 @@
-= form_for(@category) do |f|
-    .field
-        = f.label :name
-        %br
-        = f.text_field :name
-    .field
-        = f.label :caption
-        %br
-        = f.text_field :caption
-    .actions
-        = f.submit
+= simple_form_for @category do |f|
+    = f.input :name
+    = f.input :caption
+    = f.submit

@@ -1,2 +1,7 @@
-= link_to 'Edit', edit_measure_path(@measure) 
-= link_to 'Back', measures_path
+.container
+    %h1 Просмотр меры
+    %p
+        %strong Name:
+        = @measure.name
+    = link_to 'Edit', edit_measure_path(@measure) 
+    = link_to 'Back', measures_path

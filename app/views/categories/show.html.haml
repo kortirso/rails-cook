@@ -1,8 +1,10 @@
-%p
-    %strong Name:
-    = @category.name
-%p>
-    %strong Caption:
-    = @category.caption
-= link_to 'Edit', edit_category_path(@category)
-= link_to 'Back', categories_path
+.container
+    %h1 Просмотр категории
+    %p
+        %strong Name:
+        = @category.name
+    %p
+        %strong Caption:
+        = @category.caption
+    = link_to 'Edit', edit_category_path(@category)
+    = link_to 'Back', categories_path
