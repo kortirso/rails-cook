@@ -85,10 +85,10 @@ RSpec.describe IngridientsController, type: :controller do
                 expect { post :create, ingridient: attributes_for(:ingridient) }.to_not change(Ingridient, :count)
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 post :create, ingridient: attributes_for(:ingridient)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 
@@ -166,10 +166,10 @@ RSpec.describe IngridientsController, type: :controller do
                 expect { patch :update, id: ingridient, ingridient: attributes_for(:ingridient) }.to_not change{ingridient}
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 patch :update, id: ingridient, ingridient: attributes_for(:ingridient)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 

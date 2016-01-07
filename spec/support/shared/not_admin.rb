@@ -13,7 +13,7 @@ shared_examples_for 'Not Admin' do
         it 'renders layouts/403 with error' do
             do_request
 
-            expect(response).to render_template 'layouts/403'
+            expect(response).to render_template 'shared/403'
         end
     end
 end

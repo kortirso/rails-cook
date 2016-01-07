@@ -85,10 +85,10 @@ RSpec.describe CountriesController, type: :controller do
                 expect { post :create, country: attributes_for(:country) }.to_not change(Country, :count)
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 post :create, country: attributes_for(:country)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 
@@ -166,10 +166,10 @@ RSpec.describe CountriesController, type: :controller do
                 expect { patch :update, id: country, country: attributes_for(:country) }.to_not change{country}
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 patch :update, id: country, country: attributes_for(:country)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 

@@ -159,10 +159,10 @@ RSpec.describe RecipesController, type: :controller do
                 expect { patch :update, id: recipe, recipe: attributes_for(:recipe) }.to_not change{recipe}
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 patch :update, id: recipe, recipe: attributes_for(:recipe)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 

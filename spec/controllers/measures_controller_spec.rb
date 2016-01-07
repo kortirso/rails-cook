@@ -85,10 +85,10 @@ RSpec.describe MeasuresController, type: :controller do
                 expect { post :create, measure: attributes_for(:measure) }.to_not change(Measure, :count)
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 post :create, measure: attributes_for(:measure)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 
@@ -166,10 +166,10 @@ RSpec.describe MeasuresController, type: :controller do
                 expect { patch :update, id: measure, measure: attributes_for(:measure) }.to_not change{measure}
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 patch :update, id: measure, measure: attributes_for(:measure)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 

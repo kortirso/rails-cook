@@ -85,10 +85,10 @@ RSpec.describe CategoriesController, type: :controller do
                 expect { post :create, category: attributes_for(:category) }.to_not change(Category, :count)
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 post :create, category: attributes_for(:category)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 
@@ -166,10 +166,10 @@ RSpec.describe CategoriesController, type: :controller do
                 expect { patch :update, id: category, category: attributes_for(:category) }.to_not change{category}
             end
 
-            it 'renders layouts/403 with error' do
+            it 'renders shared/403 with error' do
                 patch :update, id: category, category: attributes_for(:category)
 
-                expect(response).to render_template 'layouts/403'
+                expect(response).to render_template 'shared/403'
             end
         end
 
