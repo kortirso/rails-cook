@@ -23,6 +23,8 @@
                 .locale_box
                     = link_to 'ENG', change_locale_path('en')
                     = link_to 'РУС', change_locale_path('ru')
+                    - if current_user && User.admin?(current_user.id)
+                        = link_to 'admin', admin_path
             .auth_box
                 - if user_signed_in?
                     %span.hidden-xs

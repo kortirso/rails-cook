@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_filter :set_locale
+    before_filter :set_accessible, only: :admin
     protect_from_forgery with: :exception
 
     rescue_from ActionController::RoutingError, with: :render_not_found
@@ -16,6 +17,10 @@ class ApplicationController < ActionController::Base
         redirect_to catalog_all_path
     end
 
+    def admin
+        render template: 'shared/admin'
+    end
+
     private
     def configure_permitted_parameters
         devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
@@ -24,7 +29,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_accessible
-        render template: 'shared/403', status: 403 unless User.admin?(current_user.id)
+        render template: 'shared/403', status: 403 unless current_user && User.admin?(current_user.id)
     end
 
     def set_static
