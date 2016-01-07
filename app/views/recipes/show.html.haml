@@ -25,7 +25,7 @@
     %p
         %strong Ингредиенты
         %table
-        - @recipe.line_ingrids.inclides(:ingridient, :measure).each do |line|
+        - @recipe.line_ingrids.includes(:ingridient, :measure).each do |line|
             %tr
                 %td= line.ingridient.name
                 %td= line.quantity
