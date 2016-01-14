@@ -595,14 +595,16 @@ body {
 
     li {
         list-style: none;
-        background-image: image-url('list.png') no-repeat;
+        background-image: image-url('list.png');
+        background-repeat: no-repeat;
         margin-top: 15px;
         padding: 0 40px 15px;
     }
 
     &#plan {
         li {
-            background-image: image-url('list-plan.png') no-repeat;
+            background-image: image-url('list-plan.png');
+            background-repeat: no-repeat;
         }
     }
 }
