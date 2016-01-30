@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.5.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -22,9 +22,9 @@ gem 'kaminari'
 gem 'pg_search'
 gem 'http_accept_language'
 gem 'cancancan'
-gem 'sidekiq'
-gem 'sidetiq'
-gem 'whenever'
+#gem 'sidekiq'
+#gem 'sidetiq'
+#gem 'whenever'
 
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
@@ -44,4 +44,8 @@ end
 
 group :development do
     gem 'bullet'
+    gem 'capistrano', require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano-rails', require: false
+    gem 'capistrano-rvm', require: false
 end
