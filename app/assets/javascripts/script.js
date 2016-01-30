@@ -34,6 +34,7 @@ $(function() {
             oldName = $(this).attr('name');
             newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[" + formsOnPage + "]");
             $(this).attr('name', newName);
+            $(this).val('');
         });
         $(newNestedForm).insertAfter(lastNestedForm);
     });
@@ -62,6 +63,7 @@ $(function() {
             oldName = $(this).attr('name');
             newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[" + formsOnPage + "]");
             $(this).attr('name', newName);
+            $(this).val('');
         });
         $(newNestedForm).insertAfter(lastNestedForm);
     });

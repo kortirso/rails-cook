@@ -24,7 +24,7 @@ class CatalogController < ApplicationController
     def category # Выборка рецептов по категориям
         category = Category.find_by('name = ?', params[:name])
         if category
-            @recipes = category.recipes.showed.order(created_at: :desc).page(params[:page]).per(10)
+            @recipes = category.recipes.showed.includes(:user, :country).order(created_at: :desc).page(params[:page]).per(10)
             @h2 = "#{t('controllers.recipes')}: #{category.caption}"
             render :all
         else
