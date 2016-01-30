@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104180852) do
+ActiveRecord::Schema.define(version: 20160130135620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160104180852) do
     t.integer  "recipe_id"
     t.integer  "ingridient_id"
     t.integer  "measure_id"
-    t.integer  "quantity"
+    t.float    "quantity"
   end
 
   add_index "line_ingrids", ["ingridient_id"], name: "index_line_ingrids_on_ingridient_id", using: :btree
