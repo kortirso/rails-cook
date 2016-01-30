@@ -32,7 +32,6 @@ gem 'omniauth-github'
 
 group :development, :test do
     gem 'byebug'
-    gem 'web-console', '~> 2.0'
     gem 'spring', '1.3.6'
     gem 'rspec-rails'
     gem 'factory_girl_rails'
@@ -43,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+    gem 'web-console', '~> 2.0'
     gem 'bullet'
     gem 'capistrano', require: false
     gem 'capistrano-bundler', require: false
